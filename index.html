@@ -1,0 +1,2782 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>ArchiaStudio – Creative Agency</title>
+	<meta name="robots" content="max-image-preview:large">
+	<style>
+		img:is([sizes="auto"i], [sizes^="auto,"i]) {
+			contain-intrinsic-size: 3000px 1500px
+		}
+	</style>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+	<style id="wp-emoji-styles-inline-css">
+		img.wp-smiley,
+		img.emoji {
+			display: inline !important;
+			border: none !important;
+			box-shadow: none !important;
+			height: 1em !important;
+			width: 1em !important;
+			margin: 0 0.07em !important;
+			vertical-align: -0.1em !important;
+			background: none !important;
+			padding: 0 !important;
+		}
+	</style>
+	<style id="classic-theme-styles-inline-css">
+		/**
+ * These rules are needed for backwards compatibility.
+ * They should match the button element rules in the base theme.json file.
+ */
+		.wp-block-button__link {
+			color: #ffffff;
+			background-color: #32373c;
+			border-radius: 9999px;
+			/* 100% causes an oval, but any explicit but really high value retains the pill shape. */
+
+			/* This needs a low specificity so it won't override the rules from the button element if defined in theme.json. */
+			box-shadow: none;
+			text-decoration: none;
+
+			/* The extra 2px are added to size solids the same as the outline versions.*/
+			padding: calc(0.667em + 2px) calc(1.333em + 2px);
+
+			font-size: 1.125em;
+		}
+
+		.wp-block-file__button {
+			background: #32373c;
+			color: #ffffff;
+			text-decoration: none;
+		}
+	</style>
+	<style id="global-styles-inline-css">
+		:root {
+			--wp--preset--aspect-ratio--square: 1;
+			--wp--preset--aspect-ratio--4-3: 4/3;
+			--wp--preset--aspect-ratio--3-4: 3/4;
+			--wp--preset--aspect-ratio--3-2: 3/2;
+			--wp--preset--aspect-ratio--2-3: 2/3;
+			--wp--preset--aspect-ratio--16-9: 16/9;
+			--wp--preset--aspect-ratio--9-16: 9/16;
+			--wp--preset--color--black: #000000;
+			--wp--preset--color--cyan-bluish-gray: #abb8c3;
+			--wp--preset--color--white: #ffffff;
+			--wp--preset--color--pale-pink: #f78da7;
+			--wp--preset--color--vivid-red: #cf2e2e;
+			--wp--preset--color--luminous-vivid-orange: #ff6900;
+			--wp--preset--color--luminous-vivid-amber: #fcb900;
+			--wp--preset--color--light-green-cyan: #7bdcb5;
+			--wp--preset--color--vivid-green-cyan: #00d084;
+			--wp--preset--color--pale-cyan-blue: #8ed1fc;
+			--wp--preset--color--vivid-cyan-blue: #0693e3;
+			--wp--preset--color--vivid-purple: #9b51e0;
+			--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+			--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+			--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+			--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+			--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+			--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+			--wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+			--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+			--wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+			--wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+			--wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+			--wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+			--wp--preset--font-size--small: 13px;
+			--wp--preset--font-size--medium: 20px;
+			--wp--preset--font-size--large: 36px;
+			--wp--preset--font-size--x-large: 42px;
+			--wp--preset--spacing--20: 0.44rem;
+			--wp--preset--spacing--30: 0.67rem;
+			--wp--preset--spacing--40: 1rem;
+			--wp--preset--spacing--50: 1.5rem;
+			--wp--preset--spacing--60: 2.25rem;
+			--wp--preset--spacing--70: 3.38rem;
+			--wp--preset--spacing--80: 5.06rem;
+			--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+			--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+			--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+			--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+			--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+		}
+
+		:where(.is-layout-flex) {
+			gap: 0.5em;
+		}
+
+		:where(.is-layout-grid) {
+			gap: 0.5em;
+		}
+
+		body .is-layout-flex {
+			display: flex;
+		}
+
+		.is-layout-flex {
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		.is-layout-flex> :is(*, div) {
+			margin: 0;
+		}
+
+		body .is-layout-grid {
+			display: grid;
+		}
+
+		.is-layout-grid> :is(*, div) {
+			margin: 0;
+		}
+
+		:where(.wp-block-columns.is-layout-flex) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-columns.is-layout-grid) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-post-template.is-layout-flex) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-post-template.is-layout-grid) {
+			gap: 1.25em;
+		}
+
+		.has-black-color {
+			color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-color {
+			color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-color {
+			color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-color {
+			color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-color {
+			color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-color {
+			color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-color {
+			color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-color {
+			color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-color {
+			color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-color {
+			color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-color {
+			color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-color {
+			color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-black-background-color {
+			background-color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-background-color {
+			background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-background-color {
+			background-color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-background-color {
+			background-color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-background-color {
+			background-color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-background-color {
+			background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-background-color {
+			background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-background-color {
+			background-color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-background-color {
+			background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-background-color {
+			background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-background-color {
+			background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-background-color {
+			background-color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-black-border-color {
+			border-color: var(--wp--preset--color--black) !important;
+		}
+
+		.has-cyan-bluish-gray-border-color {
+			border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+		}
+
+		.has-white-border-color {
+			border-color: var(--wp--preset--color--white) !important;
+		}
+
+		.has-pale-pink-border-color {
+			border-color: var(--wp--preset--color--pale-pink) !important;
+		}
+
+		.has-vivid-red-border-color {
+			border-color: var(--wp--preset--color--vivid-red) !important;
+		}
+
+		.has-luminous-vivid-orange-border-color {
+			border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-amber-border-color {
+			border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+		}
+
+		.has-light-green-cyan-border-color {
+			border-color: var(--wp--preset--color--light-green-cyan) !important;
+		}
+
+		.has-vivid-green-cyan-border-color {
+			border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+		}
+
+		.has-pale-cyan-blue-border-color {
+			border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+		}
+
+		.has-vivid-cyan-blue-border-color {
+			border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+		}
+
+		.has-vivid-purple-border-color {
+			border-color: var(--wp--preset--color--vivid-purple) !important;
+		}
+
+		.has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+			background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+		}
+
+		.has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+			background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+		}
+
+		.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+			background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+		}
+
+		.has-luminous-vivid-orange-to-vivid-red-gradient-background {
+			background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+		}
+
+		.has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+			background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+		}
+
+		.has-cool-to-warm-spectrum-gradient-background {
+			background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+		}
+
+		.has-blush-light-purple-gradient-background {
+			background: var(--wp--preset--gradient--blush-light-purple) !important;
+		}
+
+		.has-blush-bordeaux-gradient-background {
+			background: var(--wp--preset--gradient--blush-bordeaux) !important;
+		}
+
+		.has-luminous-dusk-gradient-background {
+			background: var(--wp--preset--gradient--luminous-dusk) !important;
+		}
+
+		.has-pale-ocean-gradient-background {
+			background: var(--wp--preset--gradient--pale-ocean) !important;
+		}
+
+		.has-electric-grass-gradient-background {
+			background: var(--wp--preset--gradient--electric-grass) !important;
+		}
+
+		.has-midnight-gradient-background {
+			background: var(--wp--preset--gradient--midnight) !important;
+		}
+
+		.has-small-font-size {
+			font-size: var(--wp--preset--font-size--small) !important;
+		}
+
+		.has-medium-font-size {
+			font-size: var(--wp--preset--font-size--medium) !important;
+		}
+
+		.has-large-font-size {
+			font-size: var(--wp--preset--font-size--large) !important;
+		}
+
+		.has-x-large-font-size {
+			font-size: var(--wp--preset--font-size--x-large) !important;
+		}
+
+		:where(.wp-block-post-template.is-layout-flex) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-post-template.is-layout-grid) {
+			gap: 1.25em;
+		}
+
+		:where(.wp-block-columns.is-layout-flex) {
+			gap: 2em;
+		}
+
+		:where(.wp-block-columns.is-layout-grid) {
+			gap: 2em;
+		}
+
+		:root :where(.wp-block-pullquote) {
+			font-size: 1.5em;
+			line-height: 1.6;
+		}
+	</style>
+	<link rel="stylesheet" id="redux-extendify-styles-css"
+		href="wp-content/plugins/redux-framework/redux-core/assets/css/extendify-utilities_ver%3D4.4.13.css"
+		media="all">
+	<link rel="stylesheet" id="contact-form-7-css"
+		href="wp-content/plugins/contact-form-7/includes/css/styles_ver%3D5.9.2.css" media="all">
+	<link rel="stylesheet" id="google-fonts-css"
+		href="//fonts.googleapis.com/css2?family=Syne%3Awght%40600%3B700&amp;display=swap&amp;ver=6.7.1" media="all">
+	<link rel="stylesheet" id="font-awesomes-css" href="wp-content/themes/aximo/assets/css/all.min_ver%3D1725678995.css"
+		media="all">
+	<link rel="stylesheet" id="select2-css" href="wp-content/themes/aximo/assets/css/select2.min_ver%3D1725678995.css"
+		media="all">
+	<link rel="stylesheet" id="bootstrap-css"
+		href="wp-content/themes/aximo/assets/css/bootstrap.min_ver%3D1725678995.css" media="all">
+	<link rel="stylesheet" id="nice-select-css"
+		href="wp-content/themes/aximo/assets/css/nice-select.min_ver%3D1725678995.css" media="all">
+	<link rel="stylesheet" id="aximo-core-css" href="wp-content/themes/aximo/assets/css/core_ver%3D1725678995.css"
+		media="all">
+	<link rel="stylesheet" id="aximo-custom-css"
+		href="wp-content/themes/aximo/assets/css/theme-style_ver%3D1725678995.css" media="all">
+	<link rel="stylesheet" id="aximo-style-css" href="wp-content/themes/aximo/style_ver%3D1725678995.css" media="all">
+	<link rel="stylesheet" id="aximo-responsive-css"
+		href="wp-content/themes/aximo/assets/css/theme-responsive_ver%3D1725678995.css" media="all">
+	<link rel="stylesheet" id="aximo-theme-options-style-css"
+		href="wp-content/themes/aximo/assets/css/theme_options_style_ver%3D1725678995.css" media="all">
+	<style id="aximo-theme-options-style-inline-css">
+		.site-branding,
+		.site-logo {
+			max-width: 115px;
+		}
+
+		@media (max-width: 680px) {
+
+			.site-branding,
+			.site-logo {
+				max-width: 115px;
+			}
+		}
+
+		/** #header{
+   margin: 0 auto;
+ }**/
+		:root {
+			--accent-color: #BFF747;
+			--accent-color-2: #BFF747;
+			--heading-color: #000000;
+			--text-color: #0C0C0C;
+		}
+
+		body {
+			background-color: #FFFFFF;
+		}
+
+
+		.blog-breadcrumb::after {
+			background-color: ;
+		}
+
+		.scrollToTop i {
+			font-size: 16px;
+		}
+
+		.scrollToTop i {
+			line-height: 50px;
+		}
+
+		.scrollToTop i {
+			background-color: ;
+		}
+
+		.scrollToTop i:hover {
+			background-color: ;
+		}
+	</style>
+	<link rel="stylesheet" id="elementor-frontend-css"
+		href="wp-content/plugins/elementor/assets/css/frontend_ver%3D3.20.1.css" media="all">
+	<link rel="stylesheet" id="swiper-css"
+		href="wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper_ver%3D8.4.5.css" media="all">
+	<link rel="stylesheet" id="elementor-post-7828-css"
+		href="wp-content/uploads/elementor/css/post-7828_ver%3D1725679003.css" media="all">
+	<link rel="stylesheet" id="owl-carousel-css"
+		href="wp-content/plugins/aximo-helper/assets/css/owl.carousel.min_ver%3D0.44479400%25201734502084.css"
+		media="all">
+	<link rel="stylesheet" id="slick-css"
+		href="wp-content/plugins/aximo-helper/assets/css/slick_ver%3D0.44483000%25201734502084.css" media="all">
+	<link rel="stylesheet" id="magnific-popup-css"
+		href="wp-content/plugins/aximo-helper/assets/css/magnific-popup_ver%3D0.44488500%25201734502084.css"
+		media="all">
+	<link rel="stylesheet" id="aximo-helper-addons-css"
+		href="wp-content/plugins/aximo-helper/assets/css/addons_ver%3D0.44491200%25201734502084.css" media="all">
+	<link rel="stylesheet" id="aximo-woocommerce-css"
+		href="wp-content/plugins/aximo-helper/assets/css/aximo-woocommerce_ver%3D0.44493800%25201734502084.css"
+		media="all">
+	<link rel="stylesheet" id="aximo-css-css"
+		href="wp-content/plugins/aximo-helper/assets/css/aximo_ver%3D0.44496600%25201734502084.css" media="all">
+	<link rel="stylesheet" id="mas-addons-elementor-animations-css"
+		href="wp-content/plugins/mas-addons/assets/css/animate_ver%3D0.44500200%25201734502084.css" media="all">
+	<link rel="stylesheet" id="mas-addons-css"
+		href="wp-content/plugins/mas-addons/assets/css/addons_ver%3D0.44509900%25201734502084.css" media="all">
+	<link rel="stylesheet" id="mas-crivite-button-css"
+		href="wp-content/plugins/mas-addons/assets/css/creative-button_ver%3D0.44512400%25201734502084.css" media="all">
+	<link rel="stylesheet" id="mas-group-image-css"
+		href="wp-content/plugins/mas-addons/assets/css/group-image_ver%3D0.44515000%25201734502084.css" media="all">
+	<link rel="stylesheet" id="elementor-global-css" href="wp-content/uploads/elementor/css/global_ver%3D1725679225.css"
+		media="all">
+	<link rel="stylesheet" id="elementor-post-2820-css"
+		href="wp-content/uploads/elementor/css/post-2820_ver%3D1725679285.css" media="all">
+	<link rel="preload" as="style"
+		href="https://fonts.googleapis.com/css?family=Syne:700&amp;display=swap&amp;ver=1710421924">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:700&amp;display=swap&amp;ver=1710421924"
+		media="print" onload="this.media='all'"><noscript>
+		<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Syne:700&#038;display=swap&#038;ver=1710421924" /></noscript>
+	<link rel="stylesheet" id="google-fonts-1-css"
+		href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CSyne%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CInter%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap&amp;ver=6.7.1"
+		media="all">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<script src="wp-includes/js/jquery/jquery_ver%3D3.7.1.js" id="jquery-core-js"></script>
+	<script src="wp-includes/js/jquery/jquery-migrate_ver%3D3.4.1.js" id="jquery-migrate-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/owl.carousel.min_ver%3D6.7.1.js" id="owl-carousel-js">
+	</script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/slick_ver%3D6.7.1.js" id="slick-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/swiper-bundle.min_ver%3D6.7.1.js" id="swiper-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/isotope.pkgd.min_ver%3D6.7.1.js" id="isotope-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/packery-mode.pkgd.min_ver%3D6.7.1.js" id="packery-js">
+	</script>
+	<script src="wp-content/plugins/mas-addons/assets/js/addon_ver%3D6.7.1.js" id="mas-addons-js"></script>
+	<link rel="canonical" href="https://archiastudio.com">
+	<link rel="shortlink" href="https://archiastudio.com">
+	<meta name="generator" content="Redux 4.4.13">
+	<meta name="cdp-version" content="1.4.6">
+	<meta name="generator"
+		content="Elementor 3.20.1; features: e_optimized_assets_loading, e_optimized_css_loading, e_font_icon_svg, additional_custom_breakpoints, block_editor_assets_optimize, e_image_loading_optimization; settings: css_print_method-external, google_font-enabled, font_display-swap">
+	<link rel="icon" href="wp-content/uploads/2023/12/favicon.png" sizes="32x32">
+	<link rel="icon" href="wp-content/uploads/2023/12/favicon.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="wp-content/uploads/2023/12/favicon.png">
+	<meta name="msapplication-TileImage"
+		content="https://XnoVZKhdKgPv.com/demos/wp/aximo/wp-content/uploads/2024/01/jEfqtNhJ2k7J.png">
+	<style id="aximo-dynamic-css" title="dynamic-css" class="redux-options-output">
+		body {
+			font-family: Inter;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: Syne;
+			font-weight: 700;
+			font-style: normal;
+		}
+
+		.scrollToTop i {
+			color: #ffffff;
+		}
+
+		.scrollToTop i:hover {
+			color: #ffffff;
+		}
+	</style>
+</head>
+
+
+<body
+	class="home page-template page-template-elementor_header_footer page page-id-2820 no-sidebar elementor-default elementor-template-full-width elementor-kit-7828 elementor-page elementor-page-2820">
+
+	<!-- preloader  -->
+
+	<div class="aximo-preloader-wrap">
+		<div class="aximo-preloader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+	<div id="page" class="site">
+		<a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+		<!-- end aximo header -->
+		<header class="site-header aximo-elementor-header">
+			<div data-elementor-type="wp-post" data-elementor-id="695" class="elementor elementor-695">
+				<div class="elementor-element elementor-element-817fc7f e-flex e-con-boxed e-con e-parent"
+					data-id="817fc7f" data-element_type="container"
+					data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" data-core-v316-plus="true">
+					<div class="e-con-inner">
+						<div class="elementor-element elementor-element-bee532e e-con-full e-flex e-con e-child"
+							data-id="bee532e" data-element_type="container">
+							<div class="elementor-element elementor-element-93484b0 mas-addons-sticky-no elementor-widget elementor-widget-aximo-logo"
+								data-id="93484b0" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="aximo-logo.default">
+								<div class="elementor-widget-container">
+									<div class="ama-site-logo content-align-">
+										<a href="https://archiastudio.com" class="ama-site-logo-wrap">
+											<span class="site-logo"><img decoding="async"
+													src="wp-content/uploads/2023/12/archialogo.png" alt="Agency"
+													class="navbar-brand__regular white-logo"></span> </a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-0665f7b e-con-full e-flex e-con e-child"
+							data-id="0665f7b" data-element_type="container">
+							<div class="elementor-element elementor-element-e1d9a72 mas-addons-sticky-no elementor-widget elementor-widget-aximo-main-menu"
+								data-id="e1d9a72" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="aximo-main-menu.default">
+								<div class="elementor-widget-container">
+
+									<div class="aximo-main-menu-wrap navbar menu-style-inline  megamenu-width-custom">
+										<button class="navbar-toggler open-menu" type="button"
+											data-toggle="navbarToggler" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon">
+												<svg xmlns="http://www.w3.org/2000/svg" width="25" height="17"
+													viewBox="0 0 25 17" fill="none">
+													<path
+														d="M23.6806 7.5H1.31944C0.590735 7.5 0 7.92533 0 8.45V8.55C0 9.07467 0.590735 9.5 1.31944 9.5H23.6806C24.4093 9.5 25 9.07467 25 8.55V8.45C25 7.92533 24.4093 7.5 23.6806 7.5Z"
+														fill="white"></path>
+													<path
+														d="M23.6806 15H1.31944C0.590735 15 0 15.4253 0 15.95V16.05C0 16.5747 0.590735 17 1.31944 17H23.6806C24.4093 17 25 16.5747 25 16.05V15.95C25 15.4253 24.4093 15 23.6806 15Z"
+														fill="white"></path>
+													<path
+														d="M23.6806 0H1.31944C0.590735 0 0 0.425329 0 0.95V1.05C0 1.57467 0.590735 2 1.31944 2H23.6806C24.4093 2 25 1.57467 25 1.05V0.95C25 0.425329 24.4093 0 23.6806 0Z"
+														fill="white"></path>
+												</svg> </span>
+
+
+										</button>
+										<!-- end of Nav toggler -->
+										<div class="navbar-inner">
+
+											<div class="site-branding mobile-version has-site-logo">
+												<a href="https://XnoVZKhdKgPv.com/demos/wp/aximo">
+													<img decoding="async"
+														src="wp-content/uploads/2023/12/archialogo.png" alt="Agency"
+														class="navbar-brand__regular white-logo"> </a>
+											</div><!-- .site-branding -->
+
+
+
+											<div class="aximo-mobile-menu"></div>
+											<button class="navbar-toggler close-menu" type="button"
+												data-toggle="navbarToggler" aria-label="Toggle navigation">
+
+												<span class="navbar-toggler-icon close">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+														viewBox="0 0 24 24" fill="none">
+														<path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="2"
+															stroke-linecap="round" stroke-linejoin="round"></path>
+													</svg>
+												</span>
+
+											</button>
+
+											<nav id="site-navigation" class="main-navigation ">
+
+												<div class="aximo-menu-container">
+													<ul id="navbar-nav" class="navbar-nav">
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2405  ">
+															<a href="#services">Services
+																</a></li>
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2405  ">
+															<a href="#projects">Projects
+																</a></li>
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2405  ">
+															<a href="#clients">Testimonials
+																</a></li>
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8970  ">
+															<a href="https://docs.google.com/document/d/1TYXsCic6CaJVa--3k-T1ESCU4AGVQfwUdoLMrar9FfM/edit?usp=sharing"
+																target="_blank">Privacy Policy</a></li>
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8970  ">
+															<a href="https://docs.google.com/document/d/1U7J7Qvk6B7lwjPk_nDtpyZC9J9A5ntdkg98ULEHyP6I/edit?usp=sharing"
+																target="_blank">Terms and Conditions</a></li>
+														<li
+															class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8970  ">
+															<a href="mailto:hello@archiastudio.com"
+															>hello@archiastudio.com</a></li>
+													</ul>
+												</div>
+											</nav><!-- #site-navigation -->
+
+
+
+
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-6cfb4da e-con-full elementor-hidden-mobile e-flex e-con e-child"
+							data-id="6cfb4da" data-element_type="container">
+							<div class="elementor-element elementor-element-c98a3f8 content-align-right mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-btn"
+								data-id="c98a3f8" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="mas-addons-btn.default">
+								<div class="elementor-widget-container">
+									<div class="mas-addons-btn-wrapper enable-icon-box-">
+										<a class="mas-addons-btn default-style   d-inline-flex align-items-center elementor-animation-"
+											href="https://wa.link/gv3kg0/" target="_blank">
+
+											<span class="hover-animation"></span>
+											<span class="content">
+												Get Quote </span>
+
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div data-elementor-type="wp-page" data-elementor-id="2820" class="elementor elementor-2820">
+			<div class="elementor-element elementor-element-51d107b e-flex e-con-boxed e-con e-parent" data-id="51d107b"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-1071c17 e-con-full e-flex e-con e-child"
+						data-id="1071c17" data-element_type="container">
+						<div class="elementor-element elementor-element-43c8720 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+							data-id="43c8720" data-element_type="widget"
+							data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="heading.default">
+							<div class="elementor-widget-container">
+								<h1 class="elementor-heading-title elementor-size-default">A creative design studio</h1>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-4b00e83 mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+							data-id="4b00e83" data-element_type="widget"
+							data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="text-editor.default">
+							<div class="elementor-widget-container">
+								<p>We’re a creative design studio <b>(IT Services and Web Development)</b> specializing in meeting the needs of the new
+									generation. We offer innovative and cutting-edge design solutions to help our
+									clients stand out in today’s fast-paced.</p>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-826af51 mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-icon-box"
+							data-id="826af51" data-element_type="widget"
+							data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="mas-addons-icon-box.default">
+							<div class="elementor-widget-container">
+								<!-- box link  -->
+								<!-- box link  -->
+								<div
+									class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-left">
+
+									<div class="mas-addons-feature-icon-wrap icon-background-no align-items-top">
+										<span class="mas-addons-feature-icon icon-type-image">
+											<img decoding="async" src="wp-content/uploads/2023/12/images.png"
+												title="images" alt="images" loading="lazy"> </span>
+									</div>
+
+									<div class="mas-addons-feature-content-wrap">
+										<div class="mas-addons-feature-content">
+
+											<p>Believed by more than a thousand people</p>
+
+
+										</div>
+									</div>
+
+								</div>
+								<!-- box link  -->
+								<!-- box link  -->
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-9d1f92a mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-mas-addons-btn"
+							data-id="9d1f92a" data-element_type="widget"
+							data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="mas-addons-btn.default">
+							<div class="elementor-widget-container">
+								<div class="mas-addons-btn-wrapper enable-icon-box-no">
+									<a class="mas-addons-btn default-style   d-inline-flex align-items-center elementor-animation-"
+										href="https://wa.link/gv3kg0/" target="_blank">
+
+										<span class="hover-animation"></span>
+										<span class="content">
+											Book a free consultation </span>
+
+										<span class="icon-after btn-icon"><svg xmlns="http://www.w3.org/2000/svg"
+												width="24" height="24" viewBox="0 0 24 24" fill="none">
+												<path
+													d="M0 1.50024C0 0.671817 0.671573 0.000244141 1.5 0.000244141H4.72931C5.46257 0.000244141 6.08835 0.530364 6.2089 1.25365L7.31787 7.90746C7.42613 8.557 7.09808 9.2012 6.5091 9.4957L4.18689 10.6568C5.86134 14.8177 9.18252 18.1389 13.3434 19.8134L14.5045 17.4911C14.799 16.9022 15.4432 16.5741 16.0928 16.6824L22.7466 17.7913C23.4699 17.9119 24 18.5377 24 19.2709V22.5002C24 23.3287 23.3284 24.0002 22.5 24.0002H19.5C8.73045 24.0002 0 15.2698 0 4.50024V1.50024Z"
+													fill="#FDFDE1"></path>
+											</svg></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-09c2d22 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+							data-id="09c2d22" data-element_type="widget"
+							data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="image.default">
+							<div class="elementor-widget-container">
+								<img decoding="async" width="74" height="70" src="wp-content/uploads/2023/12/star.png"
+									class="attachment-large size-large wp-image-2469" alt=""> </div>
+						</div>
+						<div class="elementor-element elementor-element-66bb3be elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+							data-id="66bb3be" data-element_type="widget"
+							data-settings="{&quot;fd_addon_floating_fx&quot;:&quot;yes&quot;,&quot;fd_addon_floating_fx_translate_toggle&quot;:&quot;yes&quot;,&quot;fd_addon_floating_fx_translate_x&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;from&quot;:-8,&quot;to&quot;:17}},&quot;fd_addon_floating_fx_translate_y&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;from&quot;:0,&quot;to&quot;:0}},&quot;fd_addon_floating_fx_translate_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:2000,&quot;sizes&quot;:[]},&quot;fd_addon_floating_fx_translate_delay&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+							data-widget_type="image.default">
+							<div class="elementor-widget-container">
+								<img decoding="async" width="284" height="153"
+									src="wp-content/uploads/2023/12/shape1-2.png"
+									class="attachment-large size-large wp-image-2465" alt=""> </div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-fb5ee92 e-flex e-con-boxed elementor-invisible e-con e-child"
+						data-id="fb5ee92" data-element_type="container"
+						data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;}">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-38d2874 mas-addons-sticky-no elementor-widget elementor-widget-image"
+								data-id="38d2874" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="image.default">
+								<div class="elementor-widget-container">
+									<img fetchpriority="high" decoding="async" width="920" height="1024"
+										src="wp-content/uploads/2023/12/hero-thumb-920x1024.png"
+										class="attachment-large size-large wp-image-2449" alt=""
+										srcset="wp-content/uploads/2023/12/hero-thumb-920x1024.png 920w, wp-content/uploads/2023/12/hero-thumb-269x300.png 269w, wp-content/uploads/2023/12/hero-thumb-768x855.png 768w, wp-content/uploads/2023/12/hero-thumb.png 970w"
+										sizes="(max-width: 920px) 100vw, 920px"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="services" class="elementor-element elementor-element-7ead82c e-flex e-con-boxed e-con e-parent" data-id="7ead82c"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-831effb e-flex e-con-boxed e-con e-child"
+						data-id="831effb" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-f141e41 e-con-full e-flex e-con e-child"
+								data-id="f141e41" data-element_type="container">
+								<div class="elementor-element elementor-element-744ade0 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+									data-id="744ade0" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="heading.default">
+									<div class="elementor-widget-container">
+										<h2 class="elementor-heading-title elementor-size-default">We provide effective
+											design solutions</h2>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-1d225b3 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+									data-id="1d225b3" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="image.default">
+									<div class="elementor-widget-container">
+										<img loading="lazy" decoding="async" width="116" height="110"
+											src="wp-content/uploads/2023/12/Vector-2.png"
+											class="attachment-full size-full wp-image-271" alt=""> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-77a3463 e-flex e-con-boxed e-con e-child"
+						data-id="77a3463" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-31c880b e-con-full e-flex e-con e-child"
+								data-id="31c880b" data-element_type="container">
+								<div class="elementor-element elementor-element-6ea2065 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-mas-addons-icon-box"
+									data-id="6ea2065" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:100,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-icon-box.default">
+									<div class="elementor-widget-container">
+										<!-- box link  -->
+										<!-- box link  -->
+										<div
+											class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-top">
+
+											<div
+												class="mas-addons-feature-icon-wrap icon-background-no align-items-top">
+												<span class="mas-addons-feature-icon icon-type-icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="64" height="70"
+														viewBox="0 0 64 70" fill="none">
+														<path
+															d="M44.9159 62.1467C45.5075 65.8563 49.4823 68.0182 52.9192 66.4934C56.5456 67.6176 60.0169 68.8754 63.6434 69.9996C63.3446 68.8152 63.0459 67.6305 62.7472 66.4462C58.9425 65.3419 55.0727 64.2738 51.2651 63.1713C52.5872 58.5278 50.8752 49.0752 49.7178 46.2558C52.5629 47.8462 53.6918 48.2904 57.8885 49.0337C58.3258 49.1106 58.7333 48.8176 58.8085 48.3907C58.885 47.9586 58.5971 47.5472 58.1655 47.4707C53.4979 46.6441 52.9441 46.2645 48.7395 43.8785C48.5235 43.756 48.2785 43.7568 48.0636 43.8405C47.4147 43.1986 46.6643 42.7365 45.9423 42.8221C44.4453 42.9845 44.1736 45.3509 43.9834 47.0267C42.6976 46.7345 41.5808 46.4643 40.432 46.1878C36.1654 45.1628 34.6155 46.4843 29.6674 43.2676C29.0218 42.848 22.9323 36.7831 19.6724 39.4335C17.0798 41.546 20.4706 45.7083 23.5664 48.0392C24.8586 49.0109 26.3014 50.1232 27.5958 51.6451C27.2352 51.9488 25.7419 52.4284 22.8495 51.6221C20.7182 51.0286 18.4432 50.6362 16.3769 49.9423L4.14694 45.8415C1.1759 44.844 -0.197827 46.4062 0.0229202 48.0578C0.147881 48.9872 0.800192 49.8782 1.44564 50.5801C10.0321 62.2876 26.7958 67.9821 44.9159 62.1467ZM50.318 59.711C50.2765 60.291 49.7787 62.9389 49.551 63.3228C49.0378 63.0567 48.0388 61.9533 47.8424 60.2387C48.673 60.0712 49.4985 59.8955 50.318 59.711ZM46.1759 44.4119C46.6479 44.5388 47.9195 45.6689 48.5916 47.9493C47.6545 47.7999 46.6252 47.6004 45.5708 47.3761C45.5391 47.1586 45.8693 44.8245 46.1759 44.4119ZM3.64249 47.3466L15.8719 51.4474C18.0466 52.1777 20.2548 52.5488 22.4236 53.152C27.5527 54.578 33.1365 53.2536 24.521 46.7698C22.4565 45.2171 19.2608 41.821 20.6342 40.6926C23.6252 39.2639 27.0937 43.4889 28.8022 44.599C34.1249 48.06 36.0219 46.7592 40.0604 47.7322C42.6906 48.3652 46.3249 49.2452 48.983 49.6177C49.0005 49.6203 49.0164 49.6136 49.0337 49.6146C49.6729 52.3524 49.9625 55.1737 50.2241 58.1056C33.2762 61.9672 14.6348 62.3632 2.64391 49.5767C2.04495 48.938 1.66402 48.3482 1.59676 47.847C1.46349 46.8522 2.66853 47.0211 3.64249 47.3466Z"
+															fill="black"></path>
+														<path
+															d="M15.561 0.29942C15.3328 0.0215566 14.9011 -0.0214773 14.7195 0.00791127C10.7769 0.683964 6.01302 3.5515 4.95139 7.53235C4.92305 7.63849 4.60194 9.5991 4.59476 9.70497C4.57363 9.92722 4.89117 10.4144 5.01819 10.5836C8.66885 15.1292 11.9164 19.7427 15.6535 24.2827C14.9807 25.0555 17.6863 21.9062 11.0508 29.6943C10.927 29.8398 10.8758 30.0173 10.8725 30.1946C10.8716 30.2052 10.8654 30.2137 10.8648 30.2246C10.8265 30.9864 9.92616 37.6539 9.40465 39.804C9.33022 40.1121 9.44548 40.4346 9.69874 40.6258C9.95649 40.8192 10.3009 40.8352 10.5691 40.6806C12.1479 39.7819 17.4921 37.2872 19.042 36.5178C19.1728 36.4532 19.2664 36.3509 19.3411 36.2372C19.3437 36.2343 19.3475 36.2336 19.3501 36.2305C20.2917 35.1324 21.3774 33.8614 22.5529 32.46C25.4279 35.8035 28.306 39.1538 30.9204 42.4666C31.5468 43.2251 32.9596 43.2887 33.9451 43.2887C36.8549 43.2887 41.9223 40.3656 43.9226 35.6836C44.3323 34.7307 43.8897 34.664 43.781 34.4142C42.0905 32.3506 32.5314 20.8053 32.4411 20.6962C42.1938 9.14022 38.83 13.1259 39.5577 12.2637C41.2677 10.2654 40.1226 6.77681 38.0082 5.37912C36.4691 4.31841 33.2208 3.64838 31.8627 5.19822C31.7697 5.30761 25.2351 12.9956 25.6455 12.5128C21.6381 7.67086 18.3289 3.67523 15.561 0.29942ZM14.616 1.6492C15.6888 2.95685 16.7838 4.27665 17.868 5.58999C17.8605 5.59568 17.8512 5.59723 17.8439 5.60343L15.4953 7.63262C15.163 7.91896 15.1263 8.42032 15.4126 8.75214C15.6998 9.08466 16.2026 9.1202 16.5321 8.8338L18.8756 6.81082C19.7333 7.84867 20.5806 8.88032 21.4422 9.92076L19.1097 11.9226C18.7769 12.2079 18.7386 12.7092 19.0239 13.0421C19.3086 13.3736 19.8085 13.4143 20.1434 13.1279L22.4541 11.1457L24.601 13.7406C24.5875 13.7584 24.5721 13.7747 24.56 13.7936L17.9327 21.609C9.93279 11.7498 7.37403 8.65001 6.57484 7.67139C7.46804 4.97364 10.8854 2.41338 14.616 1.6492ZM15.0353 36.6838C14.8891 36.3309 12.749 34.615 11.9108 34.56C12.0687 33.4704 12.2078 32.4411 12.3057 31.6537C12.774 31.6485 13.2397 31.663 13.6016 31.8279C13.8832 31.956 14.0983 32.2372 14.0626 32.4295C13.9665 32.9477 14.3944 33.4056 14.8859 33.3681C15.9749 33.3019 17.0548 33.9515 17.3584 35.571C16.5305 35.9692 15.9316 36.2543 15.0353 36.6838ZM36.0111 27.5033L33.8273 29.2746C33.4867 29.5506 33.435 30.0509 33.711 30.391C33.9856 30.7288 34.4856 30.7854 34.8279 30.5068L37.0225 28.7267C38.1694 30.1134 39.3192 31.502 40.462 32.8879L37.6159 35.1078C37.2701 35.3776 37.2086 35.8769 37.4784 36.2222C37.75 36.57 38.2477 36.6284 38.5927 36.3607L41.4743 34.1129C41.7797 34.4804 42.0824 34.8479 42.3835 35.2154C40.9127 38.5015 37.758 40.9654 34.2209 41.6247C30.9601 37.6502 28.6628 34.8349 24.6888 29.9305C25.2513 29.2631 27.5479 26.5115 31.4209 21.954L32.4181 23.1583C32.1291 23.2969 32.5975 22.9887 29.5126 25.547C29.1766 25.8281 29.1327 26.3295 29.4144 26.6655C29.6971 27.0021 30.1992 27.0439 30.5328 26.7626C33.6153 24.1426 33.1936 24.5795 33.3814 24.322C34.2611 25.3844 35.1335 26.4427 36.0111 27.5033ZM18.7364 34.5062C18.4106 33.4962 17.7309 32.6532 16.6958 32.163C17.7039 30.9895 17.1075 31.6755 34.0751 11.8523C35.4035 12.7183 35.7027 12.6991 36.6344 13.2607C34.4222 15.8565 21.5861 31.1749 18.7364 34.5062ZM30.8745 8.80331C31.5257 9.6153 32.1257 10.2944 32.8071 10.8917C30.0966 14.0551 15.4209 31.2117 15.3283 31.3193C14.7621 30.4246 13.8626 30.1233 12.8107 30.0765C18.8383 23.0059 22.6222 18.5339 30.8745 8.80331Z"
+															fill="black"></path>
+													</svg> </span>
+											</div>
+
+											<div class="mas-addons-feature-content-wrap">
+												<div class="mas-addons-feature-content">
+													<h4 class="mas-addons-feature-title">UI/UX Design</h4>
+
+													<p>Focusing on user interface (UI) and user experience (UX) design
+														to enhance the usability and accessibility of digital products
+													</p>
+
+
+												</div>
+												<a 
+													rel="nofollow"
+													class="mas-addons-feature-btn mas-addons-btn btn-type-boxed d-inline-block disable-default-hover-no">
+													<span class="btn-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+															viewBox="0 0 34 28" fill="none">
+															<path
+																d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+																stroke="black" stroke-width="3" stroke-linecap="round"
+																stroke-linejoin="round"></path>
+														</svg> </span>
+												</a>
+											</div>
+
+										</div>
+										<!-- box link  -->
+										<!-- box link  -->
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-238570f mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-mas-addons-icon-box"
+									data-id="238570f" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-icon-box.default">
+									<div class="elementor-widget-container">
+										<!-- box link  -->
+										<!-- box link  -->
+										<div
+											class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-top">
+
+											<div
+												class="mas-addons-feature-icon-wrap icon-background-no align-items-top">
+												<span class="mas-addons-feature-icon icon-type-icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="75" height="70"
+														viewBox="0 0 75 70" fill="none">
+														<path
+															d="M64.9873 47.8025C65.1935 47.2684 65.3135 46.6966 65.3253 46.1099C66.4069 30.9563 66.6086 17.7535 65.9412 5.80299C65.9796 2.95193 63.6719 0.726399 60.9751 0.726399C60.9741 0.726399 60.9741 0.726399 60.973 0.726399C44.2656 0.0739879 23.0773 -0.514042 7.45154 0.725328C6.55829 0.725328 5.73091 0.979841 5.00445 1.39048C3.3192 1.6 1.97252 3.24517 1.32356 4.706C0.469485 6.6287 0.408992 8.79619 0.362181 10.8994C0.140865 20.8495 0.24884 30.7684 0.027457 40.7185C-0.230233 52.3034 1.13663 52.9928 12.322 53.5049C26.5593 54.1568 40.8204 53.596 55.0614 53.0171C55.1514 56.8593 55.2637 60.7018 55.4109 64.5267C55.4216 64.8036 55.7563 65.14 55.9646 65.3199C56.2793 65.8141 56.939 65.8146 57.2806 65.4172C58.3251 64.2007 59.1487 63.3519 61.0772 61.2451C62.4472 63.7221 63.9981 66.3333 65.382 68.8206C65.7788 69.5339 66.4536 69.8418 67.2686 69.8828C67.4721 69.9602 67.6552 70.0264 68.0433 69.9895C69.6593 69.8392 70.7839 69.1654 71.6852 67.809C72.0608 67.2543 72.0876 66.5246 71.7518 65.9484C70.1797 63.2636 68.6281 60.5939 66.9831 57.5625C69.3102 57.2317 71.0303 57.1198 74.1908 56.7878C74.9078 56.7125 75.1895 55.8128 74.6415 55.3424C71.5798 52.713 68.2932 50.1712 64.9873 47.8025ZM56.9405 42.4079C56.3822 42.0583 55.674 42.4705 55.6786 43.1118L55.6805 43.3195L55.0462 44.3909C54.8382 44.7424 54.909 44.5763 54.9974 49.5116C49.935 49.5692 30.9735 50.1937 7.45154 49.3698C5.60375 49.3698 4.10041 47.8622 4.09826 45.9435C3.40534 37.0464 3.26303 26.9539 3.66797 15.2844H64.6328C64.8851 29.7655 63.784 46.0067 63.5773 46.8299C61.5924 45.4387 59.079 43.7505 56.9405 42.4079ZM7.51699 2.37138C23.3906 1.11571 44.9715 1.75209 60.9408 2.37353C62.7532 2.37353 64.3187 3.81764 64.2941 5.83733C64.4355 8.37595 64.5292 10.9821 64.5922 13.6362H3.72806C3.82698 11.0741 3.94985 8.44242 4.10041 5.72573C4.10041 3.87687 5.60375 2.37353 7.51699 2.37138ZM65.5732 56.1085C65.0112 56.198 64.7111 56.8135 64.9765 57.3103C66.8426 60.802 68.5734 63.783 70.3289 66.7811L71.0403 66.3647L70.316 66.8916C69.5896 67.985 68.8492 68.2597 67.7911 68.3048C67.7095 68.1583 62.6727 58.8862 62.5751 58.7042C62.2908 58.2298 61.6133 58.1583 61.2423 58.5916C60.1104 59.9099 58.7737 61.3073 57.4631 62.7346C57.4516 61.5723 57.3415 44.7675 57.3407 44.6162C62.1824 47.7376 67.5892 51.598 72.0887 55.3434C69.6268 55.5802 67.9492 55.7286 65.5732 56.1085Z"
+															fill="black"></path>
+														<path
+															d="M8.55448 10.6696C9.92071 10.4137 10.5259 8.98066 9.75844 7.82601C9.39789 7.28304 8.82167 6.95898 8.2154 6.95898C8.10702 7.01156 7.98147 6.98474 7.87739 7.03088C7.41893 6.99307 6.62047 7.50488 6.40946 8.4473C6.10866 9.80087 7.17721 10.9147 8.55448 10.6696Z"
+															fill="black"></path>
+														<path
+															d="M14.7985 10.5894C16.3432 10.5894 17.25 9.01616 16.3781 7.7083C15.7552 6.77394 14.7229 6.81452 14.8329 6.84449C14.7148 6.84449 14.6022 6.87025 14.5002 6.91531C14.3876 6.90566 14.2738 6.92604 14.1633 6.96897C12.3515 7.65868 12.6782 10.5894 14.7985 10.5894Z"
+															fill="black"></path>
+														<path
+															d="M22.2086 10.6982C23.5753 10.4445 24.178 9.00948 23.4104 7.85465C22.8868 7.06377 21.9826 6.86053 21.5325 7.05952C21.4231 7.05201 21.3061 7.07025 21.1956 7.1121C19.2179 7.86874 19.8413 11.1396 22.2086 10.6982Z"
+															fill="black"></path>
+														<path
+															d="M33.0185 8.52838H33.0282L55.7435 8.26441C56.1985 8.25905 56.5633 7.88563 56.5579 7.43065C56.5526 6.97568 56.1963 6.65055 55.7242 6.61621L33.0088 6.88018C32.5539 6.88555 32.189 7.25897 32.1944 7.71394C32.1998 8.16569 32.5678 8.52838 33.0185 8.52838Z"
+															fill="black"></path>
+														<path
+															d="M23.4304 20.8105H10.3618C8.40666 20.8105 6.81641 22.2259 6.81641 23.9664V34.3277C6.81641 36.0446 8.3852 37.4599 10.3135 37.4836C27.0641 37.6851 22.1607 37.637 23.0838 37.637C24.9852 37.637 26.5701 36.2732 26.6281 34.5745L26.9747 24.0597C27.0004 23.2678 26.6957 22.5027 26.1173 21.9051C25.4445 21.2097 24.4648 20.8105 23.4304 20.8105ZM24.9799 34.5198C24.9531 35.3428 24.0635 35.9791 23.0548 35.9888L10.3328 35.8354C9.30266 35.8225 8.46461 35.1465 8.46461 34.3277V23.9664C8.46461 23.1348 9.31553 22.4587 10.3618 22.4587H23.4304C24.0206 22.4587 24.5689 22.6744 24.9337 23.0521C25.1204 23.2453 25.3415 23.5683 25.3265 24.0061L24.9799 34.5198Z"
+															fill="black"></path>
+														<path
+															d="M54.7626 23.5371H35.7665C35.3115 23.5371 34.9424 23.9062 34.9424 24.3612C34.9424 24.8162 35.3115 25.1853 35.7665 25.1853H54.7626C55.2176 25.1853 55.5867 24.8162 55.5867 24.3612C55.5867 23.9062 55.2176 23.5371 54.7626 23.5371Z"
+															fill="black"></path>
+														<path
+															d="M54.424 32.8643H31.4608C31.0058 32.8643 30.6367 33.2334 30.6367 33.6884C30.6367 34.1433 31.0058 34.5125 31.4608 34.5125H54.424C54.879 34.5125 55.2481 34.1433 55.2481 33.6884C55.2481 33.2334 54.879 32.8643 54.424 32.8643Z"
+															fill="black"></path>
+														<path
+															d="M48.1106 41.1875H36.6268C36.1719 41.1875 35.8027 41.5566 35.8027 42.0116C35.8027 42.4666 36.1719 42.8357 36.6268 42.8357H48.1106C48.5656 42.8357 48.9347 42.4666 48.9347 42.0116C48.9347 41.5566 48.5656 41.1875 48.1106 41.1875Z"
+															fill="black"></path>
+													</svg> </span>
+											</div>
+
+											<div class="mas-addons-feature-content-wrap">
+												<div class="mas-addons-feature-content">
+													<h4 class="mas-addons-feature-title">Web Design</h4>
+
+													<p>Designing and developing websites to ensure they are visually
+														look and appealing, user-friendly, and functional your website.
+													</p>
+
+
+												</div>
+												<a
+													rel="nofollow"
+													class="mas-addons-feature-btn mas-addons-btn btn-type-boxed d-inline-block disable-default-hover-no">
+													<span class="btn-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+															viewBox="0 0 34 28" fill="none">
+															<path
+																d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+																stroke="black" stroke-width="3" stroke-linecap="round"
+																stroke-linejoin="round"></path>
+														</svg> </span>
+												</a>
+											</div>
+
+										</div>
+										<!-- box link  -->
+										<!-- box link  -->
+									</div>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-120448b e-con-full e-flex e-con e-child"
+								data-id="120448b" data-element_type="container">
+								<div class="elementor-element elementor-element-140b084 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-mas-addons-icon-box"
+									data-id="140b084" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:200,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-icon-box.default">
+									<div class="elementor-widget-container">
+										<!-- box link  -->
+										<!-- box link  -->
+										<div
+											class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-top">
+
+											<div
+												class="mas-addons-feature-icon-wrap icon-background-no align-items-top">
+												<span class="mas-addons-feature-icon icon-type-icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="77" height="70"
+														viewBox="0 0 77 70" fill="none">
+														<path
+															d="M7.48124 55.2559C8.26054 55.4368 9.55703 54.9964 10.1489 53.9392C10.688 52.9762 10.5551 51.8466 9.80261 50.9897C8.98565 50.0609 7.70716 49.73 6.62092 50.1647C5.61855 50.5675 5.04006 51.5077 5.11138 52.619C5.18929 53.8363 5.94286 54.9381 7.48124 55.2559ZM7.27358 51.7918C8.01276 51.4965 9.04554 52.3222 8.61996 53.0834C8.43455 53.4132 7.97301 53.6037 7.59477 53.5067C7.15206 53.3915 6.88621 52.9054 6.86053 52.5072C6.83771 52.1512 6.97635 51.9105 7.27358 51.7918Z"
+															fill="black"></path>
+														<path
+															d="M67.1633 19.7718C67.1633 19.288 66.7708 18.8955 66.287 18.8955H46.9681C46.4843 18.8955 46.0918 19.288 46.0918 19.7718C46.0918 20.2556 46.4843 20.6481 46.9681 20.6481H66.287C66.7708 20.6481 67.1633 20.2556 67.1633 19.7718Z"
+															fill="black"></path>
+														<path
+															d="M60.9963 29.7409C61.48 29.7409 61.8726 29.3484 61.8726 28.8646C61.8726 28.3808 61.48 27.9883 60.9963 27.9883H49.2747C48.7909 27.9883 48.3984 28.3808 48.3984 28.8646C48.3984 29.3484 48.7909 29.7409 49.2747 29.7409H60.9963Z"
+															fill="black"></path>
+														<path
+															d="M58.7187 36.637C58.7187 36.1532 58.3262 35.7607 57.8425 35.7607H49.5462C49.0624 35.7607 48.6699 36.1532 48.6699 36.637C48.6699 37.1208 49.0624 37.5133 49.5462 37.5133H57.8425C58.3262 37.5133 58.7187 37.1208 58.7187 36.637Z"
+															fill="black"></path>
+														<path
+															d="M73.1525 1.37389C73.1556 0.844712 72.7349 0.364904 72.1796 0.422868C59.2965 1.50682 44.456 1.37446 25.476 0.0018374C24.9579 -0.0305475 24.5445 0.369473 24.5364 0.861013C24.3668 11.4509 24.3081 15.8524 24.079 23.5362C22.068 25.7029 19.8047 28.0363 17.2067 30.6252C17.4391 24.9251 17.6966 19.236 17.9465 13.5992C17.5505 13.0991 17.146 12.5988 16.748 12.0988C16.6634 11.6079 16.2852 11.3674 15.9018 11.3674H0.876541C0.353336 11.3674 -0.0473646 11.8204 0.0048141 12.3327C1.37459 25.7098 0.676295 41.6884 0.000820591 57.141C-0.0168649 57.5518 0.252982 57.9203 0.649481 58.0264C3.59502 58.816 6.68085 59.216 9.74948 59.0405C14.1806 59.7465 18.6594 60.1655 23.1601 60.4197C23.1599 60.4228 23.1582 60.4254 23.1581 60.4282C23.0441 63.2216 22.9045 66.0818 22.7616 69.0326C22.7382 69.5163 23.1107 69.9271 23.5945 69.9499C23.7116 69.9593 46.9136 70.184 51.2473 69.5985C56.9364 69.7073 66.3437 67.8068 69.7917 63.25C77.2383 53.4066 76.0914 16.2114 75.7627 4.67596C74.8927 3.57518 74.0226 2.47439 73.1525 1.37389ZM2.31249 42.9578C2.46717 38.1068 2.56758 33.2912 2.53763 28.6128L14.4574 28.3903C14.4737 37.1356 14.385 38.1788 14.5417 43.2011C10.9365 42.2096 5.82763 44.6271 2.31249 42.9578ZM16.5126 51.3955C16.5785 47.6535 16.4391 50.7307 16.6921 43.9542C17.8291 45.1944 19.1115 46.2872 20.5177 47.2268C19.1283 48.7039 17.7906 50.1027 16.5126 51.3955ZM16.4323 53.9479C17.9283 52.4848 15.8466 54.4623 25.0982 46.0051C24.6587 49.5733 24.5353 53.1812 24.7587 56.7659C20.9166 56.8043 19.7318 56.9937 16.352 57.1313C16.3613 56.8033 16.3912 54.9733 16.4323 53.9479ZM48.4398 57.4263C45.2296 57.1484 42.0571 56.9773 38.9662 56.8743C38.9657 56.8672 38.9691 56.8609 38.9684 56.8535C38.5961 52.8563 38.465 48.7986 38.5757 44.7914C42.186 44.7235 45.5088 44.5657 48.583 44.3139L48.4398 57.4263ZM37.2091 56.8272C33.4799 56.7325 29.8853 56.7257 26.5109 56.7508C26.2549 52.7427 26.4286 48.701 27.0259 44.7278C28.9834 44.7616 31.87 44.8665 36.8232 44.815C36.7156 48.8063 36.8455 52.8454 37.2091 56.8272ZM30.8986 36.2219C30.8028 35.6945 31.0759 36.2889 22.8931 27.34C23.8329 26.3613 24.7391 25.406 25.5861 24.4901C28.2772 21.5999 30.7212 18.7987 32.8634 16.1516L42.2436 25.3184C38.2006 28.8775 34.4907 32.5176 30.8986 36.2219ZM21.6745 28.6028C29.8447 37.3149 29.3049 37.1392 29.9298 37.2282C27.0463 40.2278 25.3738 42.0417 21.7281 45.9381C19.8178 44.7024 18.154 43.156 16.7835 41.3356C16.883 38.6211 16.9891 35.9098 17.102 33.1948C18.6787 31.6415 19.9376 30.3864 21.6745 28.6028ZM14.9542 13.12C14.5947 17.8979 14.4794 22.5164 14.4611 26.6369L2.50739 26.8602C2.4435 22.0997 2.25395 17.4763 1.84297 13.12H14.9542ZM2.25473 44.8265C6.65826 46.3414 11.9879 43.6954 14.7474 45.1474C14.8386 51.4097 14.7377 51.2361 14.6057 56.9744C9.51708 57.2652 6.97236 57.7778 1.78307 56.5078C1.95244 52.6278 2.11931 48.7187 2.25473 44.8265ZM24.5551 68.2099C24.6801 65.6312 24.8043 63.0697 24.9091 60.5073C32.1899 60.855 39.5154 60.8333 46.7702 60.9919C47.5122 60.6898 48.4403 59.937 49.1333 59.249C49.8026 59.3113 50.1767 58.8638 50.1822 58.3927L50.3459 43.3668C50.3519 42.8491 49.9065 42.4369 49.3909 42.4848C43.4589 43.018 36.5699 43.1851 28.3836 43.0031C33.8777 37.9821 39.3714 32.9469 44.8544 28.0055C44.6325 27.3394 44.4105 26.6617 44.1885 25.9842C44.2312 25.8666 44.6979 25.2676 44.1468 24.7274L33.3974 14.2233C33.0409 13.8748 32.4332 13.885 32.099 14.3043C30.2641 16.6091 28.1741 19.0466 25.8898 21.5634C26.0628 15.524 26.1382 10.2738 26.2741 1.81603C44.452 3.1008 58.8447 3.23772 71.3917 2.24505C71.2256 21.7453 72.8995 40.9172 69.1531 58.3642C68.6174 60.8789 67.7051 62.6452 66.3639 63.7623C65.0919 64.8268 59.6884 59.5554 59.5715 59.4767C59.228 59.2462 58.7671 59.2895 58.4704 59.5816C56.7342 61.2928 55.4803 65.0978 53.7216 66.8772C53.0557 67.5448 52.699 67.6619 51.362 67.822C47.5276 68.3929 28.9626 68.2216 24.5551 68.2099Z"
+															fill="black"></path>
+													</svg> </span>
+											</div>
+
+											<div class="mas-addons-feature-content-wrap">
+												<div class="mas-addons-feature-content">
+													<h4 class="mas-addons-feature-title">Graphic Design</h4>
+
+													<p>Creating visual elements such as logos, branding materials, page
+														layout techniques, brochures, &amp; other marketing collateral.
+													</p>
+
+
+												</div>
+												<a
+													rel="nofollow"
+													class="mas-addons-feature-btn mas-addons-btn btn-type-boxed d-inline-block disable-default-hover-no">
+													<span class="btn-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+															viewBox="0 0 34 28" fill="none">
+															<path
+																d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+																stroke="black" stroke-width="3" stroke-linecap="round"
+																stroke-linejoin="round"></path>
+														</svg> </span>
+												</a>
+											</div>
+
+										</div>
+										<!-- box link  -->
+										<!-- box link  -->
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-a5826f4 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-mas-addons-icon-box"
+									data-id="a5826f4" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-icon-box.default">
+									<div class="elementor-widget-container">
+										<!-- box link  -->
+										<!-- box link  -->
+										<div
+											class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-top">
+
+											<div
+												class="mas-addons-feature-icon-wrap icon-background-no align-items-top">
+												<span class="mas-addons-feature-icon icon-type-icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="55" height="70"
+														viewBox="0 0 55 70" fill="none">
+														<path
+															d="M17.5255 56.5938C17.6071 56.703 17.6792 57.0304 18.1128 57.1465C19.6741 57.5697 21.2359 57.6323 22.7565 57.0814C25.4859 56.9498 27.6912 55.1512 28.4475 52.9212C29.5748 52.6214 30.3359 51.0802 29.9957 49.7758C29.7817 48.9548 30.0309 48.9791 30.2751 48.712C31.6265 47.2339 30.8968 45.1581 30.0443 45.3387C30.9421 44.565 31.3242 43.1356 30.4893 41.893C31.2261 41.4577 31.8936 40.8524 32.0746 40.3562C32.8238 38.3033 32.4071 36.0929 33.368 33.9528C34.2875 31.9047 35.7468 30.1455 36.933 28.2542C40.0534 23.2789 40.5229 16.9608 38.1821 11.5426C36.7589 8.24813 34.7432 5.05787 31.6611 3.22317C28.631 1.41925 26.0947 0.556609 22.2712 0.103853C16.31 -0.598776 10.0044 2.31272 6.58054 7.35656C3.10566 12.4759 2.65443 19.5978 5.45803 25.0807C7.6861 29.4379 10.4213 31.0966 10.8123 36.3716C11.1787 41.3057 12.654 40.995 13.2964 42.0118C12.7056 43.249 12.4918 44.6028 13.2927 45.7152C12.5324 46.8373 12.5782 48.3088 13.3209 49.3687C12.9281 50.5849 13.3335 51.9125 14.2404 52.597C15.5338 54.3495 16.7987 55.8953 17.5255 56.5938ZM14.758 44.9063C14.5173 44.7298 14.377 44.3227 14.4083 43.8933C14.4633 43.1331 14.9288 42.4821 15.0009 42.2233C18.3371 42.7644 22.6581 42.6857 26.0926 42.2733C26.3578 42.7272 26.606 43.214 26.6655 43.7104C26.7166 44.1378 26.5948 44.5523 26.3615 44.7426C25.9876 45.0466 25.8702 45.8581 26.3429 46.234C26.8848 46.6659 27.0537 47.5789 26.6305 48.2494C26.2003 48.476 26.0591 49.0334 26.3403 49.4367C26.6062 49.8214 26.6829 50.4594 26.3455 50.9578C22.7071 52.1959 18.3844 52.3386 15.2707 51.3309C14.7308 50.9106 14.6869 50.0991 14.9999 49.5951C15.2608 49.1788 15.0937 48.6275 14.6517 48.4237C14.202 47.7775 14.3265 46.8559 14.8489 46.3945C15.2951 46.0024 15.1509 45.1964 14.758 44.9063ZM18.0134 28.0315C19.6222 28.2111 21.2789 28.1229 22.8356 27.7998C22.3918 30.3775 21.9781 34.8029 21.603 40.944C20.9286 40.9613 20.2564 40.9637 19.585 40.9512C19.444 38.1737 19.0521 32.7931 18.0134 28.0315ZM18.8723 55.6541C18.6839 55.3592 18.4159 55.3556 16.9206 53.3886C19.398 53.7854 21.8344 53.6652 24.2663 53.1816C22.151 55.7141 22.3343 55.3015 22.1059 55.5882C21.1572 55.9071 20.0735 55.9305 18.8723 55.6541ZM12.4407 36.2515C12.0153 30.5047 9.08974 28.5955 6.91219 24.3366C4.37114 19.3693 4.78092 12.9138 7.93159 8.27285C11.0211 3.72117 16.7028 1.07967 22.0788 1.72596C27.4527 2.36268 32.3759 6.13307 34.6209 11.33C36.7442 16.2441 36.0878 22.6528 32.9493 27.6563C31.1083 30.5902 28.6173 33.3336 28.3567 37.0998C28.2744 38.2815 28.5258 39.8905 27.5491 40.4179C27.2021 40.4641 25.8822 40.7197 23.2431 40.8757C23.5078 36.5759 23.8482 31.5451 24.58 27.3246C27.8115 26.2204 30.7092 23.7596 31.0067 20.4365C31.3091 17.0616 28.6556 15.0632 26.1362 17.5622C24.1499 19.53 23.584 23.2463 23.1364 26.0512C21.3862 26.5008 19.4389 26.6124 17.6036 26.3233C16.6837 22.8325 14.3302 16.5242 10.8468 17.9215C10.0065 18.2585 9.45856 18.8824 9.26084 19.7275C8.84628 21.4995 10.1022 23.7339 10.9914 24.7256C12.3605 26.2553 14.2319 27.2311 16.276 27.7275C17.3764 32.4115 17.7948 37.9813 17.9468 40.8853C13.9602 40.6414 12.7877 40.977 12.4407 36.2515ZM24.8866 25.457C25.2953 22.977 25.8587 20.1357 27.2852 18.7219C27.6308 18.3781 28.2268 17.9205 28.6687 18.1277C29.0902 18.3265 29.4824 19.1514 29.3804 20.2909C29.1654 22.6953 27.039 24.534 24.8866 25.457ZM15.7913 25.8875C14.3982 25.4261 13.1482 24.6874 12.2074 23.6371C11.4841 22.8293 10.6183 21.0924 10.8505 20.0985C10.9255 19.7785 11.1115 19.5744 11.4538 19.4373C13.273 18.7126 15.2443 24.0327 15.7913 25.8875Z"
+															fill="black"></path>
+														<path
+															d="M0 62.9035C0 66.284 2.52212 69.0791 5.78141 69.5248C10.4031 71.3093 14.9173 67.816 14.9731 63.2282C15.005 60.6117 13.4604 58.051 11.1583 56.807C9.52516 55.9245 6.92896 55.4701 5.20959 56.3492C5.21929 56.3593 5.23444 56.3651 5.24467 56.3747C2.2492 57.0377 0 59.7106 0 62.9035ZM6.68986 57.8458C9.47859 57.8458 11.7475 60.1142 11.7475 62.9035C11.7475 65.6928 9.47859 67.9612 6.68986 67.9612C3.90113 67.9612 1.63274 65.6928 1.63274 62.9035C1.63274 60.1142 3.90113 57.8458 6.68986 57.8458Z"
+															fill="black"></path>
+														<path
+															d="M16.8574 66.304C33.5951 70.9426 50.6023 57.4655 49.6854 39.9708C49.6615 39.5201 49.2757 39.147 48.8276 39.198C48.3774 39.2214 48.0314 39.6062 48.0548 40.0559C48.9088 56.35 33.0386 69.087 17.2933 64.7308C16.8612 64.6075 16.4089 64.8637 16.2887 65.2995C16.1681 65.7343 16.4227 66.1839 16.8574 66.304Z"
+															fill="black"></path>
+														<path
+															d="M53.8527 37.8451C54.5064 37.8451 54.8949 37.1143 54.5319 36.5738C53.0862 34.419 51.6274 32.5234 50.1944 30.3873C49.9175 29.9759 49.2663 29.8548 48.8822 30.3278C47.2062 32.395 45.7182 34.4852 44.0738 36.5122C43.6426 37.044 44.0207 37.843 44.7079 37.843L53.8527 37.8451Z"
+															fill="black"></path>
+														<path
+															d="M54.5932 26.0614C53.2734 24.7504 51.9871 23.4555 50.7037 22.1613C51.8846 20.8945 53.0651 19.6272 54.2525 18.3622C54.5613 18.0327 54.5448 17.5161 54.2158 17.2078C53.8874 16.8995 53.3702 16.9144 53.062 17.244C51.887 18.4959 50.7193 19.7497 49.5515 21.0032C48.3071 19.7497 47.0642 18.4959 45.7853 17.2248C45.4654 16.9059 44.9488 16.9102 44.6309 17.2291C44.3131 17.548 44.3147 18.0656 44.6341 18.3835C45.9252 19.6662 47.18 20.9317 48.4361 22.1974C47.2327 23.4887 46.0299 24.7802 44.8196 26.0688C44.5113 26.3983 44.5273 26.9149 44.8563 27.2232C45.1838 27.5308 45.7014 27.5162 46.0102 27.1871C47.2074 25.9115 48.3977 24.6338 49.5883 23.3556C50.86 24.6375 52.1345 25.9208 53.442 27.22C53.7592 27.5351 54.2753 27.5384 54.5969 27.2158C54.9147 26.8958 54.9126 26.3792 54.5932 26.0614Z"
+															fill="black"></path>
+													</svg> </span>
+											</div>
+
+											<div class="mas-addons-feature-content-wrap">
+												<div class="mas-addons-feature-content">
+													<h4 class="mas-addons-feature-title">Motion Graphics</h4>
+
+													<p>Creating animated graphics, videos for various purposes,
+														including marketing and entertainment. To help sell a product or
+														service.</p>
+
+
+												</div>
+												<a 
+													rel="nofollow"
+													class="mas-addons-feature-btn mas-addons-btn btn-type-boxed d-inline-block disable-default-hover-no">
+													<span class="btn-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+															viewBox="0 0 34 28" fill="none">
+															<path
+																d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+																stroke="black" stroke-width="3" stroke-linecap="round"
+																stroke-linejoin="round"></path>
+														</svg> </span>
+												</a>
+											</div>
+
+										</div>
+										<!-- box link  -->
+										<!-- box link  -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-8cd7fb5 e-flex e-con-boxed e-con e-child"
+						data-id="8cd7fb5" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-aa4c6a4 elementor-widget-divider--view-line mas-addons-sticky-no elementor-widget elementor-widget-divider"
+								data-id="aa4c6a4" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="divider.default">
+								<div class="elementor-widget-container">
+									<div class="elementor-divider">
+										<span class="elementor-divider-separator">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="elementor-element elementor-element-e8070ff e-flex e-con-boxed e-con e-parent" data-id="e8070ff"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-d6d30b1 e-con-full e-flex e-con e-child"
+						data-id="d6d30b1" data-element_type="container">
+						<div class="elementor-element elementor-element-30efd61 e-con-full e-flex e-con e-child"
+							data-id="30efd61" data-element_type="container">
+							<div class="elementor-element elementor-element-44e23b4 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+								data-id="44e23b4" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="heading.default">
+								<div class="elementor-widget-container">
+									<h2 class="elementor-heading-title elementor-size-default">We make your business
+										stand out</h2>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-dacf5b5 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+								data-id="dacf5b5" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="image.default">
+								<div class="elementor-widget-container">
+									<img loading="lazy" decoding="async" width="116" height="110"
+										src="wp-content/uploads/2023/12/Vector-2.png"
+										class="attachment-full size-full wp-image-271" alt=""> </div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-11aa931 e-con-full e-flex e-con e-child"
+							data-id="11aa931" data-element_type="container">
+							<div class="elementor-element elementor-element-9c0e72a mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+								data-id="9c0e72a" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="text-editor.default">
+								<div class="elementor-widget-container">
+									We work closely with our clients to know their objectives, target audience, unique
+									needs, and practical design solutions. </div>
+							</div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-2aebdb4 e-flex e-con-boxed e-con e-child"
+						data-id="2aebdb4" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-e72d0ca e-con-full e-flex elementor-invisible e-con e-child"
+								data-id="e72d0ca" data-element_type="container"
+								data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
+								<div class="elementor-element elementor-element-776cdf7 mas-addons-sticky-no elementor-widget elementor-widget-image"
+									data-id="776cdf7" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="image.default">
+									<div class="elementor-widget-container">
+										<img loading="lazy" decoding="async" width="1712" height="972"
+											src="wp-content/uploads/2023/12/Video-1.png"
+											class="attachment-full size-full wp-image-1960" alt=""
+											srcset="wp-content/uploads/2023/12/Video-1.png 1712w, wp-content/uploads/2023/12/Video-1-300x170.png 300w, wp-content/uploads/2023/12/Video-1-1024x581.png 1024w, wp-content/uploads/2023/12/Video-1-768x436.png 768w, wp-content/uploads/2023/12/Video-1-1536x872.png 1536w"
+											sizes="(max-width: 1712px) 100vw, 1712px"> </div>
+								</div>
+								<div class="elementor-element elementor-element-d428ea8 elementor-widget__width-auto mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-btn"
+									data-id="d428ea8" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-btn.default">
+									<div class="elementor-widget-container">
+										<div class="mas-addons-btn-wrapper enable-icon-box-yes">
+											<div class="mas-addons-btn default-style  d-inline-flex align-items-center elementor-animation-"
+												data-elementor-open-lightbox="yes"
+												data-elementor-lightbox="{&quot;type&quot;:&quot;video&quot;,&quot;videoType&quot;:&quot;youtube&quot;,&quot;url&quot;:&quot;https:\/\/www.youtube.com\/embed\/tSa_RhFnDIA?feature=oembed&quot;,&quot;modalOptions&quot;:{&quot;id&quot;:&quot;elementor-lightbox-d428ea8&quot;,&quot;entranceAnimation&quot;:&quot;&quot;,&quot;entranceAnimation_tablet&quot;:&quot;&quot;,&quot;entranceAnimation_mobile&quot;:&quot;&quot;,&quot;videoAspectRatio&quot;:&quot;169&quot;}}">
+
+												<span class="hover-animation"></span>
+												<span class="content">
+													Play </span>
+
+												<span class="icon-after btn-icon"><svg aria-hidden="true"
+														class="e-font-icon-svg e-fas-play" viewBox="0 0 448 512"
+														xmlns="http://www.w3.org/2000/svg">
+														<path
+															d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+														</path>
+													</svg></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-fd316bd e-con-full e-flex elementor-invisible e-con e-child"
+								data-id="fd316bd" data-element_type="container"
+								data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeInUp&quot;}">
+								<div class="elementor-element elementor-element-f98bc0c e-con-full e-flex e-con e-child"
+									data-id="f98bc0c" data-element_type="container"
+									data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+									<div class="elementor-element elementor-element-1bd5ac3 mas-addons-sticky-no elementor-widget elementor-widget-counter"
+										data-id="1bd5ac3" data-element_type="widget"
+										data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+										data-widget_type="counter.default">
+										<div class="elementor-widget-container">
+											<div class="elementor-counter">
+												<div class="elementor-counter-number-wrapper">
+													<span class="elementor-counter-number-prefix"></span>
+													<span class="elementor-counter-number" data-duration="2000"
+														data-to-value="15" data-from-value="1"
+														data-delimiter=",">1</span>
+													<span class="elementor-counter-number-suffix">+</span>
+												</div>
+												<div class="elementor-counter-title">Years of experience</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-5bf5757 e-con-full e-flex e-con e-child"
+									data-id="5bf5757" data-element_type="container"
+									data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+									<div class="elementor-element elementor-element-27c468c mas-addons-sticky-no elementor-widget elementor-widget-counter"
+										data-id="27c468c" data-element_type="widget"
+										data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+										data-widget_type="counter.default">
+										<div class="elementor-widget-container">
+											<div class="elementor-counter">
+												<div class="elementor-counter-number-wrapper">
+													<span class="elementor-counter-number-prefix"></span>
+													<span class="elementor-counter-number" data-duration="2000"
+														data-to-value="120" data-from-value="1"
+														data-delimiter=",">1</span>
+													<span class="elementor-counter-number-suffix">K+</span>
+												</div>
+												<div class="elementor-counter-title">Successful projects</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-0efd3ce e-con-full e-flex e-con e-child"
+									data-id="0efd3ce" data-element_type="container"
+									data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+									<div class="elementor-element elementor-element-725544b mas-addons-sticky-no elementor-widget elementor-widget-counter"
+										data-id="725544b" data-element_type="widget"
+										data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+										data-widget_type="counter.default">
+										<div class="elementor-widget-container">
+											<div class="elementor-counter">
+												<div class="elementor-counter-number-wrapper">
+													<span class="elementor-counter-number-prefix"></span>
+													<span class="elementor-counter-number" data-duration="2000"
+														data-to-value="100" data-from-value="1"
+														data-delimiter=",">60</span>
+													<span class="elementor-counter-number-suffix">%</span>
+												</div>
+												<div class="elementor-counter-title">Client Sales Boost</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="elementor-element elementor-element-647cefe e-con-full e-flex e-con e-parent" id="projects" data-id="647cefe"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="elementor-element elementor-element-d0087aa e-flex e-con-boxed e-con e-child"
+					data-id="d0087aa" data-element_type="container">
+					<div class="e-con-inner">
+						<div class="elementor-element elementor-element-749be78 e-con-full e-flex e-con e-child"
+							data-id="749be78" data-element_type="container">
+							<div class="elementor-element elementor-element-9473206 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+								data-id="9473206" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="heading.default">
+								<div class="elementor-widget-container">
+									<h2 class="elementor-heading-title elementor-size-default">Have a wide range of
+										creative projects</h2>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-ffdb783 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+								data-id="ffdb783" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="image.default">
+								<div class="elementor-widget-container">
+									<img loading="lazy" decoding="async" width="116" height="110"
+										src="wp-content/uploads/2023/12/Vector-2.png"
+										class="attachment-full size-full wp-image-271" alt=""> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-f63a8f3 e-con-full e-flex e-con e-child"
+					data-id="f63a8f3" data-element_type="container">
+					<div class="elementor-element elementor-element-98d4fd2 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aximo_Project_Slider"
+						data-id="98d4fd2" data-element_type="widget"
+						data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;per_coulmn&quot;:3,&quot;per_coulmn_tablet&quot;:2,&quot;per_coulmn_mobile&quot;:1,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+						data-widget_type="Aximo_Project_Slider.default">
+						<div class="elementor-widget-container">
+
+
+							<!-- /.style inlcude -->
+							<div class="aximo-project-slider t-style"
+								data-settings="{&quot;autoplay&quot;:false,&quot;swiper-pagination&quot;:false,&quot;arrows&quot;:false,&quot;per_coulmn&quot;:3,&quot;per_coulmn_tablet&quot;:2,&quot;per_coulmn_mobile&quot;:1}">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<div class="aximo-project-thumb">
+											<img decoding="async" src="wp-content/uploads/2023/12/Frame 9.png" alt="">
+											<div class="aximo-project-wrap">
+												<div class="aximo-project-data">
+													<h3>Web Development</h3>
+													<p>Developing the website with modern techniques and color study</p>
+												</div>
+												<a class="aximo-project-icon"
+													>
+													<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+														viewBox="0 0 34 28" fill="none">
+														<path
+															d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+															stroke="#FDFDE1" stroke-width="3" stroke-linecap="round"
+															stroke-linejoin="round"></path>
+													</svg></a>
+
+											</div>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="aximo-project-thumb">
+											<img decoding="async" src="wp-content/uploads/2023/12/project2.png" alt="">
+											<div class="aximo-project-wrap">
+												<div class="aximo-project-data">
+													<h3>Logo and Branding</h3>
+													<p>Creating or refreshing a company's logo and developing a cohesive
+														visual identity.</p>
+												</div>
+												<a class="aximo-project-icon"
+													>
+													<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+														viewBox="0 0 34 28" fill="none">
+														<path
+															d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+															stroke="#FDFDE1" stroke-width="3" stroke-linecap="round"
+															stroke-linejoin="round"></path>
+													</svg></a>
+
+											</div>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="aximo-project-thumb">
+											<img decoding="async" src="wp-content/uploads/2023/12/project3.png" alt="">
+											<div class="aximo-project-wrap">
+												<div class="aximo-project-data">
+													<h3>Automation Tools</h3>
+													<p>Designing the automation tools for your business to rocket boost sales</p>
+												</div>
+												<a class="aximo-project-icon"
+													>
+													<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+														viewBox="0 0 34 28" fill="none">
+														<path
+															d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+															stroke="#FDFDE1" stroke-width="3" stroke-linecap="round"
+															stroke-linejoin="round"></path>
+													</svg></a>
+
+											</div>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="aximo-project-thumb">
+											<img decoding="async" src="wp-content/uploads/2023/12/Frame 10.png" alt="">
+											<div class="aximo-project-wrap">
+												<div class="aximo-project-data">
+													<h3>Pr and Social Media Handle</h3>
+													<p>Creating public relations for you and your brand with full instagram handling.</p>
+												</div>
+												<a class="aximo-project-icon"
+													>
+													<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+														viewBox="0 0 34 28" fill="none">
+														<path
+															d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+															stroke="#FDFDE1" stroke-width="3" stroke-linecap="round"
+															stroke-linejoin="round"></path>
+													</svg></a>
+
+											</div>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="aximo-project-thumb">
+											<img decoding="async" src="wp-content/uploads/2023/12/Frame 11.png" alt="">
+											<div class="aximo-project-wrap">
+												<div class="aximo-project-data">
+													<h3>Motion And Video Editing.</h3>
+													<p>Creating or refreshing visual to power attract customers. Creating Impact with Archia</p>
+												</div>
+												<a class="aximo-project-icon"
+													>
+													<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28"
+														viewBox="0 0 34 28" fill="none">
+														<path
+															d="M19.9795 2C19.9795 2 20.5 8 25.9795 11.2C28.4887 12.6653 31.9795 14 31.9795 14M31.9795 14H2M31.9795 14C31.9795 14 28.5339 15.415 25.9795 16.8C19.9795 20.0533 19.9795 26 19.9795 26"
+															stroke="#FDFDE1" stroke-width="3" stroke-linecap="round"
+															stroke-linejoin="round"></path>
+													</svg></a>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-pagination"></div>
+							</div>
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="elementor-element elementor-element-18e66d4 e-flex e-con-boxed e-con e-parent" data-id="18e66d4"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-a5ff173 e-flex e-con-boxed e-con e-child"
+						data-id="a5ff173" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-50dedbd e-con-full e-flex e-con e-child"
+								data-id="50dedbd" data-element_type="container">
+								<div class="elementor-element elementor-element-1b5889d mas-addons-sticky-no elementor-widget elementor-widget-heading"
+									data-id="1b5889d" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="heading.default">
+									<div class="elementor-widget-container">
+										<h2 class="elementor-heading-title elementor-size-default">Our high-quality
+											working processes</h2>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-3aa096e elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+									data-id="3aa096e" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="image.default">
+									<div class="elementor-widget-container">
+										<img loading="lazy" decoding="async" width="116" height="110"
+											src="wp-content/uploads/2023/12/Vector-2.png"
+											class="attachment-full size-full wp-image-271" alt=""> </div>
+								</div>
+								<div class="elementor-element elementor-element-6606f08 mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+									data-id="6606f08" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="text-editor.default">
+									<div class="elementor-widget-container">
+										We focus at every stage on effective communication and collaboration between the
+										client and ensuring that the final design meets the client’s objectives and
+										expectations. </div>
+								</div>
+								<div class="elementor-element elementor-element-94f9019 mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+									data-id="94f9019" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="text-editor.default">
+									<div class="elementor-widget-container">
+										It is important to note that these are simplified steps, and the actual work
+										process may vary depending on the complexity of the project. </div>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-042a4fe e-con-full e-flex elementor-invisible e-con e-child"
+								data-id="042a4fe" data-element_type="container"
+								data-settings="{&quot;animation&quot;:&quot;fadeInUp&quot;}">
+								<div class="elementor-element elementor-element-d88b849 mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-accordion"
+									data-id="d88b849" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="mas-addons-accordion.default">
+									<div class="elementor-widget-container">
+										<div class="mas-addons-accordion-items">
+											<div
+												class="mas-addons-accordion-single-item yes  elementor-repeater-item-67bafa4">
+												<div class="mas-addons-accordion-title active-default">
+													<h3 class="mas-addons-accordion-heading">01/ Project idea</h3>
+													<div class="mas-addons-active-inactive-icon"><span
+															class="mas-addons-active-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M2 14.0205C2 14.0205 8 13.5 11.2 8.02051C12.6653 5.51137 14 2.02051 14 2.02051M14 2.02051V2.00005M14 2.02051C14 2.02051 15.415 5.46617 16.8 8.02051C20.0533 14.0205 26 14.0205 26 14.0205"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span><span class="mas-addons-inactive-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M26 1.5459C26 1.5459 20 2.06636 16.8 7.5459C15.3347 10.055 14 13.5459 14 13.5459M14 13.5459V13.5664M14 13.5459C14 13.5459 12.585 10.1002 11.2 7.5459C7.94669 1.5459 2 1.5459 2 1.5459"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span></div>
+												</div>
+												<div class="mas-addons-accordion-content">
+													<div
+														class="mas-addons-accordion-content-wrapper has-image-no image-position-right">
+														<div class="mas-addons-accordion-text">
+															<div>The process starts with a detailed discussion with the
+																client to understand their idea &amp; goals.</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="mas-addons-accordion-single-item no  elementor-repeater-item-4d93935">
+												<div class="mas-addons-accordion-title">
+													<h3 class="mas-addons-accordion-heading">02/ Brainstorming</h3>
+													<div class="mas-addons-active-inactive-icon"><span
+															class="mas-addons-active-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M2 14.0205C2 14.0205 8 13.5 11.2 8.02051C12.6653 5.51137 14 2.02051 14 2.02051M14 2.02051V2.00005M14 2.02051C14 2.02051 15.415 5.46617 16.8 8.02051C20.0533 14.0205 26 14.0205 26 14.0205"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span><span class="mas-addons-inactive-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M26 1.5459C26 1.5459 20 2.06636 16.8 7.5459C15.3347 10.055 14 13.5459 14 13.5459M14 13.5459V13.5664M14 13.5459C14 13.5459 12.585 10.1002 11.2 7.5459C7.94669 1.5459 2 1.5459 2 1.5459"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span></div>
+												</div>
+												<div class="mas-addons-accordion-content">
+													<div
+														class="mas-addons-accordion-content-wrapper has-image-no image-position-right">
+														<div class="mas-addons-accordion-text">
+															<div>The process starts with a detailed discussion with the
+																client to understand their idea &amp; goals.</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												class="mas-addons-accordion-single-item no  elementor-repeater-item-a9d280b">
+												<div class="mas-addons-accordion-title">
+													<h3 class="mas-addons-accordion-heading">03/ Launch</h3>
+													<div class="mas-addons-active-inactive-icon"><span
+															class="mas-addons-active-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M2 14.0205C2 14.0205 8 13.5 11.2 8.02051C12.6653 5.51137 14 2.02051 14 2.02051M14 2.02051V2.00005M14 2.02051C14 2.02051 15.415 5.46617 16.8 8.02051C20.0533 14.0205 26 14.0205 26 14.0205"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span><span class="mas-addons-inactive-icon"><svg
+																xmlns="http://www.w3.org/2000/svg" width="28"
+																height="16" viewBox="0 0 28 16" fill="none">
+																<path
+																	d="M26 1.5459C26 1.5459 20 2.06636 16.8 7.5459C15.3347 10.055 14 13.5459 14 13.5459M14 13.5459V13.5664M14 13.5459C14 13.5459 12.585 10.1002 11.2 7.5459C7.94669 1.5459 2 1.5459 2 1.5459"
+																	stroke="black" stroke-width="3"
+																	stroke-linecap="round" stroke-linejoin="round">
+																</path>
+															</svg></span></div>
+												</div>
+												<div class="mas-addons-accordion-content">
+													<div
+														class="mas-addons-accordion-content-wrapper has-image-no image-position-right">
+														<div class="mas-addons-accordion-text">
+															<div>The process starts with a detailed discussion with the
+																client to understand their idea &amp; goals.</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-4eb8720 e-flex e-con-boxed e-con e-child"
+						data-id="4eb8720" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-bbe7474 elementor-widget-divider--view-line mas-addons-sticky-no elementor-widget elementor-widget-divider"
+								data-id="bbe7474" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="divider.default">
+								<div class="elementor-widget-container">
+									<div class="elementor-divider">
+										<span class="elementor-divider-separator">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="clients" class="elementor-element elementor-element-2786ba1 e-flex e-con-boxed e-con e-parent" data-id="2786ba1"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-35b9cfc e-flex e-con-boxed e-con e-child"
+						data-id="35b9cfc" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-ecf6c3f e-con-full e-flex e-con e-child"
+								data-id="ecf6c3f" data-element_type="container">
+								<div class="elementor-element elementor-element-a676e6f mas-addons-sticky-no elementor-widget elementor-widget-heading"
+									data-id="a676e6f" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="heading.default">
+									<div class="elementor-widget-container">
+										<h2 class="elementor-heading-title elementor-size-default">Clients are always
+											satisfied with us</h2>
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-eb60ff4 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+									data-id="eb60ff4" data-element_type="widget"
+									data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="image.default">
+									<div class="elementor-widget-container">
+										<img loading="lazy" decoding="async" width="116" height="110"
+											src="wp-content/uploads/2023/12/Vector-2.png"
+											class="attachment-full size-full wp-image-271" alt=""> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elementor-element elementor-element-0b729a8 e-flex e-con-boxed e-con e-child"
+						data-id="0b729a8" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-65efed0 e-con-full e-flex e-con e-child"
+								data-id="65efed0" data-element_type="container">
+								<div class="elementor-element elementor-element-6cbfd40 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aimaas_Testimonial_Normal"
+									data-id="6cbfd40" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:100,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="Aimaas_Testimonial_Normal.default">
+									<div class="elementor-widget-container">
+
+										<div class="style-normal-one">
+
+											<div class="aximo-t-wrap">
+												<div class="aximo-testimonial-star">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="aximo-t-data">
+
+													<h5>Super customer service!</h5>
+
+													<p>Excellent customer service and I was really impressed and happy
+														with my purchase especially as it was a last minute order which
+														got to me in time, and when it arrived I was very happy with the
+														design and size and so was the recipient.</p>
+
+												</div>
+												<div class="aximo-t-author-wrap">
+
+													<div class="aximo-t-author">
+														<img decoding="async" src="wp-content/uploads/2023/12/1.png"
+															alt="">
+													</div>
+
+													<div class="aximo-t-author-data">
+														<h6>William Jack </h6>
+
+														<span>Founder@Duten</span>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-0b69440 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aimaas_Testimonial_Normal"
+									data-id="0b69440" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="Aimaas_Testimonial_Normal.default">
+									<div class="elementor-widget-container">
+
+										<div class="style-normal-one">
+
+											<div class="aximo-t-wrap">
+												<div class="aximo-testimonial-star">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="aximo-t-data">
+
+													<h5>Innovative and professional</h5>
+
+													<p>I can't say enough good things about them. Their team is not only
+														incredibly talented but also highly professional. They listened
+														to our ideas and brought them to life in ways we couldn't have
+														imagined. Their innovative approach and dedication to our
+														project.</p>
+
+												</div>
+												<div class="aximo-t-author-wrap">
+
+													<div class="aximo-t-author">
+														<img decoding="async" src="wp-content/uploads/2023/12/1-2.png"
+															alt="">
+													</div>
+
+													<div class="aximo-t-author-data">
+														<h6>Milano Joe </h6>
+
+														<span>Creative Director | VibeFuel</span>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+									</div>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-52e8dc6 e-con-full e-flex e-con e-child"
+								data-id="52e8dc6" data-element_type="container">
+								<div class="elementor-element elementor-element-9243479 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aimaas_Testimonial_Normal"
+									data-id="9243479" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:200,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="Aimaas_Testimonial_Normal.default">
+									<div class="elementor-widget-container">
+
+										<div class="style-normal-one">
+
+											<div class="aximo-t-wrap">
+												<div class="aximo-testimonial-star">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="aximo-t-data">
+
+													<h5>Exceptional creativity and vision</h5>
+
+													<p>Working with Mthemeus was a game-changer for our brand. Their
+														exceptional creativity &amp; vision breathed new life into our
+														visual. The logo they designed perfectly captures our essence
+														&amp; has become instantly recognizable. We couldn't be happier
+														with the </p>
+
+												</div>
+												<div class="aximo-t-author-wrap">
+
+													<div class="aximo-t-author">
+														<img decoding="async" src="wp-content/uploads/2023/12/1-1.png"
+															alt="">
+													</div>
+
+													<div class="aximo-t-author-data">
+														<h6>Smith Align </h6>
+
+														<span>CEO | Cosmos.ai</span>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+									</div>
+								</div>
+								<div class="elementor-element elementor-element-ba0dfcf mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aimaas_Testimonial_Normal"
+									data-id="ba0dfcf" data-element_type="widget"
+									data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+									data-widget_type="Aimaas_Testimonial_Normal.default">
+									<div class="elementor-widget-container">
+
+										<div class="style-normal-one">
+
+											<div class="aximo-t-wrap">
+												<div class="aximo-testimonial-star">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="aximo-t-data">
+
+													<h5>Transformed our brand</h5>
+
+													<p>Our partnership with Mthemeus transformed our brand from ordinary
+														to extraordinary. Their branding expertise and meticulous design
+														work elevated our marketing materials to a whole new level. Our
+														customers have taken notice, and boost in brand </p>
+
+												</div>
+												<div class="aximo-t-author-wrap">
+
+													<div class="aximo-t-author">
+														<img decoding="async" src="wp-content/uploads/2023/12/1-3.png"
+															alt="">
+													</div>
+
+													<div class="aximo-t-author-data">
+														<h6>Danial Mark </h6>
+
+														<span>Marketing Director | Mizlala</span>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="elementor-element elementor-element-9ac32a7 e-con-full e-flex e-con e-parent" data-id="9ac32a7"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="elementor-element elementor-element-f6c06d9 mas-addons-sticky-no elementor-widget elementor-widget-Aximo_Infinite_slider"
+					data-id="f6c06d9" data-element_type="widget"
+					data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+					data-widget_type="Aximo_Infinite_slider.default">
+					<div class="elementor-widget-container">
+
+
+						<div class="swiper aximo-infinite-slider">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new experiences </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new websites </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new Leads </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new Logos </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new vision </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create new tools </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="aximo-infinite-slider-data">
+										<h3>
+											Let's create Impact! </h3>
+										<svg xmlns="http://www.w3.org/2000/svg" width="43" height="40"
+											viewBox="0 0 43 40" fill="none">
+											<path
+												d="M6.99391 35.9888L15.642 25.0651C16.0861 24.6049 16.3573 24.0032 16.4081 23.3632C16.4147 23.1615 16.3708 22.9612 16.2813 22.7806C16.1917 22.6001 16.0597 22.445 15.8957 22.3293C15.4949 22.0509 15.0148 21.9129 14.5286 21.9364C14.3136 21.9431 14.0991 21.9615 13.886 21.9915L0 23.8798V16.1198L13.886 18.0287C14.099 18.059 14.3136 18.0774 14.5286 18.0838C15.0167 18.1059 15.4977 17.9631 15.8957 17.6774C16.059 17.5593 16.1902 17.4029 16.2796 17.2215C16.369 17.0401 16.4134 16.8392 16.4081 16.6368C16.3652 16.0063 16.1045 15.411 15.6704 14.955L6.9672 3.87326L13.9811 0L19.204 12.9566C19.3606 13.4404 19.6371 13.8762 20.0052 14.2244C20.1369 14.3654 20.2946 14.4778 20.471 14.5546C20.6473 14.6314 20.838 14.6711 21.0301 14.6711C21.2223 14.6711 21.4129 14.6314 21.5893 14.5546C21.7657 14.4778 21.9233 14.3654 22.055 14.2244C22.4176 13.8729 22.6913 13.4379 22.8495 12.9566L28.0307 0L35.1698 3.87326L26.3832 14.955C25.9381 15.4257 25.6673 16.0365 25.6171 16.6847C25.6135 16.8806 25.657 17.0748 25.7439 17.2501C25.8308 17.4253 25.9585 17.5767 26.1162 17.6913C26.5307 17.9733 27.0256 18.1108 27.525 18.0838C27.7541 18.089 27.9839 18.0706 28.2093 18.0287L42.0202 16.1198V23.8798L28.2093 21.9915C27.9635 21.9473 27.7128 21.9288 27.4632 21.9364C26.9813 21.9076 26.5031 22.0331 26.0961 22.2948C25.941 22.4065 25.8147 22.5547 25.7289 22.7264C25.6431 22.8981 25.6003 23.0882 25.6037 23.2804C25.663 23.9439 25.9343 24.57 26.3765 25.0651L35.1281 35.9888L28.0174 40L22.8078 27.0569C22.6455 26.5775 22.3741 26.1434 22.015 25.7891C21.8833 25.6481 21.7239 25.5357 21.5476 25.4589C21.3712 25.3821 21.1805 25.3423 20.9884 25.3423C20.7963 25.3423 20.6073 25.3821 20.4309 25.4589C20.2545 25.5357 20.0952 25.6481 19.9635 25.7891C19.6019 26.1467 19.3211 26.5791 19.1423 27.0569L13.9194 40L6.99391 35.9888Z"
+												fill="#BFF747"></path>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="elementor-element elementor-element-a9bd425 e-con-full e-flex e-con e-parent" data-id="a9bd425"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="elementor-element elementor-element-bfe1d32 e-flex e-con-boxed e-con e-child"
+					data-id="bfe1d32" data-element_type="container">
+					<div class="e-con-inner">
+						<div class="elementor-element elementor-element-d267d98 e-con-full e-flex e-con e-child"
+							data-id="d267d98" data-element_type="container">
+							<div class="elementor-element elementor-element-cc726d4 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+								data-id="cc726d4" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="heading.default">
+								<div class="elementor-widget-container">
+									<h2 class="elementor-heading-title elementor-size-default">We have a team of
+										creative people</h2>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-08d9d82 elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+								data-id="08d9d82" data-element_type="widget"
+								data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="image.default">
+								<div class="elementor-widget-container">
+									<img loading="lazy" decoding="async" width="116" height="110"
+										src="wp-content/uploads/2023/12/Vector-2.png"
+										class="attachment-full size-full wp-image-271" alt=""> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-8923109 e-flex e-con-boxed e-con e-child"
+					data-id="8923109" data-element_type="container">
+					<div class="e-con-inner">
+						<div class="elementor-element elementor-element-313545b e-con-full e-flex e-con e-child"
+							data-id="313545b" data-element_type="container">
+							<div class="elementor-element elementor-element-e7efb78 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aximo_Team_Normal"
+								data-id="e7efb78" data-element_type="widget"
+								data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:100,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="Aximo_Team_Normal.default">
+								<div class="elementor-widget-container">
+									<!-- /.style inlcude -->
+									<div class="style-one">
+
+
+										<div class="aximo-team-box">
+											<div class="aximo-team-thumb">
+												<img decoding="async" src="wp-content/uploads/2023/12/team1.jpg" alt="">
+												
+											</div>
+
+											<div class="aximo-team-data">
+												<a >
+													<h4>Aditya Singh</h4>
+												</a>
+												<p>Founder | Project Manager</p>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-9d52198 e-con-full e-flex e-con e-child"
+							data-id="9d52198" data-element_type="container">
+							<div class="elementor-element elementor-element-6a09ce0 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aximo_Team_Normal"
+								data-id="6a09ce0" data-element_type="widget"
+								data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:200,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="Aximo_Team_Normal.default">
+								<div class="elementor-widget-container">
+									<!-- /.style inlcude -->
+									<div class="style-one">
+
+
+										<div class="aximo-team-box">
+											<div class="aximo-team-thumb">
+												<img decoding="async" src="wp-content/uploads/2023/12/team2.jpg" alt="">
+											</div>
+
+											<div class="aximo-team-data">
+												<a>
+													<h4>Suhani Jain</h4>
+												</a>
+												<p>CEO | Operation Manager</p>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-e408303 e-con-full e-flex e-con e-child"
+							data-id="e408303" data-element_type="container">
+							<div class="elementor-element elementor-element-f4c5dd2 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aximo_Team_Normal"
+								data-id="f4c5dd2" data-element_type="widget"
+								data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="Aximo_Team_Normal.default">
+								<div class="elementor-widget-container">
+									<!-- /.style inlcude -->
+									<div class="style-one">
+
+
+										<div class="aximo-team-box">
+											<div class="aximo-team-thumb">
+												<img decoding="async" src="wp-content/uploads/2023/12/team3.jpg" alt="">
+											</div>
+
+											<div class="aximo-team-data">
+												<a>
+													<h4>Nikhil Yadav</h4>
+												</a>
+												<p>CEO | AI</p>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="elementor-element elementor-element-9ab0a13 e-con-full e-flex e-con e-child"
+							data-id="9ab0a13" data-element_type="container">
+							<div class="elementor-element elementor-element-4b786b2 mas-addons-sticky-no elementor-invisible elementor-widget elementor-widget-Aximo_Team_Normal"
+								data-id="4b786b2" data-element_type="widget"
+								data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:400,&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+								data-widget_type="Aximo_Team_Normal.default">
+								<div class="elementor-widget-container">
+									<!-- /.style inlcude -->
+									<div class="style-one">
+
+
+										<div class="aximo-team-box">
+											<div class="aximo-team-thumb">
+												<img decoding="async" src="wp-content/uploads/2023/12/team4.JPG" alt="">
+											</div>
+
+											<div class="aximo-team-data">
+												<a >
+													<h4>Hemant Kumar</h4>
+												</a>
+												<p>CEO | UI/UX</p>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- #page -->
+	<footer class="footer-section">
+		<div data-elementor-type="wp-post" data-elementor-id="787" class="elementor elementor-787">
+			<div class="elementor-element elementor-element-32ffc06 e-flex e-con-boxed e-con e-parent" data-id="32ffc06"
+				data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+				data-core-v316-plus="true">
+				<div class="e-con-inner">
+					<div class="elementor-element elementor-element-217aaf6 e-flex e-con-boxed e-con e-child"
+						data-id="217aaf6" data-element_type="container">
+						<div class="e-con-inner">
+							<div class="elementor-element elementor-element-5d7a13d e-flex e-con-boxed e-con e-child"
+								data-id="5d7a13d" data-element_type="container">
+								<div class="e-con-inner">
+									<div class="elementor-element elementor-element-006ea90 e-con-full e-flex e-con e-child"
+										data-id="006ea90" data-element_type="container">
+										<div class="elementor-element elementor-element-84bfd11 elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+											data-id="84bfd11" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="image.default">
+											<div class="elementor-widget-container">
+												<img loading="lazy" decoding="async" width="1024" height="948"
+													src="wp-content/uploads/2023/12/Vector.svg"
+													class="attachment-large size-large wp-image-1735" alt=""> </div>
+										</div>
+										<div class="elementor-element elementor-element-9b52bf8 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+											data-id="9b52bf8" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="heading.default">
+											<div class="elementor-widget-container">
+												<h2 class="elementor-heading-title elementor-size-default">Let's start a
+													project together</h2>
+											</div>
+										</div>
+										<div class="elementor-element elementor-element-40bb69b mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+											data-id="40bb69b" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="text-editor.default">
+											<div class="elementor-widget-container">
+												<p>We work closely with our clients to understand their objectives,
+													target audience, and unique needs. We use our creative skills to
+													translate these requirements and practical design solutions.</p>
+											</div>
+										</div>
+										<div class="elementor-element elementor-element-dd4252e mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-icon-box"
+											data-id="dd4252e" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="mas-addons-icon-box.default">
+											<div class="elementor-widget-container">
+												<!-- box link  -->
+												<a class="d-block" href="tel:+91 7738600388" rel="nofollow">
+													<!-- box link  -->
+													<div
+														class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-">
+
+
+														<div class="mas-addons-feature-content-wrap">
+															<div class="mas-addons-feature-content">
+																<h4 class="mas-addons-feature-title">Drop a Call:
+																</h4>
+
+																<p>+91 7738 600 388</p>
+
+
+															</div>
+														</div>
+
+													</div>
+													<!-- box link  -->
+												</a> <!-- box link  -->
+											</div>
+										</div>
+										<div class="elementor-element elementor-element-dd4252e mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-icon-box"
+											data-id="dd4252e" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="mas-addons-icon-box.default">
+											<div class="elementor-widget-container">
+												<!-- box link  -->
+												<a class="d-block" href="mailto:hello@archiastudio.com" rel="nofollow">
+													<!-- box link  -->
+													<div
+														class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-">
+
+
+														<div class="mas-addons-feature-content-wrap">
+															<div class="mas-addons-feature-content">
+																<h4 class="mas-addons-feature-title">Send us an email:
+																</h4>
+
+																<p>hello@archiastudio.com</p>
+
+
+															</div>
+														</div>
+
+													</div>
+													<!-- box link  -->
+												</a> <!-- box link  -->
+											</div>
+										</div>
+										<div class="elementor-element elementor-element-dd4252e mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-icon-box"
+											data-id="dd4252e" data-element_type="widget"
+											data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="mas-addons-icon-box.default">
+											<div class="elementor-widget-container">
+												<!-- box link  -->
+												<a class="d-block"  rel="nofollow">
+													<!-- box link  -->
+													<div
+														class="mas-addons-feature-box-item mas-addons-feature-icon-left mas-addons-icon-position-">
+
+
+														<div class="mas-addons-feature-content-wrap">
+															<div class="mas-addons-feature-content">
+																<h4 class="mas-addons-feature-title">Post Mail:
+																</h4>
+
+																<p>> 127,Green Enclave,Sector 118,<br>Mohali,Punjab 140301<br>> C1204,Mahavir Universe,<br>Bhandup(West),Mumbai,Maharastra</p>
+
+
+															</div>
+														</div>
+
+													</div>
+													<!-- box link  -->
+												</a> <!-- box link  -->
+											</div>
+										</div>
+										<div class="elementor-element elementor-element-65ef34a elementor-widget__width-auto elementor-hidden-tablet elementor-hidden-mobile mas-addons-sticky-no elementor-widget elementor-widget-image"
+											data-id="65ef34a" data-element_type="widget"
+											data-settings="{&quot;fd_addon_floating_fx&quot;:&quot;yes&quot;,&quot;fd_addon_floating_fx_translate_toggle&quot;:&quot;yes&quot;,&quot;fd_addon_floating_fx_translate_x&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;from&quot;:-10,&quot;to&quot;:19}},&quot;fd_addon_floating_fx_translate_y&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;from&quot;:0,&quot;to&quot;:1}},&quot;fd_addon_floating_fx_translate_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:2000,&quot;sizes&quot;:[]},&quot;fd_addon_floating_fx_translate_delay&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+											data-widget_type="image.default">
+											<div class="elementor-widget-container">
+												<img loading="lazy" decoding="async" width="284" height="153"
+													src="wp-content/uploads/2023/12/shape1-1.png"
+													class="attachment-large size-large wp-image-824" alt=""> </div>
+										</div>
+
+									</div>
+									<div class="elementor-element elementor-element-6c41054 e-flex e-con-boxed e-con e-child"
+										data-id="6c41054" data-element_type="container">
+										<div class="e-con-inner">
+											<div class="elementor-element elementor-element-07736d8 mas-addons-sticky-no elementor-widget elementor-widget-heading"
+												data-id="07736d8" data-element_type="widget"
+												data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+												data-widget_type="heading.default">
+												<div class="elementor-widget-container">
+													<h2 class="elementor-heading-title elementor-size-default">Send us a
+														message</h2>
+												</div>
+											</div>
+											<div class="elementor-element elementor-element-466f3a5 mas-addons-sticky-no elementor-widget elementor-widget-mas-addons-form"
+												data-id="466f3a5" data-element_type="widget"
+												data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+												data-widget_type="mas-addons-form.default">
+												<div class="elementor-widget-container">
+
+													<div
+														class="mas-addons--contactform-wraper  mas-addons-contact-from ">
+
+														<div class="wpcf7 no-js" id="wpcf7-f807-o3" lang="en-US"
+															dir="ltr">
+															<div class="screen-reader-response">
+																<p role="status" aria-live="polite" aria-atomic="true">
+																</p>
+																<ul></ul>
+															</div>
+															<form 
+																class="wpcf7-form init" aria-label="Contact form"
+																novalidate="novalidate" data-status="init">
+																<div style="display: none;">
+																	<input type="hidden" name="_wpcf7" value="807">
+																	<input type="hidden" name="_wpcf7_version"
+																		value="5.9.2">
+																	<input type="hidden" name="_wpcf7_locale"
+																		value="en_US">
+																	<input type="hidden" name="_wpcf7_unit_tag"
+																		value="wpcf7-f807-o3">
+																	<input type="hidden" name="_wpcf7_container_post"
+																		value="0">
+																	<input type="hidden" name="_wpcf7_posted_data_hash"
+																		value="">
+																</div>
+																<div class="aximo-footer-form">
+																	<p><span class="wpcf7-form-control-wrap"
+																			data-name="Your-Name"><input size="40"
+																				class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+																				aria-required="true"
+																				aria-invalid="false"
+																				placeholder="Your name" value=""
+																				type="text" name="Your-Name"></span><br>
+																		<span class="wpcf7-form-control-wrap"
+																			data-name="Your-Email"><input size="40"
+																				class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email"
+																				aria-required="true"
+																				aria-invalid="false"
+																				placeholder="Your email address"
+																				value="" type="email"
+																				name="Your-Email"></span><br>
+																		<span class="wpcf7-form-control-wrap"
+																			data-name="Your-Number"><input size="40"
+																				class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+																				aria-required="true"
+																				aria-invalid="false"
+																				placeholder="+91 7738600388" value=""
+																				type="text"
+																				name="Your-Number"></span><br>
+																		<span class="wpcf7-form-control-wrap"
+																			data-name="Your-Message"><textarea cols="40"
+																				rows="10"
+																				class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required"
+																				aria-required="true"
+																				aria-invalid="false"
+																				placeholder="Write your message here..."
+																				name="Your-Message"></textarea></span>
+																	</p>
+																	<div class="aximo-footer-submit-btn">
+																		<p><input
+																				class="wpcf7-form-control wpcf7-submit has-spinner"
+																				type="submit" value="Send message"><br>
+																			<button><i
+																					class="fas fa-arrow-right"></i></button>
+																		</p>
+																	</div>
+																</div>
+																<div class="wpcf7-response-output" aria-hidden="true">
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="elementor-element elementor-element-8557fa0 e-flex e-con-boxed e-con e-child"
+								data-id="8557fa0" data-element_type="container">
+								<div class="e-con-inner">
+									<div class="elementor-element elementor-element-9abbc3b content-align-mobile-center mas-addons-sticky-no elementor-widget elementor-widget-aximo-logo"
+										data-id="9abbc3b" data-element_type="widget"
+										data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+										data-widget_type="aximo-logo.default">
+										<div class="elementor-widget-container">
+											<div class="ama-site-logo content-align-">
+												<a 
+													class="ama-site-logo-wrap">
+													<span class="site-logo"><img decoding="async"
+															src="wp-content/uploads/2023/12/archialogo.png" alt="Agency"
+															class="navbar-brand__regular white-logo"></span> </a>
+
+											</div>
+										</div>
+									</div>
+									<div class="elementor-element elementor-element-01b40c3 mas-addons-sticky-no elementor-widget elementor-widget-text-editor"
+										data-id="01b40c3" data-element_type="widget"
+										data-settings="{&quot;mas_addons_sticky&quot;:&quot;no&quot;}"
+										data-widget_type="text-editor.default">
+										<div class="elementor-widget-container">
+											<p>© Copyright 2024, All Rights Reserved by <a href="/">ArchiaStudio.com</a></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a class="scrollToTop" href="#">
+		<i class="fas fa-arrow-up"></i>
+	</a>
+	<link rel="stylesheet" id="elementor-post-10534-css"
+		href="wp-content/uploads/elementor/css/post-10534_ver%3D1725679003.css" media="all">
+	<link rel="stylesheet" id="elementor-post-9638-css"
+		href="wp-content/uploads/elementor/css/post-9638_ver%3D1725679004.css" media="all">
+	<link rel="stylesheet" id="elementor-post-8206-css"
+		href="wp-content/uploads/elementor/css/post-8206_ver%3D1725679004.css" media="all">
+	<link rel="stylesheet" id="elementor-post-7392-css"
+		href="wp-content/uploads/elementor/css/post-7392_ver%3D1725679004.css" media="all">
+	<link rel="stylesheet" id="elementor-post-6014-css"
+		href="wp-content/uploads/elementor/css/post-6014_ver%3D1725679004.css" media="all">
+	<link rel="stylesheet" id="elementor-post-4098-css"
+		href="wp-content/uploads/elementor/css/post-4098_ver%3D1725679005.css" media="all">
+	<link rel="stylesheet" id="elementor-post-695-css"
+		href="wp-content/uploads/elementor/css/post-695_ver%3D1734086467.css" media="all">
+	<link rel="stylesheet" id="elementor-post-10570-css"
+		href="wp-content/uploads/elementor/css/post-10570_ver%3D1725679005.css" media="all">
+	<link rel="stylesheet" id="elementor-post-9666-css"
+		href="wp-content/uploads/elementor/css/post-9666_ver%3D1725679005.css" media="all">
+	<link rel="stylesheet" id="elementor-post-8351-css"
+		href="wp-content/uploads/elementor/css/post-8351_ver%3D1725679006.css" media="all">
+	<link rel="stylesheet" id="elementor-post-7073-css"
+		href="wp-content/uploads/elementor/css/post-7073_ver%3D1725679006.css" media="all">
+	<link rel="stylesheet" id="elementor-post-5815-css"
+		href="wp-content/uploads/elementor/css/post-5815_ver%3D1725679006.css" media="all">
+	<link rel="stylesheet" id="elementor-post-4755-css"
+		href="wp-content/uploads/elementor/css/post-4755_ver%3D1725679006.css" media="all">
+	<link rel="stylesheet" id="elementor-post-787-css"
+		href="wp-content/uploads/elementor/css/post-787_ver%3D1725679006.css" media="all">
+	<style id="core-block-supports-inline-css">
+		/**
+ * Core styles: block-supports
+ */
+	</style>
+	<link rel="stylesheet" id="e-animations-css"
+		href="wp-content/plugins/elementor/assets/lib/animations/animations.min_ver%3D3.20.1.css" media="all">
+	<link rel="stylesheet" id="google-fonts-2-css"
+		href="https://fonts.googleapis.com/css?family=Familjen+Grotesk%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPlayfair+Display%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CArimo%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap&amp;ver=6.7.1"
+		media="all">
+	<script src="wp-includes/js/jquery/ui/core_ver%3D1.13.3.js" id="jquery-ui-core-js"></script>
+	<script src="wp-includes/js/jquery/ui/datepicker_ver%3D1.13.3.js" id="jquery-ui-datepicker-js"></script>
+	<script id="jquery-ui-datepicker-js-after">
+		jQuery(function (jQuery) {
+			jQuery.datepicker.setDefaults({
+				"closeText": "Close",
+				"currentText": "Today",
+				"monthNames": ["January", "February", "March", "April", "May", "June", "July", "August",
+					"September", "October", "November", "December"
+				],
+				"monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+					"Nov", "Dec"
+				],
+				"nextText": "Next",
+				"prevText": "Previous",
+				"dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+				"dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+				"dayNamesMin": ["S", "M", "T", "W", "T", "F", "S"],
+				"dateFormat": "MM d, yy",
+				"firstDay": 1,
+				"isRTL": false
+			});
+		});
+	</script>
+	<script src="wp-includes/js/imagesloaded.min_ver%3D5.0.0.js" id="imagesloaded-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/jquery.magnific-popup.min_ver%3D0.40186900%25201734502084.js"
+		id="magnific-popup-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/addon_ver%3D0.40190500%25201734502084.js"
+		id="aximo-addon-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/gsap.min_ver%3D0.40193300%25201734502084.js"
+		id="gsap-addon-js"></script>
+	<script src="wp-content/plugins/aximo-helper/assets/js/aximo_ver%3D0.40196600%25201734502084.js" id="aximo-js-js">
+	</script>
+	<script src="wp-content/plugins/contact-form-7/includes/swv/js/index_ver%3D5.9.2.js" id="swv-js"></script>
+	<script id="contact-form-7-js-extra">
+		var wpcf7 = {
+			"api": {
+				"root": "https:\/\/XnoVZKhdKgPv.com\/demos\/wp\/aximo\/wp-json\/",
+				"namespace": "contact-form-7\/v1"
+			}
+		};
+	</script>
+	<script src="wp-content/plugins/contact-form-7/includes/js/index_ver%3D5.9.2.js" id="contact-form-7-js"></script>
+	<script src="wp-includes/js/masonry.min_ver%3D4.2.2.js" id="masonry-js"></script>
+	<script src="wp-includes/js/jquery/jquery.masonry.min_ver%3D3.1.2b.js" id="jquery-masonry-js"></script>
+	<script src="wp-content/themes/aximo/assets/js/select2.min_ver%3D1725678995.js" id="select2-js"></script>
+	<script src="wp-content/themes/aximo/assets/js/jquery.nice-select.min_ver%3D1725678995.js" id="nice-select-js">
+	</script>
+	<script src="wp-content/themes/aximo/assets/js/aximo-main_ver%3D1725678995.js" id="aximo-main-js"></script>
+	<script src="wp-content/plugins/mas-addons/assets/js/anime.min_ver%3D1.0.1.js" id="anime-js"></script>
+	<script src="wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator_ver%3D0.2.1.js"
+		id="jquery-numerator-js"></script>
+	<script src="wp-content/plugins/elementor/assets/js/webpack.runtime_ver%3D3.20.1.js"
+		id="elementor-webpack-runtime-js"></script>
+	<script src="wp-content/plugins/elementor/assets/js/frontend-modules_ver%3D3.20.1.js"
+		id="elementor-frontend-modules-js"></script>
+	<script src="wp-content/plugins/elementor/assets/lib/waypoints/waypoints_ver%3D4.0.2.js"
+		id="elementor-waypoints-js"></script>
+	<script id="elementor-frontend-js-before">
+		var elementorFrontendConfig = {
+			"environmentMode": {
+				"edit": false,
+				"wpPreview": false,
+				"isScriptDebug": true
+			},
+			"i18n": {
+				"shareOnFacebook": "Share on Facebook",
+				"shareOnTwitter": "Share on Twitter",
+				"pinIt": "Pin it",
+				"download": "Download",
+				"downloadImage": "Download image",
+				"fullscreen": "Fullscreen",
+				"zoom": "Zoom",
+				"share": "Share",
+				"playVideo": "Play Video",
+				"previous": "Previous",
+				"next": "Next",
+				"close": "Close",
+				"a11yCarouselWrapperAriaLabel": "Carousel | Horizontal scrolling: Arrow Left & Right",
+				"a11yCarouselPrevSlideMessage": "Previous slide",
+				"a11yCarouselNextSlideMessage": "Next slide",
+				"a11yCarouselFirstSlideMessage": "This is the first slide",
+				"a11yCarouselLastSlideMessage": "This is the last slide",
+				"a11yCarouselPaginationBulletMessage": "Go to slide"
+			},
+			"is_rtl": false,
+			"breakpoints": {
+				"xs": 0,
+				"sm": 480,
+				"md": 768,
+				"lg": 1025,
+				"xl": 1440,
+				"xxl": 1600
+			},
+			"responsive": {
+				"breakpoints": {
+					"mobile": {
+						"label": "Mobile Portrait",
+						"value": 767,
+						"default_value": 767,
+						"direction": "max",
+						"is_enabled": true
+					},
+					"mobile_extra": {
+						"label": "Mobile Landscape",
+						"value": 880,
+						"default_value": 880,
+						"direction": "max",
+						"is_enabled": false
+					},
+					"tablet": {
+						"label": "Tablet Portrait",
+						"value": 1024,
+						"default_value": 1024,
+						"direction": "max",
+						"is_enabled": true
+					},
+					"tablet_extra": {
+						"label": "Tablet Landscape",
+						"value": 1200,
+						"default_value": 1200,
+						"direction": "max",
+						"is_enabled": false
+					},
+					"laptop": {
+						"label": "Laptop",
+						"value": 1366,
+						"default_value": 1366,
+						"direction": "max",
+						"is_enabled": false
+					},
+					"widescreen": {
+						"label": "Widescreen",
+						"value": 2400,
+						"default_value": 2400,
+						"direction": "min",
+						"is_enabled": false
+					}
+				}
+			},
+			"version": "3.20.1",
+			"is_static": false,
+			"experimentalFeatures": {
+				"e_optimized_assets_loading": true,
+				"e_optimized_css_loading": true,
+				"e_font_icon_svg": true,
+				"additional_custom_breakpoints": true,
+				"container": true,
+				"e_swiper_latest": true,
+				"block_editor_assets_optimize": true,
+				"ai-layout": true,
+				"landing-pages": true,
+				"e_image_loading_optimization": true
+			},
+			"urls": {
+				"assets": "https:\/\/XnoVZKhdKgPv.com\/demos\/wp\/aximo\/wp-content\/plugins\/elementor\/assets\/"
+			},
+			"swiperClass": "swiper",
+			"settings": {
+				"page": [],
+				"editorPreferences": []
+			},
+			"kit": {
+				"active_breakpoints": ["viewport_mobile", "viewport_tablet"],
+				"global_image_lightbox": "yes",
+				"lightbox_enable_counter": "yes",
+				"lightbox_enable_fullscreen": "yes",
+				"lightbox_enable_zoom": "yes",
+				"lightbox_enable_share": "yes",
+				"lightbox_title_src": "title",
+				"lightbox_description_src": "description"
+			},
+			"post": {
+				"id": 2820,
+				"title": "Agency%20%E2%80%93%20WordPrress%20Theme",
+				"excerpt": "",
+				"featuredImage": false
+			}
+		};
+	</script>
+	<script src="wp-content/plugins/elementor/assets/js/frontend_ver%3D3.20.1.js" id="elementor-frontend-js"></script>
+	<script id="elementor-frontend-js-after">
+		;
+		(function ($) {
+			var $window = $(window),
+				debounce = function (func, wait, immediate) {
+					var timeout;
+					return function () {
+						var context = this,
+							args = arguments;
+						var later = function () {
+							timeout = null;
+							if (!immediate) func.apply(context, args);
+						};
+						var callNow = immediate && !timeout;
+						clearTimeout(timeout);
+						timeout = setTimeout(later, wait);
+						if (callNow) func.apply(context, args);
+					};
+				};
+
+			$window.on('elementor/frontend/init', function () {
+				var ModuleHandler = elementorModules.frontend.handlers.Base,
+					FloatingFxHandler;
+
+				FloatingFxHandler = ModuleHandler.extend({
+					bindEvents: function () {
+						this.run();
+					},
+
+					getDefaultSettings: function () {
+						return {
+							direction: 'alternate',
+							easing: 'easeInOutSine',
+							loop: true,
+							targets: this.findElement('.elementor-widget-container').get(0),
+						};
+					},
+
+					onElementChange: debounce(function (prop) {
+						if (prop.indexOf('fd_addon_floating') !== -1) {
+							this.anime && this.anime.restart();
+							this.run();
+						}
+					}, 400),
+
+					getFxVal: function (key) {
+						return this.getElementSettings('fd_addon_floating_fx_' + key);
+					},
+
+					run: function () {
+						var config = this.getDefaultSettings();
+
+						if (this.getFxVal('translate_toggle')) {
+							if (this.getFxVal('translate_x.size') || this.getFxVal(
+									'translate_x.sizes.to')) {
+								config.translateX = {
+									value: [this.getFxVal('translate_x.sizes.from') || 0, this
+										.getFxVal('translate_x.size') || this.getFxVal(
+											'translate_x.sizes.to')
+									],
+									duration: this.getFxVal('translate_duration.size'),
+									delay: this.getFxVal('translate_delay.size') || 0
+								}
+							}
+							if (this.getFxVal('translate_y.size') || this.getFxVal(
+									'translate_y.sizes.to')) {
+								config.translateY = {
+									value: [this.getFxVal('translate_y.sizes.from') || 0, this
+										.getFxVal('translate_y.size') || this.getFxVal(
+											'translate_y.sizes.to')
+									],
+									duration: this.getFxVal('translate_duration.size'),
+									delay: this.getFxVal('translate_delay.size') || 0
+								}
+							}
+						}
+
+						if (this.getFxVal('rotate_toggle')) {
+							if (this.getFxVal('rotate_x.size') || this.getFxVal(
+									'rotate_x.sizes.to')) {
+								config.rotateX = {
+									value: [this.getFxVal('rotate_x.sizes.from') || 0, this
+										.getFxVal('rotate_x.size') || this.getFxVal(
+											'rotate_x.sizes.to')
+									],
+									duration: this.getFxVal('rotate_duration.size'),
+									delay: this.getFxVal('rotate_delay.size') || 0
+								}
+							}
+							if (this.getFxVal('rotate_y.size') || this.getFxVal(
+									'rotate_y.sizes.to')) {
+								config.rotateY = {
+									value: [this.getFxVal('rotate_y.sizes.from') || 0, this
+										.getFxVal('rotate_y.size') || this.getFxVal(
+											'rotate_y.sizes.to')
+									],
+									duration: this.getFxVal('rotate_duration.size'),
+									delay: this.getFxVal('rotate_delay.size') || 0
+								}
+							}
+							if (this.getFxVal('rotate_z.size') || this.getFxVal(
+									'rotate_z.sizes.to')) {
+								config.rotateZ = {
+									value: [this.getFxVal('rotate_z.sizes.from') || 0, this
+										.getFxVal('rotate_z.size') || this.getFxVal(
+											'rotate_z.sizes.to')
+									],
+									duration: this.getFxVal('rotate_duration.size'),
+									delay: this.getFxVal('rotate_delay.size') || 0
+								}
+							}
+						}
+
+						if (this.getFxVal('scale_toggle')) {
+							if (this.getFxVal('scale_x.size') || this.getFxVal('scale_x.sizes.to')) {
+								config.scaleX = {
+									value: [this.getFxVal('scale_x.sizes.from') || 0, this
+										.getFxVal('scale_x.size') || this.getFxVal(
+											'scale_x.sizes.to')
+									],
+									duration: this.getFxVal('scale_duration.size'),
+									delay: this.getFxVal('scale_delay.size') || 0
+								}
+							}
+							if (this.getFxVal('scale_y.size') || this.getFxVal('scale_y.sizes.to')) {
+								config.scaleY = {
+									value: [this.getFxVal('scale_y.sizes.from') || 0, this
+										.getFxVal('scale_y.size') || this.getFxVal(
+											'scale_y.sizes.to')
+									],
+									duration: this.getFxVal('scale_duration.size'),
+									delay: this.getFxVal('scale_delay.size') || 0
+								}
+							}
+						}
+
+						if (this.getFxVal('translate_toggle') || this.getFxVal('rotate_toggle') ||
+							this.getFxVal('scale_toggle')) {
+							this.findElement('.elementor-widget-container').css('will-change',
+								'transform');
+							this.anime = window.anime && window.anime(config);
+						}
+					}
+
+
+				});
+
+				elementorFrontend.hooks.addAction('frontend/element_ready/widget', function ($scope) {
+					elementorFrontend.elementsHandler.addHandler(FloatingFxHandler, {
+						$element: $scope
+					});
+				});
+			});
+
+		}(jQuery));
+	</script>
+
+
+
+</body>
+
+</html>
