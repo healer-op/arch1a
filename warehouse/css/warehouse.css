@@ -999,7 +999,7 @@ input:checked+.card>.card-img {
     letter-spacing: 1px;
 }
 
-@media (max-width:600px) {
+@media (max-width:300px) {
 
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     #calcom>.title {
