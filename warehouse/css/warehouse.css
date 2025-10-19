@@ -1011,7 +1011,7 @@ input:checked+.card>.card-img {
     }
 
     #about>.text>.main>p {
-        font-size: large;
+        font-size: medium;
     }
 
     #about>.text>.image {
@@ -1032,7 +1032,7 @@ input:checked+.card>.card-img {
         position: absolute;
         bottom: 1vh;
         z-index: -1;
-        right: calc(30% - 11rem);
+        right: calc(35% - 11rem);
         opacity: 1;
         transition: opacity 0.2s ease-in-out 0.5s;
     }
