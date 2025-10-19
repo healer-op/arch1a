@@ -4,11 +4,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 
-  
+
 
 /* fonts */
 @font-face {
@@ -71,38 +71,41 @@ html {
 }
 
 /* Overlay background */
-  #confettiPopup {
+#confettiPopup {
     font-family: Causten-Bold;
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
+}
 
-  /* Popup container */
-  #confettiPopup .popup-content {
+/* Popup container */
+#confettiPopup .popup-content {
     position: relative;
     background: #fff;
     padding: 2rem;
     border-radius: 12px;
     text-align: center;
     width: 300px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-  }
+}
 
-  #confettiPopup .popup-content h2 {
+#confettiPopup .popup-content h2 {
     margin-bottom: 1rem;
-  }
+}
 
-  /* Close button */
-  #confettiPopup .close-btn {
+/* Close button */
+#confettiPopup .close-btn {
     position: absolute;
-    top: 10px; right: 10px;
+    top: 10px;
+    right: 10px;
     background: #f44336;
     border: none;
     color: white;
@@ -110,22 +113,28 @@ html {
     font-size: 1rem;
     border-radius: 50%;
     cursor: pointer;
-  }
+}
 
-  /* Confetti animation */
-  .confetti-piece {
+/* Confetti animation */
+.confetti-piece {
     position: absolute;
-    width: 10px; height: 10px;
+    width: 10px;
+    height: 10px;
     background-color: #ff0;
     opacity: 0.9;
     top: 0;
     animation: fall 3s linear infinite;
-  }
+}
 
-  @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(300px) rotate(360deg); }
-  }
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(300px) rotate(360deg);
+    }
+}
 
 nav {
     position: fixed;
@@ -636,7 +645,7 @@ input:checked+.card>.card-img {
 
 /* CAL.COM */
 
-#calcom{
+#calcom {
     width: 100%;
     height: 110vh;
 }
@@ -859,30 +868,34 @@ input:checked+.card>.card-img {
     }
 }
 
-#about{
-     --sq: 20vmin; /* square size */
-  --lt: calc(var(--sq) / 20); /* line thickness */
-  --c1: rgba(255, 255, 255, 0.128); /* background color */
-  --c2: rgba(128, 128, 128, 0.13);  /* line color */
-  --c3: rgba(0, 0, 0, 0.169); /* dot inner color */
-  --c4: rgba(255, 255, 255, 0.144); /* dot outer color */
-  
-  --line-grad: 
-      var(--c2) 0 calc(  0% + var(--lt) / 2), #0000 0 calc( 50% - var(--lt) / 2),
-      var(--c2) 0 calc( 50% + var(--lt) / 2), #0000 0 calc(100% - var(--lt) / 2),
-      var(--c2) 0 ;
-  
-  margin: 0;
-  height: 100vh;
-  background:
-    50% 50% / calc(var(--sq) * 2) calc(var(--sq) * 2) radial-gradient(
-      var(--c3) calc(var(--lt) * .9), var(--c4) 0 calc(var(--lt) * 1.1), #0000 0
-    ),
-    50% 50% / var(--sq) var(--sq) linear-gradient(  0deg, var(--line-grad)),
-    50% 50% / var(--sq) var(--sq) linear-gradient( 90deg, var(--line-grad)),
-    50% 50% / var(--sq) var(--sq) linear-gradient( 45deg, var(--line-grad)),
-    50% 50% / var(--sq) var(--sq) linear-gradient(-45deg, var(--line-grad)),
-    var(--c1)
+#about {
+    --sq: 20vmin;
+    /* square size */
+    --lt: calc(var(--sq) / 20);
+    /* line thickness */
+    --c1: rgba(255, 255, 255, 0.128);
+    /* background color */
+    --c2: rgba(128, 128, 128, 0.13);
+    /* line color */
+    --c3: rgba(0, 0, 0, 0.169);
+    /* dot inner color */
+    --c4: rgba(255, 255, 255, 0.144);
+    /* dot outer color */
+
+    --line-grad:
+        var(--c2) 0 calc(0% + var(--lt) / 2), #0000 0 calc(50% - var(--lt) / 2),
+        var(--c2) 0 calc(50% + var(--lt) / 2), #0000 0 calc(100% - var(--lt) / 2),
+        var(--c2) 0;
+
+    margin: 0;
+    height: 100vh;
+    background:
+        50% 50% / calc(var(--sq) * 2) calc(var(--sq) * 2) radial-gradient(var(--c3) calc(var(--lt) * .9), var(--c4) 0 calc(var(--lt) * 1.1), #0000 0),
+        50% 50% / var(--sq) var(--sq) linear-gradient(0deg, var(--line-grad)),
+        50% 50% / var(--sq) var(--sq) linear-gradient(90deg, var(--line-grad)),
+        50% 50% / var(--sq) var(--sq) linear-gradient(45deg, var(--line-grad)),
+        50% 50% / var(--sq) var(--sq) linear-gradient(-45deg, var(--line-grad)),
+        var(--c1)
 }
 
 #about>.text {
@@ -901,32 +914,32 @@ input:checked+.card>.card-img {
     z-index: 2;
 }
 
-#about>.text>.main{
+#about>.text>.main {
     width: 50%;
-    height:80vh;
-    padding:5%;
+    height: 80vh;
+    padding: 5%;
 }
 
 
-#about>.text>.main>h2{
+#about>.text>.main>h2 {
     color: #76453B;
 }
 
 
-#about>.text>.main >p{
+#about>.text>.main>p {
     font-size: x-large;
     padding: 2vh 0px;
 }
 
-#about>.text>.image{
-    margin:5%;
+#about>.text>.image {
+    margin: 5%;
     background: url(../../warehouse/data/images/bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     width: 40%;
-    height:80vh;
+    height: 80vh;
     border-radius: 15px;
     opacity: 90%;
 }
@@ -936,7 +949,7 @@ input:checked+.card>.card-img {
     border-radius: 25px 25px 0px 0px;
     color: white;
     font-family: Causten-Bold;
-    background: linear-gradient(0deg, rgb(72, 72, 72) 20%, rgb(0,0,0) 100%);
+    background: linear-gradient(0deg, rgb(72, 72, 72) 20%, rgb(0, 0, 0) 100%);
     width: 100%;
     height: 60vh;
     padding-top: 10vh;
@@ -950,36 +963,77 @@ input:checked+.card>.card-img {
     0% {
         background-position: 0% 0%;
     }
+
     50% {
         background-position: 0% 40%;
     }
+
     100% {
         background-position: 0% -0%;
     }
 }
 
-.footer>.text{
+.footer>.text {
     text-align: center;
     width: 100%;
 }
 
-.footer>.text>hr{
+.footer>.text>hr {
     opacity: 10%;
 }
 
-.footer>.text>h1{
+.footer>.text>h1 {
     font-size: 3rem;
 }
 
-.footer>.text>span{
+.footer>.text>span {
     color: #ffffff51;
 }
 
-.footer>.text>span>a{
+.footer>.text>span>a {
     color: #ffffff51;
 }
 
-.footer>.text>span>a:hover{
+.footer>.text>span>a:hover {
     color: #ffffffbb;
     letter-spacing: 1px;
+}
+
+@media (max-width:600px) {
+
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    #calcom>.title {
+        margin-bottom: 2vh;
+    }
+
+    #about>.text>.main {
+        text-align: center;
+    }
+
+    #about>.text>.main>p {
+        font-size: large;
+    }
+
+    #about>.text>.image {
+        display: none;
+    }
+
+    #calcom {
+        margin-bottom: 4vh;
+    }
+
+    .footer {
+        height: 40vh;
+    }
+
+    .nav>img {
+        transform: rotate(180deg) scaleX(-1);
+        width: 11rem;
+        position: absolute;
+        bottom: 1vh;
+        z-index: -1;
+        right: calc(30% - 11rem);
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out 0.5s;
+    }
 }
