@@ -247,12 +247,12 @@ section {
     color: #76453B;
 }
 
-#hero>.text>div>span {
+#hero>.text>div>p>span {
     transition: 0.5s ease-in-out;
     /* Helps smooth the font switch */
 }
 
-#hero>.text>div>span:hover {
+#hero>.text>div>p>span:hover {
     font-family: TheSilverEditorial-Regular;
     letter-spacing: 1px;
     color: #76453B;
@@ -1002,6 +1002,14 @@ input:checked+.card>.card-img {
 /* Responsive Media Queries */
 @media screen and (max-width: 480px) {
     /* Smartphones */
+
+    #hero>.text>div{
+        text-align: center;
+    }
+    #hero>.text>div>p {
+        font-size: large;
+    /* Helps smooth the font switch */
+    }
     .title>h2 {
 
         font-size: x-large;
@@ -1032,7 +1040,8 @@ input:checked+.card>.card-img {
     }
 
     .footer {
-        height: 40vh;
+        height: 55vh;
+        padding-bottom: 26vh;
     }
 
     .nav>img {
@@ -1050,6 +1059,16 @@ input:checked+.card>.card-img {
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
     /* Tablets */
+
+    #hero>.text>div{
+        text-align: center;
+    }
+    #hero>.text>div>p {
+        font-size: large;
+    /* Helps smooth the font switch */
+    }
+
+
     .title>h2 {
 
         font-size: x-large;
@@ -1080,7 +1099,8 @@ input:checked+.card>.card-img {
     }
 
     .footer {
-        height: 40vh;
+        height: 55vh;
+        padding-bottom: 26vh;
     }
 
     .nav>img {
