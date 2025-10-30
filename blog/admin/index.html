@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-function downloadBlog() {
+async function downloadBlog() {
   const title = document.getElementById('blogTitle').value || "Untitled";
   const metaDesc = document.getElementById('metaDesc').value || "";
   const headerImg = document.getElementById('headerImg').value || "";
@@ -108,7 +108,10 @@ function downloadBlog() {
     .replace(/[\s-]+/g, '-')
     .replace(/^-+|-+$/g, '') || 'blog-post';
 
-  // Build HTML using normal string concatenation (no backticks)
+  const fullUrl = "https://archiastudio.com/blog/" + fileName + ".html";
+  const lastMod = new Date().toISOString();
+
+  // 🧱 Build blog HTML
   let html = "";
   html += '<!DOCTYPE html><html><head>';
   html += '<meta charset="utf-8" />';
@@ -119,7 +122,7 @@ function downloadBlog() {
   html += '<meta property="og:title" content="' + title + '" />';
   html += '<meta property="og:description" content="' + metaDesc + '" />';
   html += '<meta property="og:type" content="website" />';
-  html += '<meta property="og:url" content="https://archiastudio.com" />';
+  html += '<meta property="og:url" content="' + fullUrl + '" />';
   html += '<meta name="twitter:card" content="summary_large_image" />';
   html += '<link rel="stylesheet" href="../warehouse/css/warehouse.css">';
   html += '<link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">';
@@ -148,14 +151,52 @@ function downloadBlog() {
   html += '</section>';
   html += '<script src="../warehouse/js/navSound.js"><\/script>';
 
-  const blob = new Blob([html], { type: 'text/html' });
+  // 💾 Download blog HTML
+  const blogBlob = new Blob([html], { type: 'text/html' });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
+  a.href = URL.createObjectURL(blogBlob);
   a.download = fileName + '.html';
   a.click();
   URL.revokeObjectURL(a.href);
+
+  // 🧭 Update sitemap.xml
+  try {
+    const res = await fetch('../../sitemap.xml');
+    const xmlText = await res.text();
+
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+    const urlset = xmlDoc.getElementsByTagName("urlset")[0];
+    const newUrl = xmlDoc.createElement("url");
+
+    const loc = xmlDoc.createElement("loc");
+    loc.textContent = fullUrl;
+    const lastmod = xmlDoc.createElement("lastmod");
+    lastmod.textContent = lastMod;
+    const priority = xmlDoc.createElement("priority");
+    priority.textContent = "0.80";
+
+    newUrl.appendChild(loc);
+    newUrl.appendChild(lastmod);
+    newUrl.appendChild(priority);
+    urlset.appendChild(newUrl);
+
+    const serializer = new XMLSerializer();
+    const updatedXml = serializer.serializeToString(xmlDoc);
+
+    const sitemapBlob = new Blob([updatedXml], { type: 'application/xml' });
+    const b = document.createElement('a');
+    b.href = URL.createObjectURL(sitemapBlob);
+    b.download = 'sitemap.xml';
+    b.click();
+    URL.revokeObjectURL(b.href);
+  } catch (err) {
+    alert("⚠️ Could not fetch sitemap.xml. Make sure it's accessible locally or from GitHub Pages.\n" + err);
+  }
 }
 </script>
+
 
 
 </body>
