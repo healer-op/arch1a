@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArchiaStudio Blog Generator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f7faff;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+    button {
+      background: #0078ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #005fd6;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    #image-preview {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+      border: 1px solid #eee;
+    }
+    #password-screen {
+      text-align: center;
+    }
+    #app {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔒 Password Screen -->
+  <div class="container" id="password-screen">
+    <h2>🔒 Enter Password</h2>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="password-msg"></p>
+  </div>
+
+  <!-- 📝 Blog Generator -->
+  <div class="container" id="app">
+    <h2>📝 ArchiaStudio Blog Generator</h2>
+    <input type="text" id="title" placeholder="Enter blog title" required />
+    <textarea id="description" placeholder="SEO Description (optional)"></textarea>
+    <input type="text" id="keywords" placeholder="SEO Keywords (comma-separated)" />
+    <input type="text" id="imageUrl" placeholder="Image URL (optional)" oninput="previewImage()" />
+    <img id="image-preview" src="" alt="Preview" />
+    <button onclick="generateBlog()">Generate Blog</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const PASSWORD = "healer#3211"; // ✅ your password
+
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      const msg = document.getElementById("password-msg");
+
+      if (input === PASSWORD) {
+        document.getElementById("password-screen").style.display = "none";
+        document.getElementById("app").style.display = "block";
+      } else {
+        msg.textContent = "❌ Incorrect password!";
+        msg.style.color = "red";
+      }
+    }
+
+    function previewImage() {
+      const url = document.getElementById("imageUrl").value.trim();
+      const img = document.getElementById("image-preview");
+      if (url) {
+        img.src = url;
+        img.style.display = "block";
+      } else {
+        img.style.display = "none";
+      }
+    }
+
+    async function generateBlog() {
+      const title = document.getElementById('title').value.trim();
+      const imageUrl = document.getElementById('imageUrl').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const keywords = document.getElementById('keywords').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!title) {
+        resultDiv.innerHTML = "❌ Please enter a title.";
+        return;
+      }
+
+      resultDiv.innerHTML = "⏳ Generating blog... please wait.";
+
+      try {
+        const response = await fetch("https://seo-blog-generator.healerzee51.workers.dev/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            password: PASSWORD,
+            title,
+            imageUrl,
+            description,
+            keywords
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (response.ok && data.status === "success") {
+          resultDiv.innerHTML = `✅ Blog created successfully!<br>
+            <a href="https://archiastudio.com/blog/${data.file}" target="_blank">View Blog</a>`;
+        } else {
+          resultDiv.innerHTML = `❌ ${data.error || 'Unknown error occurred.'}`;
+        }
+      } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = "❌ Failed to generate blog. Check console for details.";
+      }
+    }
+  </script>
+</body>
+</html>
