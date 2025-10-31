@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +17,11 @@
       margin: 20px;
       color: #333;
     }
-    h1 { text-align: center; color: #222; }
+
+    h1 {
+      text-align: center;
+      color: #222;
+    }
 
     .metadata-form {
       max-width: 1000px;
@@ -27,12 +32,14 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
+
     .metadata-form label {
       display: block;
       font-weight: bold;
       margin-top: 15px;
       margin-bottom: 5px;
     }
+
     .metadata-form input[type="text"] {
       width: 100%;
       padding: 10px;
@@ -54,7 +61,10 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    #downloadBtn:hover { background: #005fd4; }
+
+    #downloadBtn:hover {
+      background: #005fd4;
+    }
 
     .tox-tinymce {
       max-width: 1000px;
@@ -67,12 +77,19 @@
   <h1>ArchiaStudio Blog Maker</h1>
 
   <div class="metadata-form">
-    <label for="blogTitle">Blog Title:</label>
+    <label for="blogTitle">Blog Title (Display):</label>
     <input type="text" id="blogTitle" value="Best Website Developer in India — ArchiaStudio.com">
+
+    <label for="metaTitle">Meta Title (for SEO tab title):</label>
+    <input type="text" id="metaTitle" value="Best Website Developer in India | ArchiaStudio">
 
     <label for="metaDesc">Meta Description:</label>
     <input type="text" id="metaDesc"
       value="Looking for the best website developer in India? ArchiaStudio.com delivers high-performance, SEO-optimized, and beautifully designed websites for businesses of all sizes.">
+
+    <label for="metaKeywords">Meta Keywords (comma separated):</label>
+    <input type="text" id="metaKeywords"
+      value="best website developer in India, ArchiaStudio, SEO web design, web development India, creative websites">
 
     <label for="headerImg">Header Image URL:</label>
     <input type="text" id="headerImg" value="https://i.pinimg.com/1200x/f3/7e/e0/f37ee04a6b106d6f6006908a3e052e1f.jpg">
@@ -85,119 +102,163 @@
     <p>In today’s digital age, having a strong online presence is essential for every business...</p>
   </textarea>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  tinymce.init({
-    selector: '#blogEditor',
-    height: 600,
-    menubar: true,
-    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-    toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
-    content_style: 'body { font-family:Arial, sans-serif; font-size:16px; }'
-  });
-});
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      tinymce.init({
+        selector: '#blogEditor',
+        height: 600,
+        menubar: true,
+        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+        toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview code',
+        content_style: 'body { font-family:Arial, sans-serif; font-size:16px; }'
+      });
+    });
 
-async function downloadBlog() {
-  const title = document.getElementById('blogTitle').value || "Untitled";
-  const metaDesc = document.getElementById('metaDesc').value || "";
-  const headerImg = document.getElementById('headerImg').value || "";
-  const blogContent = tinymce.get('blogEditor').getContent() || "";
+    // 🧠 Fetch sitemap.xml (from localStorage first)
+    async function getSitemapXML() {
+      let xmlText = localStorage.getItem("archia_sitemap");
+      if (xmlText) {
+        console.log("✅ Loaded sitemap from localStorage");
+        return xmlText;
+      }
 
-  const fileName = title.toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/[\s-]+/g, '-')
-    .replace(/^-+|-+$/g, '') || 'blog-post';
+      try {
+        const res = await fetch("../../sitemap.xml");
+        xmlText = await res.text();
+        localStorage.setItem("archia_sitemap", xmlText);
+        console.log("🌐 Loaded sitemap from server and cached locally");
+        return xmlText;
+      } catch (e) {
+        console.warn("⚠️ Could not fetch sitemap.xml", e);
+        return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`;
+      }
+    }
 
-  const fullUrl = "https://archiastudio.com/blog/" + fileName + ".html";
-  const lastMod = new Date().toISOString();
+    async function downloadBlog() {
+      const blogTitle = document.getElementById('blogTitle').value || "Untitled";
+      const metaTitle = document.getElementById('metaTitle').value || blogTitle;
+      const metaDesc = document.getElementById('metaDesc').value || "";
+      const metaKeywords = document.getElementById('metaKeywords').value || "";
+      const headerImg = document.getElementById('headerImg').value || "";
+      const blogContent = tinymce.get('blogEditor').getContent() || "";
 
-  // 🧱 Build blog HTML
-  let html = "";
-  html += '<!DOCTYPE html><html><head>';
-  html += '<meta charset="utf-8" />';
-  html += '<meta name="viewport" content="width=device-width,initial-scale=1" />';
-  html += '<title>' + title + '</title>';
-  html += '<meta name="description" content="' + metaDesc + '" />';
-  html += '<meta name="keywords" content="best website developer in India, web development India, ArchiaStudio, web design India, SEO website development" />';
-  html += '<meta property="og:title" content="' + title + '" />';
-  html += '<meta property="og:description" content="' + metaDesc + '" />';
-  html += '<meta property="og:type" content="website" />';
-  html += '<meta property="og:url" content="' + fullUrl + '" />';
-  html += '<meta name="twitter:card" content="summary_large_image" />';
-  html += '<link rel="stylesheet" href="../warehouse/css/warehouse.css">';
-  html += '<link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">';
-  html += '<link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="192x192">';
-  html += '<link rel="apple-touch-icon" href="../warehouse/data/images/ducks/favicon.png">';
-  html += '<style>';
-  html += '#blog{z-index:10;width:100%;height:max-content;margin-bottom:10vh;}';
-  html += '#blog>div#blog-image{width:100%;object-fit:cover;height:40em;}';
-  html += '#blog>div.content{font-family:Causten-ExtraBold;width:80%;padding-left:10%;padding-right:10%;}';
-  html += '</style>';
-  html += '</head><body>';
-  html += '<div id="cursor-dot"></div><div id="cursor-img"></div>';
-  html += '<div class="home"><nav><ul class="nav">';
-  html += '<li id="active"><a href="../index.html">Home</a></li>';
-  html += '<li><a href="../index.html#Service">Services</a></li>';
-  html += '<li><a href="../index.html#about">About</a></li>';
-  html += '<li><a href="mailto:connect@archiastudio.com">Email</a></li>';
-  html += '<li><a href="../index.html#calcom">BookMeeting!</a></li>';
-  html += '<img id="duck" src="../warehouse/data/images/duck.png">';
-  html += '</ul>';
-  html += '<audio id="hover-sound" src="../warehouse/data/sounds/quack.mp3" preload="auto"></audio>';
-  html += '</nav></div>';
-  html += '<section id="blog">';
-  html += '<div id="blog-image" style="background:linear-gradient(0deg,rgba(255,255,255,1) 14%,rgba(247,255,255,0) 100%),url(' + headerImg + ');background-size:cover;background-position:center;background-repeat:no-repeat;"></div>';
-  html += '<div class="content">' + blogContent + '</div>';
-  html += '</section>';
-  html += '<script src="../warehouse/js/navSound.js"><\/script>';
+      const fileName = metaTitle.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/[\s-]+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'blog-post';
 
-  // 💾 Download blog HTML
-  const blogBlob = new Blob([html], { type: 'text/html' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blogBlob);
-  a.download = fileName + '.html';
-  a.click();
-  URL.revokeObjectURL(a.href);
+      const fullUrl = "https://archiastudio.com/blog/" + fileName + ".html";
+      const lastMod = new Date().toISOString();
 
-  // 🧭 Update sitemap.xml
-  try {
-    const res = await fetch('../../sitemap.xml');
-    const xmlText = await res.text();
+      // 🧱 Build Blog HTML
+      let html = "";
+      html += '<!DOCTYPE html><html><head>';
+      html += '<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />';
+      html += '<title>' + metaTitle + '</title>';
+      html += '<meta name="description" content="' + metaDesc + '" />';
+      html += '<meta name="keywords" content="' + metaKeywords + '" />';
+      html += '<meta property="og:title" content="' + metaTitle + '" />';
+      html += '<meta property="og:description" content="' + metaDesc + '" />';
+      html += '<meta property="og:type" content="website" />';
+      html += '<meta property="og:url" content="' + fullUrl + '" />';
+      html += '<meta name="twitter:card" content="summary_large_image" />';
+      html += '<link rel="stylesheet" href="../warehouse/css/warehouse.css">';
+      html += '<link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">';
+      html += '<link rel="apple-touch-icon" href="../warehouse/data/images/ducks/favicon.png">';
+      html +=
+        '<style>#blog{z-index:10;width:100%;height:max-content;margin-bottom:10vh;}#blog>div#blog-image{width:100%;object-fit:cover;height:40em;}#blog>div.content{font-family:Causten-ExtraBold;width:80%;padding-left:10%;padding-right:10%;}</style>';
+      html += '</head><body>';
+      html += '<div class="home"><nav><ul class="nav">';
+      html += '<li id="active"><a href="../index.html">Home</a></li>';
+      html += '<li><a href="../index.html#Service">Services</a></li>';
+      html += '<li><a href="../index.html#about">About</a></li>';
+      html += '<li><a href="mailto:connect@archiastudio.com">Email</a></li>';
+      html += '<li><a href="../index.html#calcom">BookMeeting!</a></li>';
+      html += '<img id="duck" src="../warehouse/data/images/duck.png">';
+      html +=
+        '</ul><audio id="hover-sound" src="../warehouse/data/sounds/quack.mp3" preload="auto"></audio></nav></div>';
+      html +=
+        '<section id="blog"><div id="blog-image" style="background:linear-gradient(0deg,rgba(255,255,255,1) 14%,rgba(247,255,255,0) 100%),url(' +
+        headerImg + ');background-size:cover;background-position:center;background-repeat:no-repeat;"></div>';
+      html += '<div class="content"><h1>' + blogTitle + '</h1>' + blogContent + '</div></section>';
+      html += '<script src="../warehouse/js/navSound.js"><\/script>';
 
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+      // 💾 Download the Blog HTML
+      const blogBlob = new Blob([html], {
+        type: 'text/html'
+      });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blogBlob);
+      a.download = fileName + '.html';
+      a.click();
+      URL.revokeObjectURL(a.href);
 
-    const urlset = xmlDoc.getElementsByTagName("urlset")[0];
-    const newUrl = xmlDoc.createElement("url");
+      // 🧭 Handle Sitemap (with localStorage caching)
+      let xmlText = await getSitemapXML();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+      const urlset = xmlDoc.getElementsByTagName("urlset")[0];
 
-    const loc = xmlDoc.createElement("loc");
-    loc.textContent = fullUrl;
-    const lastmod = xmlDoc.createElement("lastmod");
-    lastmod.textContent = lastMod;
-    const priority = xmlDoc.createElement("priority");
-    priority.textContent = "0.80";
+      // Check existing entry
+      let existing = Array.from(xmlDoc.getElementsByTagName("loc"))
+        .find(loc => loc.textContent === fullUrl);
 
-    newUrl.appendChild(loc);
-    newUrl.appendChild(lastmod);
-    newUrl.appendChild(priority);
-    urlset.appendChild(newUrl);
+      if (existing) {
+        existing.parentNode.getElementsByTagName("lastmod")[0].textContent = lastMod;
+        console.log("🔁 Updated existing sitemap entry:", fullUrl);
+      } else {
+        const newUrl = xmlDoc.createElement("url");
+        const loc = xmlDoc.createElement("loc");
+        loc.textContent = fullUrl;
+        const lastmod = xmlDoc.createElement("lastmod");
+        lastmod.textContent = lastMod;
+        const priority = xmlDoc.createElement("priority");
+        priority.textContent = "0.80";
+        newUrl.appendChild(loc);
+        newUrl.appendChild(lastmod);
+        newUrl.appendChild(priority);
+        urlset.appendChild(newUrl);
+        console.log("🆕 Added new sitemap entry:", fullUrl);
+      }
 
-    const serializer = new XMLSerializer();
-    const updatedXml = serializer.serializeToString(xmlDoc);
+      // Save locally
+      const serializer = new XMLSerializer();
+      const updatedXml = serializer.serializeToString(xmlDoc);
+      localStorage.setItem("archia_sitemap", updatedXml);
 
-    const sitemapBlob = new Blob([updatedXml], { type: 'application/xml' });
-    const b = document.createElement('a');
-    b.href = URL.createObjectURL(sitemapBlob);
-    b.download = 'sitemap.xml';
-    b.click();
-    URL.revokeObjectURL(b.href);
-  } catch (err) {
-    alert("⚠️ Could not fetch sitemap.xml. Make sure it's accessible locally or from GitHub Pages.\n" + err);
-  }
-}
-</script>
+      // Download updated sitemap
+      const sitemapBlob = new Blob([updatedXml], {
+        type: 'application/xml'
+      });
+      const b = document.createElement('a');
+      b.href = URL.createObjectURL(sitemapBlob);
+      b.download = 'sitemap.xml';
+      b.click();
+      URL.revokeObjectURL(b.href);
+
+      // Small toast popup
+      const toast = document.createElement("div");
+      toast.textContent = "✅ Blog & Sitemap updated locally!";
+      Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "30px",
+        right: "30px",
+        background: "#0078ff",
+        color: "#fff",
+        padding: "10px 20px",
+        borderRadius: "6px",
+        fontFamily: "Arial",
+        zIndex: "9999",
+        boxShadow: "0 3px 10px rgba(0,0,0,0.2)"
+      });
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+  </script>
+
 
 
 
 </body>
+
 </html>
