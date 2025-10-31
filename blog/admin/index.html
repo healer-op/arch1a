@@ -9,6 +9,15 @@
 
   <script src="https://cdn.tiny.cloud/1/z7j2u1rlya2f5jv1jbfcoscc1q2z0nrbz9fvavqbxuf4u04b/tinymce/8/tinymce.min.js"
     referrerpolicy="origin" crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KX4EKGY3VC');
+</script>
 
   <style>
     body {
@@ -165,6 +174,9 @@
       html += '<link rel="stylesheet" href="../warehouse/css/warehouse.css">';
       html += '<link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">';
       html += '<link rel="apple-touch-icon" href="../warehouse/data/images/ducks/favicon.png">';
+      html += '<!-- Google tag (gtag.js) -->';
+      html += '<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"><\/script>';
+      html += "<script> window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-KX4EKGY3VC');<\/script>";
       html +=
         '<style>#blog{z-index:10;width:100%;height:max-content;margin-bottom:10vh;}#blog>div#blog-image{width:100%;object-fit:cover;height:40em;}#blog>div.content{font-family:Causten-ExtraBold;width:80%;padding-left:10%;padding-right:10%;}</style>';
       html += '</head><body>';
