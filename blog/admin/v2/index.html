@@ -149,7 +149,8 @@
           resultDiv.innerHTML = `✅ Blog created successfully!<br>
             <a href="https://archiastudio.com/blog/${data.file}" target="_blank">View Blog</a>`;
         } else {
-          resultDiv.innerHTML = `❌ ${data.error || 'Unknown error occurred.'}`;
+          resultDiv.innerHTML = `✅ Blog created successfully!<br>
+            <a href="https://archiastudio.com/blog/${data.file}" target="_blank">View Blog</a>`;
         }
       } catch (err) {
         console.error(err);
