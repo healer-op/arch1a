@@ -1,277 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SEO Blog Generator - ArchiaStudio</title>
-  <meta name="description" content="Generate SEO blogs for ArchiaStudio with AI and Unsplash image preview." />
+  <title>ArchiaStudio Blog Generator</title>
+  <meta name="description" content="Generate fully SEO-optimized blog posts for ArchiaStudio automatically.">
+  <link rel="stylesheet" href="../warehouse/css/warehouse.css">
   <style>
-    body { font-family: Arial, Helvetica, sans-serif; background:#f6f8fb; margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; }
-    .card { width:92%; max-width:640px; background:white; border-radius:12px; padding:24px; box-shadow:0 8px 30px rgba(0,0,0,0.08); }
-    h1 { margin:0 0 10px 0; font-size:20px; text-align:center; }
-    label { display:block; margin-top:12px; font-weight:600; }
-    input, textarea, button { width:100%; box-sizing:border-box; margin-top:8px; padding:10px 12px; border-radius:8px; border:1px solid #d0d7df; font-size:14px; }
-    textarea { min-height:80px; resize:vertical; }
-    button { background:#0078ff; color:white; border:none; cursor:pointer; }
-    button[disabled] { opacity:0.6; cursor:not-allowed; }
-    img.preview { margin-top:12px; width:100%; height:220px; object-fit:cover; border-radius:8px; display:none; }
-    #password-screen { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.45); z-index:9999; }
-    #password-box { background:white; padding:20px 24px; border-radius:10px; width:320px; box-shadow:0 6px 18px rgba(0,0,0,0.12); text-align:center; }
-    .muted { color:#666; font-size:13px; margin-top:8px; }
-    #result { margin-top:14px; padding:12px; border-radius:8px; background:#f4f9f6; display:none; word-break:break-word; }
+    body {
+      font-family: Causten-Regular, sans-serif;
+      background: #f9f9f9;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hidden { display: none; }
+    #password-screen, #main-screen {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 10vh;
+      text-align: center;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      font-family: inherit;
+    }
+    button:hover { background: #444; }
+    img#preview { max-width: 100%; margin-top: 15px; border-radius: 10px; }
+    #status { margin-top: 20px; font-weight: bold; color: green; }
   </style>
 </head>
 <body>
 
-  <!-- Password Overlay -->
-  <div id="password-screen" aria-hidden="false">
-    <div id="password-box">
-      <h2>Enter Password</h2>
-      <input id="password-input" type="password" placeholder="password" />
-      <button id="password-submit">Unlock</button>
-      <div class="muted">Use password: <b>healer#3211</b></div>
-      <div id="pw-error" style="color:#c62828;display:none;margin-top:8px;font-size:13px;"></div>
+  <!-- 🔒 Password Screen -->
+  <div id="password-screen">
+    <h2>Enter Password to Access Blog Generator</h2>
+    <input type="password" id="password-input" placeholder="Enter password" />
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="error" style="color:red; display:none;">Incorrect password!</p>
+  </div>
+
+  <!-- ✨ Main Generator -->
+  <div id="main-screen" class="hidden">
+    <h1>ArchiaStudio SEO Blog Generator</h1>
+    <input id="title" placeholder="Enter Blog Title (leave blank to auto-generate)" />
+    <input id="imageUrl" placeholder="Enter custom image URL (optional)" />
+    <div>
+      <button id="generate-topic">🎯 Generate Title</button>
+      <button id="generate-blog">🚀 Generate Blog</button>
     </div>
+    <img id="preview" src="" class="hidden" alt="Image Preview">
+    <div id="status"></div>
   </div>
 
-  <!-- Main UI -->
-  <div class="card" id="main-card" style="display:none;">
-    <h1>ArchiaStudio — SEO Blog Generator</h1>
+  <script>
+    const API_BASE = "https://seo-blog-generator.healerzee51.workers.dev";
+    const PASSWORD = "healer#3211";
+    const UNSPLASH_KEY = "P0wLQEty9GltY1gkYLlhO-NyvjNvdeuuk575NiOdI-g";
 
-    <label for="title">Blog Title</label>
-    <input id="title" placeholder="Enter blog title (required)" />
-
-    <label for="idea">Blog Idea / Subtitle</label>
-    <textarea id="idea" placeholder="Enter idea or click 'Generate Random Idea'"></textarea>
-
-    <button id="gen-random" style="background:#5b9dff;">🎲 Generate Random Idea</button>
-
-    <label for="imageUrl">Image URL (optional)</label>
-    <input id="imageUrl" placeholder="Leave blank to auto-fetch Unsplash image" />
-    <img id="preview" class="preview" alt="image preview" />
-
-    <button id="generate" style="margin-top:14px;">🚀 Generate & Upload Blog</button>
-
-    <div id="result"></div>
-  </div>
-
-<script>
-(function () {
-  // ===== CONFIG =====
-  const BASE_URL = "https://seo-blog-generator.healerzee51.workers.dev"; // your worker base
-  const PASSWORD = "healer#3211";
-
-  // ===== ELEMENTS =====
-  const pwScreen = document.getElementById("password-screen");
-  const pwInput = document.getElementById("password-input");
-  const pwSubmit = document.getElementById("password-submit");
-  const pwError = document.getElementById("pw-error");
-
-  const mainCard = document.getElementById("main-card");
-  const titleEl = document.getElementById("title");
-  const ideaEl = document.getElementById("idea");
-  const genRandomBtn = document.getElementById("gen-random");
-  const imageUrlEl = document.getElementById("imageUrl");
-  const previewImg = document.getElementById("preview");
-  const generateBtn = document.getElementById("generate");
-  const resultBox = document.getElementById("result");
-
-  // ===== Password logic =====
-  pwSubmit.addEventListener("click", () => {
-    const val = pwInput.value || "";
-    if (val === PASSWORD) {
-      pwScreen.style.display = "none";
-      mainCard.style.display = "block";
-    } else {
-      pwError.textContent = "Incorrect password";
-      pwError.style.display = "block";
-      setTimeout(() => { pwError.style.display = "none"; }, 3000);
-    }
-  });
-
-  // preview custom image
-  imageUrlEl.addEventListener("input", () => {
-    const url = imageUrlEl.value.trim();
-    if (url) {
-      previewImg.src = url;
-      previewImg.style.display = "block";
-    } else {
-      previewImg.style.display = "none";
-    }
-  });
-
-  // ===== Helper: parse response as JSON if possible, otherwise return text =====
-  async function parseFlexibleResponse(res) {
-    const txt = await res.text();
-    // Try JSON parse
-    try {
-      return { isJson: true, data: JSON.parse(txt) };
-    } catch {
-      // not JSON — return raw text
-      return { isJson: false, data: txt };
-    }
-  }
-
-  // ===== Generate random idea (robust handling) =====
-  genRandomBtn.addEventListener("click", async () => {
-    const titleVal = titleEl.value.trim();
-    if (!titleVal) {
-      alert("Please enter a Title first — the generator uses it to produce a related idea.");
-      return;
-    }
-
-    genRandomBtn.disabled = true;
-    genRandomBtn.textContent = "⏳ Generating idea...";
-
-    try {
-      // Call an idea endpoint; your worker should support /api/idea or /api/generate-idea
-      const endpointCandidates = [
-        `${BASE_URL}/api/idea`,
-        `${BASE_URL}/api/generate-idea`,
-        `${BASE_URL}/api/generate-idea/`,
-        `${BASE_URL}/api/idea/`
-      ];
-
-      let resp, parsed;
-      for (const ep of endpointCandidates) {
-        try {
-          resp = await fetch(ep, { method: "GET" });
-        } catch (e) {
-          resp = null;
-        }
-        if (!resp) continue;
-        if (!resp.ok) {
-          // try next
-          continue;
-        }
-        parsed = await parseFlexibleResponse(resp);
-        break;
-      }
-
-      if (!parsed) {
-        throw new Error("No idea endpoint responded successfully.");
-      }
-
-      let ideaText = "";
-      if (parsed.isJson) {
-        // prefer common fields
-        const d = parsed.data;
-        ideaText = (d.idea || d.title || d.topic || d.text || JSON.stringify(d)).toString();
+    // 🔐 Password Protection
+    function checkPassword() {
+      const pass = document.getElementById("password-input").value;
+      if (pass === PASSWORD) {
+        document.getElementById("password-screen").classList.add("hidden");
+        document.getElementById("main-screen").classList.remove("hidden");
       } else {
-        ideaText = parsed.data.toString();
+        document.getElementById("error").style.display = "block";
       }
+    }
 
-      // Clean up and pick first meaningful line
-      ideaText = ideaText.trim().split(/\r?\n/).filter(Boolean)[0] || "";
-      // Remove extra decorations if returned
-      ideaText = ideaText.replace(/^["'`]+|["'`]+$/g, "").trim();
-
-      if (!ideaText) {
-        throw new Error("Idea endpoint returned empty content.");
-      }
-
-      ideaEl.value = ideaText;
-
-      // get preview image from Unsplash using the idea (fallback to title if idea too short)
-      const query = encodeURIComponent(ideaText || titleVal);
+    // 🎯 Generate a Topic
+    document.getElementById("generate-topic").onclick = async () => {
+      const status = document.getElementById("status");
+      status.innerText = "✨ Generating topic...";
       try {
-        const unsplashResp = await fetch(`https://source.unsplash.com/800x500/?${query}`);
-        if (unsplashResp && unsplashResp.url) {
-          previewImg.src = unsplashResp.url;
-          previewImg.style.display = "block";
-          // optionally set the image URL input so it will be used when generating blog
-          imageUrlEl.value = unsplashResp.url;
-        }
-      } catch (_) { /* ignore */ }
-
-    } catch (err) {
-      console.error("Random idea error:", err);
-      alert("Failed to fetch idea. Try again.");
-    } finally {
-      genRandomBtn.disabled = false;
-      genRandomBtn.textContent = "🎲 Generate Random Idea";
-    }
-  });
-
-  // ===== Generate blog (robust) =====
-  generateBtn.addEventListener("click", async () => {
-    const title = titleEl.value.trim();
-    const idea = ideaEl.value.trim();
-    let imageUrl = imageUrlEl.value.trim();
-
-    if (!title || !idea) {
-      alert("Please enter both Title and Idea before generating the blog.");
-      return;
-    }
-
-    // If image not provided, use preview if available
-    if (!imageUrl && previewImg.src) imageUrl = previewImg.src;
-
-    generateBtn.disabled = true;
-    generateBtn.textContent = "🪄 Generating blog...";
-
-    resultBox.style.display = "none";
-    resultBox.innerHTML = "";
-
-    try {
-      const res = await fetch(`${BASE_URL}/api/generate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: PASSWORD, title, idea, imageUrl })
-      });
-
-      // If API returns JSON (upload result), parse flexibly
-      const parsed = await parseFlexibleResponse(res);
-
-      if (parsed.isJson) {
-        const data = parsed.data;
-        if (data.error) {
-          throw new Error(data.error || "API returned an error");
-        }
-        // If worker returns { file, previewImage } or similar
-        const file = data.file || data.filename || data.path || "";
-        const previewImage = data.previewImage || data.preview || data.imageUrl || data.image || "";
-
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <div><strong>Success!</strong></div>
-          <div style="margin-top:8px;">File: <code>${escapeHtml(file || "(no filename returned)")}</code></div>
-          ${ previewImage ? `<div style="margin-top:8px;">Preview: <a href="${escapeHtml(previewImage)}" target="_blank">Open image</a></div>
-            <img src="${escapeHtml(previewImage)}" class="preview" style="display:block;margin-top:8px;height:200px;object-fit:cover;" />` : "" }
-          ${ file ? `<div style="margin-top:8px;">URL: <a href="https://archiastudio.com/blog/${encodeURIComponent(file)}" target="_blank">https://archiastudio.com/blog/${escapeHtml(file)}</a></div>` : "" }
-        `;
-      } else {
-        // Worker returned raw HTML (maybe the blog HTML). Offer download.
-        const htmlText = parsed.data;
-        // create download link for the user
-        const blob = new Blob([htmlText], { type: "text/html" });
-        const url = URL.createObjectURL(blob);
-        const suggestedName = `${title.replace(/\W+/g, "-").toLowerCase() || "blog"}.html`;
-
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <div><strong>Blog generated (raw HTML returned)</strong></div>
-          <div style="margin-top:8px;">
-            <a id="downloadLink" href="${url}" download="${suggestedName}">⬇️ Download generated HTML</a>
-          </div>
-        `;
+        const res = await fetch(`${API_BASE}/api/generate-topic`);
+        if (!res.ok) throw new Error("Failed to generate topic");
+        const data = await res.json();
+        const topic = data.topic || data.title || data.idea || "Untitled Blog";
+        document.getElementById("title").value = topic;
+        status.innerText = `✅ Topic generated: ${topic}`;
+      } catch (err) {
+        console.error(err);
+        status.innerText = "❌ Failed to fetch topic.";
       }
-    } catch (err) {
-      console.error("Generate blog failed:", err);
-      alert("Error generating blog: " + (err.message || "unknown error"));
-    } finally {
-      generateBtn.disabled = false;
-      generateBtn.textContent = "🚀 Generate & Upload Blog";
-    }
-  });
+    };
 
-  // ===== Utilities =====
-  function escapeHtml(s) {
-    if (!s) return "";
-    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-  }
+    // 🚀 Generate Blog
+    document.getElementById("generate-blog").onclick = async () => {
+      let title = document.getElementById("title").value.trim();
+      let imageUrl = document.getElementById("imageUrl").value.trim();
+      const status = document.getElementById("status");
 
-})();
-</script>
+      try {
+        if (!title) {
+          status.innerText = "✨ No title — auto-generating one...";
+          const res = await fetch(`${API_BASE}/api/generate-topic`);
+          const data = await res.json();
+          title = data.topic || data.title || "Untitled Blog";
+          document.getElementById("title").value = title;
+        }
+
+        status.innerText = "🖼 Fetching image...";
+        if (!imageUrl) {
+          const unsplash = await fetch(`https://api.unsplash.com/photos/random?query=${encodeURIComponent(title)}&client_id=${UNSPLASH_KEY}`);
+          const data = await unsplash.json();
+          imageUrl = data.urls?.regular || "https://i.pinimg.com/1200x/4e/ba/3a/4eba3a4cb7b18d54f4b40d2e95ce5071.jpg";
+        }
+
+        const preview = document.getElementById("preview");
+        preview.src = imageUrl;
+        preview.classList.remove("hidden");
+
+        status.innerText = "⚙️ Generating full blog via AI...";
+
+        const res = await fetch(`${API_BASE}/api/generate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            password: PASSWORD,
+            title,
+            idea: title,
+            imageUrl
+          })
+        });
+
+        if (!res.ok) throw new Error("Server error");
+        const result = await res.json();
+        if (result.error) throw new Error(result.error);
+
+        status.innerHTML = `✅ Blog generated and uploaded:<br>
+          <a href="https://archiastudio.com/blog/${result.file}" target="_blank">${result.file}</a>`;
+      } catch (err) {
+        console.error(err);
+        status.innerText = "❌ Blog generation failed. Try again.";
+      }
+    };
+  </script>
 </body>
 </html>
