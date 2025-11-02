@@ -1,0 +1,71 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* fonts */
+@font-face {
+    font-family: Causten-Black;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Black.otf);
+}
+
+@font-face {
+    font-family: Causten-Bold;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Bold.otf);
+}
+
+
+@font-face {
+    font-family: Causten-ExtraBold;
+    src: url(../../warehouse/data/fonts/Causten/Causten-ExtraBold.otf);
+}
+
+@font-face {
+    font-family: Causten-ExtraLight;
+    src: url(../../warehouse/data/fonts/Causten/Causten-ExtraLight.otf);
+}
+
+@font-face {
+    font-family: Causten-Light;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Light.otf);
+}
+
+@font-face {
+    font-family: Causten-Medium;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Medium.otf);
+}
+
+
+@font-face {
+    font-family: Causten-Regular;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Regular.otf);
+}
+
+
+@font-face {
+    font-family: Causten-SemiBold;
+    src: url(../../warehouse/data/fonts/Causten/Causten-SemiBold.otf);
+}
+
+
+@font-face {
+    font-family: Causten-thin;
+    src: url(../../warehouse/data/fonts/Causten/Causten-Thin.otf);
+}
+
+@font-face {
+    font-family: TheSilverEditorial-Italic;
+    src: url(../../warehouse/data/fonts/theSilverEd/TheSilverEditorial-Italic.woff);
+}
+
+@font-face {
+    font-family: TheSilverEditorial-Regular;
+    src: url(../../warehouse/data/fonts/theSilverEd/TheSilverEditorial-Regular.woff);
+}
