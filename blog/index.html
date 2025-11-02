@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArchiaStudio Blog</title>
-    <link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="../warehouse/data/images/ducks/favicon.png">
+  <link rel="icon" href="../warehouse/data/images/ducks/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../warehouse/data/images/ducks/favicon.png">
   <link rel="stylesheet" href="../warehouse/css/warehouse.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-KX4EKGY3VC');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KX4EKGY3VC');
+  </script>
+
   <style>
     body {
       font-family: Causten-Bold, sans-serif;
@@ -23,6 +24,7 @@
       color: #111;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
     h1 {
       text-align: center;
@@ -65,42 +67,122 @@
       text-decoration: none;
       color: inherit;
     }
+
+    /* Preloader styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.4s ease;
+    }
+    .loader {
+      width: 64px;
+      height: 64px;
+      border: 6px solid #ddd;
+      border-top-color: #111;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Skeleton loader */
+    .skeleton-card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background: #fff;
+    }
+    .skeleton-img,
+    .skeleton-text {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-img {
+      width: 100%;
+      height: 220px;
+    }
+    .skeleton-content {
+      padding: 1.2rem;
+    }
+    .skeleton-text {
+      height: 16px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    .skeleton-text.short { width: 60%; }
+    .skeleton-text.long { width: 90%; }
   </style>
 </head>
+
 <body>
-<div id="cursor-dot"></div>
-    <div id="cursor-img"></div>
-    <div class="home">
-        <nav>
-            <ul class="nav">
-                <li id="active"><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#Service">Services</a></li>
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="mailto:connect@archiastudio.com">Email</a></li>
-                <li><a href="../index.html#calcom">BookMeeting!</a></li>
-                <img id="duck" src="../warehouse/data/images/duck.png">
-            </ul>
-            <audio id="hover-sound" src="../warehouse/data/sounds/quack.mp3" preload="auto"></audio>
-        </nav>
-    </div>
+  <div id="preloader"><div class="loader"></div></div>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-img"></div>
+  <div class="home">
+    <nav>
+      <ul class="nav">
+        <li id="active"><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#Service">Services</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="mailto:connect@archiastudio.com">Email</a></li>
+        <li><a href="../index.html#calcom">BookMeeting!</a></li>
+        <img id="duck" src="../warehouse/data/images/duck.png">
+      </ul>
+      <audio id="hover-sound" src="../warehouse/data/sounds/quack.mp3" preload="auto"></audio>
+    </nav>
+  </div>
+
   <h1>ArchiaStudio Blog</h1>
   <div id="blog-list"></div>
 
   <script>
+    const blogList = document.getElementById("blog-list");
+
+    // Add skeleton loaders (6 placeholders)
+    function addSkeletonLoaders(count = 6) {
+      for (let i = 0; i < count; i++) {
+        const skeleton = document.createElement("div");
+        skeleton.className = "skeleton-card";
+        skeleton.innerHTML = `
+          <div class="skeleton-img"></div>
+          <div class="skeleton-content">
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-text long"></div>
+          </div>
+        `;
+        blogList.appendChild(skeleton);
+      }
+    }
+
     async function loadBlogPosts() {
+      addSkeletonLoaders();
       const repoUrl = "https://api.github.com/repos/healer-op/arch1a/contents/blog";
       const res = await fetch(repoUrl);
       const files = await res.json();
-      const blogList = document.getElementById("blog-list");
 
-      // Loop through all files in /blog
+      blogList.innerHTML = ""; // clear skeletons
+
       for (const file of files) {
         if (file.name.endsWith(".html") && file.name !== "index.html") {
           const rawUrl = `https://raw.githubusercontent.com/healer-op/arch1a/main/blog/${file.name}`;
           const response = await fetch(rawUrl);
           const text = await response.text();
 
-          // Extract <title>, description, and image
           const titleMatch = text.match(/<title>(.*?)<\/title>/i);
           const descMatch = text.match(/<meta name="description" content="(.*?)"/i);
           const imageMatch = text.match(/url\((https:\/\/[^)]+)\)/i);
@@ -109,7 +191,6 @@
           const desc = descMatch ? descMatch[1] : "No description available.";
           const image = imageMatch ? imageMatch[1] : "https://archiastudio.com/warehouse/data/images/default.jpg";
 
-          // Create blog card
           const card = document.createElement("a");
           card.href = file.name;
           card.className = "post-link";
@@ -125,11 +206,16 @@
           blogList.appendChild(card);
         }
       }
+
+      // Hide preloader after posts load
+      document.getElementById("preloader").style.opacity = "0";
+      setTimeout(() => document.getElementById("preloader").remove(), 400);
     }
 
     loadBlogPosts().catch(err => {
       console.error("Error loading blog posts:", err);
-      document.getElementById("blog-list").innerHTML = "<p style='text-align:center'>Failed to load posts 😢</p>";
+      blogList.innerHTML = "<p style='text-align:center'>Failed to load posts 😢</p>";
+      document.getElementById("preloader").remove();
     });
   </script>
 </body>
