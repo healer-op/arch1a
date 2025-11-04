@@ -70,6 +70,18 @@ html {
     src: url(../../warehouse/data/fonts/theSilverEd/TheSilverEditorial-Regular.woff);
 }
 
+/* Buttons on Blog Page */
+    button#translateBtn,button#readBtn{
+        padding: 0.1rem 1rem;
+        border-radius: 10px;
+        font-family: 'Causten-ExtraBold';
+    }
+
+    button#translateBtn:hover,button#readBtn:hover{
+        opacity: 0.75;
+    }
+
+
 /* Overlay background */
 #confettiPopup {
     font-family: Causten-Bold;
