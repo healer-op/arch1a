@@ -237,12 +237,20 @@ body {
   const API_BASE = "https://seo-blog-generator.healerzee51.workers.dev";
   const PASSWORD = "aGVhbGVyIzMyMTE=";
   const UNSPLASH_KEY = "P0wLQEty9GltY1gkYLlhO-NyvjNvdeuuk575NiOdI-g";
-  const API_URL = "https://adminai.archiastudio.com/api/getdetails/ArchiaAi-Blog-key-878ws5m8";
+  const API_URL = "https://adminai.archiastudio.com/api/getdetails/ArchiaAi-Blog-key-sg89ay4n";
+
+  // 🔊 Sound Effects (royalty-free)
+  const soundSuccess = new Audio("../../../warehouse/data/sounds/success.mp3");
+  const soundError = new Audio("../../../warehouse/data/sounds/error.mp3");
+  soundError.volume = 0.2;
+  soundSuccess.volume = 0.2;
 
   async function checkPassword() {
     const pass = document.getElementById("password-input").value;
     if (pass !== atob(PASSWORD)) {
       document.getElementById("error").style.display = "block";
+      soundError.currentTime = 0;
+      soundError.play().catch(() => {});
       Toastify({
         text: "❌ Incorrect password!",
         backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)"
@@ -250,6 +258,8 @@ body {
       return;
     }
 
+    soundSuccess.currentTime = 0;
+    soundSuccess.play().catch(() => {});
     Toastify({
       text: "✅ Access granted",
       backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
@@ -259,8 +269,9 @@ body {
       const res = await fetch(API_URL);
       const data = await res.json();
 
-      // Check if valid API response
       if (!data.daysRemaining) {
+        soundError.currentTime = 0;
+        soundError.play().catch(() => {});
         Toastify({
           text: "⚠️ Subscription expired or missing data.",
           backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)"
@@ -268,10 +279,11 @@ body {
         return;
       }
 
-      // 🛡️ Domain verification
       const currentHost = window.location.hostname.replace(/^www\./, "");
       const apiHost = new URL(data.website).hostname.replace(/^www\./, "");
       if (currentHost !== apiHost) {
+        soundError.currentTime = 0;
+        soundError.play().catch(() => {});
         Toastify({
           text: `🚫 Access denied: domain mismatch!\nExpected ${apiHost}, got ${currentHost}`,
           backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)"
@@ -279,11 +291,11 @@ body {
         return;
       }
 
-      // ✅ Passed all checks — unlock main panel
+      // ✅ Unlock
       document.getElementById("password-screen").classList.add("hidden");
       document.getElementById("main-screen").classList.remove("hidden");
 
-      // User Info Display
+      // 🧠 Display user info
       const infoDiv = document.createElement("div");
       infoDiv.style.marginBottom = "20px";
       infoDiv.innerHTML = `
@@ -292,17 +304,22 @@ body {
           <h3 style="margin:5px 0;">${data.name}</h3>
           <a href="${data.website}" target="_blank" style="color:#007bff; text-decoration:none;">${data.website}</a>
           <p style="margin:8px 0; font-weight:bold; color:#4caf50;">🗓️ ${data.daysRemaining} days left</p>
+          <p style="margin:5px 0; font-weight:bold; color:gold;">⭐ Plan: ${data.plan.toUpperCase()}</p>
         </div>
       `;
       document.getElementById("main-screen").prepend(infoDiv);
 
+      soundSuccess.currentTime = 0;
+      soundSuccess.play().catch(() => {});
       Toastify({
-        text: `👋 Welcome ${data.name}! ${data.daysRemaining} days left.`,
+        text: `👋 Welcome ${data.name}! ${data.daysRemaining} days left on your ${data.plan} plan.`,
         backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
       }).showToast();
 
     } catch (err) {
       console.error(err);
+      soundError.currentTime = 0;
+      soundError.play().catch(() => {});
       Toastify({
         text: "❌ Failed to fetch account details.",
         backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)"
@@ -310,7 +327,7 @@ body {
     }
   }
 
-  // 🎯 Generate a Topic
+  // 🎯 Generate Topic
   document.getElementById("generate-topic").onclick = async () => {
     const status = document.getElementById("status");
     status.innerText = "✨ Generating topic...";
@@ -321,12 +338,16 @@ body {
       const topic = data.topic || data.title || data.idea || "Untitled Blog";
       document.getElementById("title").value = topic;
       status.innerText = `✅ Topic generated: ${topic}`;
+    soundSuccess.currentTime = 0;
+    soundSuccess.play().catch(() => {});
       Toastify({
         text: "🎯 Topic generated successfully!",
         backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
       }).showToast();
     } catch (err) {
       console.error(err);
+      soundError.currentTime = 0;
+      soundError.play().catch(() => {});
       status.innerText = "❌ Failed to fetch topic.";
       Toastify({
         text: "❌ Failed to fetch topic",
@@ -386,12 +407,16 @@ body {
 
       status.innerHTML = `✅ Blog generated and uploaded:<br>
         <a href="https://archiastudio.com/blog/${result.file}" target="_blank">${result.file}</a>`;
+      soundSuccess.currentTime = 0;
+      soundSuccess.play().catch(() => {});
       Toastify({
         text: "🚀 Blog generated and uploaded!",
         backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
       }).showToast();
     } catch (err) {
       console.error(err);
+      soundError.currentTime = 0;
+      soundError.play().catch(() => {});
       status.innerText = "❌ Blog generation failed. Try again.";
       Toastify({
         text: "❌ Blog generation failed!",
@@ -400,6 +425,7 @@ body {
     }
   };
 </script>
+
 
 </body>
 
