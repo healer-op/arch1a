@@ -1,0 +1,59 @@
+Refund Policy – ArchiaStudio
+
+At ArchiaStudio, we put significant time, expertise, and financial investment into every project we take on. By engaging with our services, you agree to the following Refund Policy:
+
+1. No Refunds After Project Start
+
+Once a project begins, no refunds will be issued.
+This is because we immediately allocate resources such as:
+
+Server costs
+
+Development time
+
+Third-party tools and APIs
+
+Design and planning work
+
+Dedicated manpower
+
+These operational investments cannot be recovered once the project has started.
+
+2. Advance / Booking Amount
+
+All advance payments or booking fees are non-refundable, as they secure project slots, resources, and initial setup costs.
+
+3. Exceptional Cases (If Applicable)
+
+Refunds may only be considered if:
+
+Work has not yet started, and
+
+No resources have been consumed
+
+(ArchiaStudio reserves the right to assess and decide these cases fairly.)
+
+4. Service Interruptions or Technical Delays
+
+If there are delays caused by external factors (hosting providers, third-party APIs, etc.), we will work to resolve the issue as quickly as possible.
+However, these situations do not qualify for refunds.
+
+5. Client Responsibilities
+
+Clients are responsible for providing:
+
+Correct content
+
+Timely feedback
+
+Required credentials or materials
+
+Delays caused by the client do not qualify for refunds.
+
+6. Digital Goods (AI Tools / Software / ArchiaAI)
+
+Any AI-generated content, software access, blog generation tools, or digital products (including ArchiaAI) are non-refundable due to server, computation, and operational costs that occur instantly upon usage.
+
+7. Agreement
+
+By purchasing or subscribing to any ArchiaStudio service, the client acknowledges and agrees to this Refund Policy.
