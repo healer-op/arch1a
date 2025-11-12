@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Renew Subscription | ArchiaAi</title>
+  <link rel="stylesheet" href="https://archiastudio.com/warehouse/css/fonts.css" />
+  <style>
+    * { font-family: Causten-ExtraBold, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #ffffff, #adadad, #4d4d4d);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      padding: 2rem;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+    input, select {
+      padding: 10px;
+      margin: 8px 0;
+      width: 80%;
+      border: none;
+      border-radius: 8px;
+    }
+    button {
+      background: #ffd500;
+      border: none;
+      color: #000;
+      padding: 10px;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .details {
+      margin-top: 1rem;
+      text-align: left;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="glass">
+    <h2>Renew API Key</h2>
+    <div id="step1">
+      <input id="apiKey" placeholder="Enter your API Key" required />
+      <button onclick="fetchDetails()">Check Details</button>
+    </div>
+    <div id="details" class="hidden"></div>
+  </div>
+
+  <script>
+    // ✅ Worker API endpoint
+    const BASE_URL = "https://api.archiastudio.com";
+
+    async function fetchDetails() {
+      const key = document.getElementById("apiKey").value.trim();
+      if (!key) return alert("Enter API Key");
+
+      const res = await fetch(`${BASE_URL}/api/getdetails/${key}`);
+      const data = await res.json();
+      if (data.error) return alert(data.error);
+
+      const div = document.getElementById("details");
+      div.innerHTML = `
+        <div class='details'>
+          ${data.image ? `<img src="${data.image}" style="border-radius:100%;width:100px;border:white 3px solid;">` : ""}
+          <p><b>Name:</b> ${data.name}</p>
+          <p><b>Website:</b> ${data.website}</p>
+          <p><b>Days Left:</b> ${data.daysRemaining}</p>
+          <p><b>Type:</b> ${data.plan || 'Beginner'}</p>
+        </div>
+        <select id='plan'>
+          <optgroup label='Monthly'>
+            <option value='beginner-month'>Beginner - ₹249</option>
+            <option value='silver-month'>Silver - ₹499</option>
+            <option value='gold-month'>Gold - ₹999</option>
+          </optgroup>
+          <optgroup label='Yearly'>
+            <option value='beginner-year'>Beginner - ₹2499</option>
+            <option value='silver-year'>Silver - ₹4999</option>
+            <option value='gold-year'>Gold - ₹9999</option>
+          </optgroup>
+        </select>
+        <button onclick='startPayment("${key}")'>Pay with PhonePe</button>
+      `;
+      div.classList.remove("hidden");
+    }
+
+    async function startPayment(apiKey) {
+      const plan = document.getElementById("plan").value;
+      try {
+        const res = await fetch(`${BASE_URL}/api/phonepe/initiate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ apiKey, plan }),
+        });
+
+        const txt = await res.text();
+        console.log("Raw response:", txt);
+        const data = JSON.parse(txt);
+
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else {
+          alert("Error: " + (data.error || "Payment initialization failed."));
+        }
+      } catch (err) {
+        alert("Network Error: " + err);
+      }
+    }
+  </script>
+</body>
+</html>
