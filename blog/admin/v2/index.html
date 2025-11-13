@@ -237,7 +237,8 @@ body {
   const API_BASE = "https://seo-blog-generator.healerzee51.workers.dev";
   const PASSWORD = "aGVhbGVyIzMyMTE=";
   const UNSPLASH_KEY = "P0wLQEty9GltY1gkYLlhO-NyvjNvdeuuk575NiOdI-g";
-  const API_URL = "https://adminai.archiastudio.com/api/getdetails/ArchiaAi-Blog-key-sg89ay4n";
+  const PEXELS_KEY = "4O1PQ5vtcgDznvbLjx4v7PrUooCaWC4zFci4ghhRkAVxDUvY7T1kujoV";
+  const API_URL = "https://api.archiastudio.com/api/getdetails/ArchiaAi-Blog-key-sg89ay4n";
 
   // 🔊 Sound Effects (royalty-free)
   const soundSuccess = new Audio("../../../warehouse/data/sounds/success.mp3");
@@ -372,12 +373,50 @@ body {
       }
 
       status.innerText = "🖼 Fetching image...";
+
+      // Randomly choose between Unsplash or Pexels (50/50)
+      async function getPexelsImage(q) {
+        try {
+          const res = await fetch(
+            `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&per_page=1`,
+            { headers: { Authorization: PEXELS_KEY } }
+          );
+          if (!res.ok) return null;
+          const j = await res.json();
+          return j.photos?.[0]?.src?.large || null;
+        } catch {
+          return null;
+        }
+      }
+
+      async function getUnsplashImage(q) {
+        try {
+          const res = await fetch(
+            `https://api.unsplash.com/photos/random?query=${encodeURIComponent(q)}&client_id=${UNSPLASH_KEY}`
+          );
+          if (!res.ok) return null;
+          const j = await res.json();
+          return j.urls?.regular || null;
+        } catch {
+          return null;
+        }
+      }
+
+      // 🎨 Main image logic
       if (!imageUrl) {
-        const unsplash = await fetch(
-          `https://api.unsplash.com/photos/random?query=${encodeURIComponent(title)}&client_id=${UNSPLASH_KEY}`
-        );
-        const data = await unsplash.json();
-        imageUrl = data.urls?.regular || "https://i.pinimg.com/1200x/4e/ba/3a/4eba3a4cb7b18d54f4b40d2e95ce5071.jpg";
+        let finalImg = null;
+        const choice = Math.random() < 0.5 ? "pexels" : "unsplash";
+      
+        if (choice === "pexels") {
+          finalImg = await getPexelsImage(title);
+          if (!finalImg) finalImg = await getUnsplashImage(title);
+        } else {
+          finalImg = await getUnsplashImage(title);
+          if (!finalImg) finalImg = await getPexelsImage(title);
+        }
+      
+        // ultimate fail-safe fallback
+        imageUrl = finalImg || "https://i.pinimg.com/1200x/4e/ba/3a/4eba3a4cb7b18d54f4b40d2e95ce5071.jpg";
       }
 
       const preview = document.getElementById("preview");
