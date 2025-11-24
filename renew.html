@@ -61,8 +61,14 @@
     </div>
     <div id="details" class="hidden"></div>
   </div>
+  
 
   <script>
+    const params = new URLSearchParams(document.location.search);
+    let paramKey = params.get("key");
+    if(paramKey){
+      document.getElementById("apiKey").value = paramKey;
+    }
     // ✅ Worker API endpoint
     const BASE_URL = "https://api.archiastudio.com";
 
@@ -73,6 +79,24 @@
       const res = await fetch(`${BASE_URL}/api/getdetails/${key}`);
       const data = await res.json();
       if (data.error) return alert(data.error);
+      let color = "green"
+      if (data.daysRemaining < 10){
+        color = "red"
+      }
+
+      let monthlyHTML = "<option value='beginner-month'>Beginner - ₹996 (4m)</option>"
+      if(data.plan == "gold"){
+        monthlyHTML = "<option value='gold-month'>Gold - ₹3996 (4m)</option>"
+      }if(data.plan == "silver"){
+        monthlyHTML = "<option value='silver-month'>Silver - ₹1996 (4m)</option>"
+      }
+
+      let yearlyHTML = "<option value='beginner-year'>Beginner - ₹2499</option>"
+      if(data.plan == "gold"){
+        yearlyHTML = "<option value='gold-year'>Gold - ₹9999</option>"
+      }if(data.plan == "silver"){
+        yearlyHTML = "<option value='silver-year'>Silver - ₹4999</option>"
+      }
 
       const div = document.getElementById("details");
       div.innerHTML = `
@@ -80,19 +104,15 @@
           ${data.image ? `<img src="${data.image}" style="border-radius:100%;width:100px;border:white 3px solid;">` : ""}
           <p><b>Name:</b> ${data.name}</p>
           <p><b>Website:</b> ${data.website}</p>
-          <p><b>Days Left:</b> ${data.daysRemaining}</p>
+          <p><b>Days Left:</b><span style="color:${color}"> ${data.daysRemaining}</span></p>
           <p><b>Type:</b> ${data.plan || 'Beginner'}</p>
         </div>
         <select id='plan'>
-          <optgroup label='Monthly'>
-            <option value='beginner-month'>Beginner - ₹249</option>
-            <option value='silver-month'>Silver - ₹499</option>
-            <option value='gold-month'>Gold - ₹999</option>
+          <optgroup label='4months'>
+            ${monthlyHTML}
           </optgroup>
           <optgroup label='Yearly'>
-            <option value='beginner-year'>Beginner - ₹2499</option>
-            <option value='silver-year'>Silver - ₹4999</option>
-            <option value='gold-year'>Gold - ₹9999</option>
+            ${yearlyHTML}
           </optgroup>
         </select>
         <button onclick='startPayment("${key}")'>Pay with PhonePe</button>
