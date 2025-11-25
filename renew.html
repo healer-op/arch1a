@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Renew Subscription | ArchiaAi</title>
   <link rel="stylesheet" href="https://archiastudio.com/warehouse/css/fonts.css" />
+  <link rel="stylesheet" href="warehouse/css/warehouse.css">
+  <link rel="icon" href="warehouse/data/images/icon.png" sizes="32x32">
   <style>
     * { font-family: Causten-ExtraBold, sans-serif; }
     body {
-      background: linear-gradient(135deg, #ffffff, #adadad, #4d4d4d);
+      background: black;
       color: white;
       display: flex;
       align-items: center;
@@ -16,6 +18,20 @@
       min-height: 100vh;
       margin: 0;
     }
+    .fullscreen-video-container {
+  position: fixed;
+  height: 100vh; 
+  width: 100vw;
+  overflow: hidden;
+}
+
+.fullscreen-video-container video {
+  position: absolute;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+}
     .glass {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(15px);
@@ -53,6 +69,16 @@
   </style>
 </head>
 <body>
+  <div class="fullscreen-video-container">
+  <video autoplay loop muted>
+    <source src="https://v1.pinimg.com/videos/iht/expMp4/3b/8b/bb/3b8bbb95d5061a5784c14a957dd79c9a_720w.mp4" type="video/mp4">
+  </video>
+  
+  <div class="fullscreen-video-content">
+
+
+  </div>
+</div>
   <div class="glass">
     <h2>Renew API Key</h2>
     <div id="step1">
