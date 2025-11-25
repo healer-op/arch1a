@@ -89,40 +89,63 @@
   </div>
   
 
-  <script>
-    const params = new URLSearchParams(document.location.search);
-    let paramKey = params.get("key");
-    if(paramKey){
-      document.getElementById("apiKey").value = paramKey;
-    }
-    // ✅ Worker API endpoint
-    const BASE_URL = "https://api.archiastudio.com";
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-    async function fetchDetails() {
-      const key = document.getElementById("apiKey").value.trim();
-      if (!key) return alert("Enter API Key");
+<script>
+  // 🔊 Sound Effects
+  const soundSuccess = new Audio("/warehouse/data/sounds/success.mp3");
+  const soundError   = new Audio("/warehouse/data/sounds/error.mp3");
+  soundError.volume = 0.2;
+  soundSuccess.volume = 0.2;
 
+  function toast(msg, type = "success") {
+    Toastify({
+      text: msg,
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: type === "success" ? "#4CAF50" : "#FF3B3B",
+      close: true
+    }).showToast();
+
+    // play sound
+    if (type === "success") soundSuccess.play();
+    else soundError.play();
+  }
+
+  const params = new URLSearchParams(document.location.search);
+  let paramKey = params.get("key");
+  if (paramKey) {
+    document.getElementById("apiKey").value = paramKey;
+  }
+
+  const BASE_URL = "https://api.archiastudio.com";
+
+  async function fetchDetails() {
+    const key = document.getElementById("apiKey").value.trim();
+    if (!key) return toast("Enter API Key", "error");
+
+    try {
       const res = await fetch(`${BASE_URL}/api/getdetails/${key}`);
       const data = await res.json();
-      if (data.error) return alert(data.error);
-      let color = "green"
-      if (data.daysRemaining < 10){
-        color = "red"
+
+      if (data.error) {
+        toast(data.error, "error");
+        return;
       }
 
-      let monthlyHTML = "<option value='beginner-month'>Beginner - ₹996 (4m)</option>"
-      if(data.plan == "gold"){
-        monthlyHTML = "<option value='gold-month'>Gold - ₹3996 (4m)</option>"
-      }if(data.plan == "silver"){
-        monthlyHTML = "<option value='silver-month'>Silver - ₹1996 (4m)</option>"
-      }
+      toast("Account details loaded!", "success");
 
-      let yearlyHTML = "<option value='beginner-year'>Beginner - ₹2499</option>"
-      if(data.plan == "gold"){
-        yearlyHTML = "<option value='gold-year'>Gold - ₹9999</option>"
-      }if(data.plan == "silver"){
-        yearlyHTML = "<option value='silver-year'>Silver - ₹4999</option>"
-      }
+      let color = data.daysRemaining < 10 ? "red" : "green";
+
+      let monthlyHTML = "<option value='beginner-month'>Beginner - ₹996 (4m)</option>";
+      if (data.plan == "gold") monthlyHTML = "<option value='gold-month'>Gold - ₹3996 (4m)</option>";
+      if (data.plan == "silver") monthlyHTML = "<option value='silver-month'>Silver - ₹1996 (4m)</option>";
+
+      let yearlyHTML = "<option value='beginner-year'>Beginner - ₹2499</option>";
+      if (data.plan == "gold") yearlyHTML = "<option value='gold-year'>Gold - ₹9999</option>";
+      if (data.plan == "silver") yearlyHTML = "<option value='silver-year'>Silver - ₹4999</option>";
 
       const div = document.getElementById("details");
       div.innerHTML = `
@@ -134,7 +157,7 @@
           <p><b>Type:</b> ${data.plan || 'Beginner'}</p>
         </div>
         <select id='plan'>
-          <optgroup label='4months'>
+          <optgroup label='4 months'>
             ${monthlyHTML}
           </optgroup>
           <optgroup label='Yearly'>
@@ -143,39 +166,50 @@
         </select>
         <button onclick='startPayment("${key}")'>Pay with PhonePe</button>
       `;
+
       div.classList.remove("hidden");
+
+    } catch (err) {
+      toast("Server Error: " + err.message, "error");
     }
+  }
 
-    async function startPayment(apiKey) {
-      const plan = document.getElementById("plan").value;
-      try {
-        const res = await fetch(`${BASE_URL}/api/phonepe/initiate`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ apiKey, plan }),
-        });
+  async function startPayment(apiKey) {
+    const plan = document.getElementById("plan").value;
 
-        const txt = await res.text();
-        console.log("Raw response:", txt);
-        const data = JSON.parse(txt);
+    try {
+      toast("Initiating payment...", "success");
 
-        if (data.redirectUrl) {
-          // ✅ Open order tracking in a new window
-          if (data.callbackUrl) {
-            window.open(data.callbackUrl, "_blank");
-            console.log("Opened callback URL:", data.callbackUrl);
-          }
+      const res = await fetch(`${BASE_URL}/api/phonepe/initiate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ apiKey, plan }),
+      });
 
-          // ✅ Redirect to PhonePe checkout (open in same tab)
-          console.log("Redirecting to:", data.redirectUrl);
-          window.location.href = data.redirectUrl;
-        } else {
-          alert("Error: " + (data.error || "Payment initialization failed."));
+      const txt = await res.text();
+      console.log("Raw response:", txt);
+
+      const data = JSON.parse(txt);
+
+      if (data.redirectUrl) {
+
+        toast("Redirecting to PhonePe...", "success");
+
+        if (data.callbackUrl) {
+          window.open(data.callbackUrl, "_blank");
         }
-      } catch (err) {
-        alert("Network Error: " + err);
+
+        window.location.href = data.redirectUrl;
+
+      } else {
+        toast(data.error || "Payment initialization failed.", "error");
       }
+
+    } catch (err) {
+      toast("Network Error: " + err, "error");
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
