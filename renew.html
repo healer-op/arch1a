@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://archiastudio.com/warehouse/css/fonts.css" />
   <link rel="stylesheet" href="warehouse/css/warehouse.css">
   <link rel="icon" href="warehouse/data/images/icon.png" sizes="32x32">
+
   <style>
     * { font-family: Causten-ExtraBold, sans-serif; }
     body {
@@ -18,20 +19,20 @@
       min-height: 100vh;
       margin: 0;
     }
-    .fullscreen-video-container {
-  position: fixed;
-  height: 100vh; 
-  width: 100vw;
-  overflow: hidden;
-}
 
-.fullscreen-video-container video {
-  position: absolute;
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-}
+    .fullscreen-video-container {
+      position: fixed;
+      height: 100vh; 
+      width: 100vw;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .fullscreen-video-container video {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
     .glass {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(15px);
@@ -41,6 +42,7 @@
       max-width: 450px;
       text-align: center;
     }
+
     input, select {
       padding: 10px;
       margin: 8px 0;
@@ -48,6 +50,7 @@
       border: none;
       border-radius: 8px;
     }
+
     button {
       background: #ffd500;
       border: none;
@@ -58,6 +61,7 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     .details {
       margin-top: 1rem;
       text-align: left;
@@ -65,37 +69,57 @@
       padding: 10px;
       border-radius: 10px;
     }
+
     .hidden { display: none; }
+
+    /* Smooth fade and slide animation */
+    .smooth-container {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .smooth-container.show {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    /* Smooth image fade */
+    img.smooth-img {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    img.smooth-img.loaded {
+      opacity: 1;
+    }
   </style>
 </head>
+
 <body>
-  <div class="fullscreen-video-container">
+
+<div class="fullscreen-video-container">
   <video autoplay loop muted>
     <source src="https://v1.pinimg.com/videos/iht/expMp4/3b/8b/bb/3b8bbb95d5061a5784c14a957dd79c9a_720w.mp4" type="video/mp4">
   </video>
-  
-  <div class="fullscreen-video-content">
-
-
-  </div>
 </div>
-  <div class="glass">
-    <h2>Renew API Key</h2>
-    <div id="step1">
-      <input id="apiKey" placeholder="Enter your API Key" required />
-      <button onclick="fetchDetails()">Check Details</button>
-    </div>
-    <div id="details" class="hidden"></div>
+
+<div class="glass">
+  <h2>Renew API Key</h2>
+
+  <div id="step1">
+    <input id="apiKey" placeholder="Enter your API Key" required />
+    <button onclick="fetchDetails()">Check Details</button>
   </div>
-  
+
+  <div id="details" class="hidden smooth-container"></div>
+</div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 <script>
-  // 🔊 Sound Effects
+  // Sounds
   const soundSuccess = new Audio("/warehouse/data/sounds/success.mp3");
-  const soundError   = new Audio("/warehouse/data/sounds/error.mp3");
+  const soundError = new Audio("/warehouse/data/sounds/error.mp3");
   soundError.volume = 0.2;
   soundSuccess.volume = 0.2;
 
@@ -109,74 +133,109 @@
       close: true
     }).showToast();
 
-    // play sound
     if (type === "success") soundSuccess.play();
     else soundError.play();
   }
 
   const params = new URLSearchParams(document.location.search);
   let paramKey = params.get("key");
-  if (paramKey) {
-    document.getElementById("apiKey").value = paramKey;
-  }
+  if (paramKey) document.getElementById("apiKey").value = paramKey;
 
   const BASE_URL = "https://api.archiastudio.com";
 
-  async function fetchDetails() {
-    const key = document.getElementById("apiKey").value.trim();
-    if (!key) return toast("Enter API Key", "error");
+async function fetchDetails() {
+  const key = document.getElementById("apiKey").value.trim();
+  if (!key) return toast("Enter API Key", "error");
 
-    try {
-      const res = await fetch(`${BASE_URL}/api/getdetails/${key}`);
-      const data = await res.json();
+  const div = document.getElementById("details");
+  div.innerHTML = "<p style='text-align:center;'>Loading...</p>";
+  div.classList.remove("hidden");
+  div.classList.remove("show");
 
-      if (data.error) {
-        toast(data.error, "error");
-        return;
-      }
+  try {
+    const res = await fetch(`${BASE_URL}/api/getdetails/${key}`);
+    const data = await res.json();
 
-      toast("Account details loaded!", "success");
-
-      let color = data.daysRemaining < 10 ? "red" : "green";
-
-      let monthlyHTML = "<option value='beginner-month'>Beginner - ₹996 (4m)</option>";
-      if (data.plan == "gold") monthlyHTML = "<option value='gold-month'>Gold - ₹3996 (4m)</option>";
-      if (data.plan == "silver") monthlyHTML = "<option value='silver-month'>Silver - ₹1996 (4m)</option>";
-
-      let yearlyHTML = "<option value='beginner-year'>Beginner - ₹2499</option>";
-      if (data.plan == "gold") yearlyHTML = "<option value='gold-year'>Gold - ₹9999</option>";
-      if (data.plan == "silver") yearlyHTML = "<option value='silver-year'>Silver - ₹4999</option>";
-
-      const div = document.getElementById("details");
-      div.innerHTML = `
-        <div class='details'>
-          ${data.image ? `<img src="${data.image}" style="border-radius:100%;width:100px;border:white 3px solid;">` : ""}
-          <p><b>Name:</b> ${data.name}</p>
-          <p><b>Website:</b> ${data.website}</p>
-          <p><b>Days Left:</b><span style="color:${color}"> ${data.daysRemaining}</span></p>
-          <p><b>Type:</b> ${data.plan || 'Beginner'}</p>
-        </div>
-        <select id='plan'>
-          <optgroup label='4 months'>
-            ${monthlyHTML}
-          </optgroup>
-          <optgroup label='Yearly'>
-            ${yearlyHTML}
-          </optgroup>
-        </select>
-        <button onclick='startPayment("${key}")' style='
-    background: #60259F;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-'>Pay with PhonePe</button>
-      `;
-
-      div.classList.remove("hidden");
-
-    } catch (err) {
-      toast("Server Error: " + err.message, "error");
+    if (data.error) {
+      div.classList.add("hidden");
+      return toast(data.error, "error");
     }
+
+    toast("Account details loaded!", "success");
+
+    let color = data.daysRemaining < 10 ? "red" : "green";
+
+    let monthlyHTML = "<option value='beginner-month'>Beginner - ₹996 (4m)</option>";
+    if (data.plan == "gold") monthlyHTML = "<option value='gold-month'>Gold - ₹3996 (4m)</option>";
+    if (data.plan == "silver") monthlyHTML = "<option value='silver-month'>Silver - ₹1996 (4m)</option>";
+
+    let yearlyHTML = "<option value='beginner-year'>Beginner - ₹2499</option>";
+    if (data.plan == "gold") yearlyHTML = "<option value='gold-year'>Gold - ₹9999</option>";
+    if (data.plan == "silver") yearlyHTML = "<option value='silver-year'>Silver - ₹4999</option>";
+
+    // Prepare the full HTML but DO NOT insert yet
+    const finalHTML = `
+      <div class='details'>
+        ${
+          data.image
+            ? `<img id="profilePic" src="${data.image}" class="smooth-img"
+                 style="border-radius:100%;width:100px;border:white 3px solid;">`
+            : ""
+        }
+        <p><b>Name:</b> ${data.name}</p>
+        <p><b>Website:</b> ${data.website}</p>
+        <p><b>Days Left:</b><span style="color:${color}"> ${data.daysRemaining}</span></p>
+        <p><b>Type:</b> ${data.plan || 'Beginner'}</p>
+      </div>
+
+      <select id='plan'>
+        <optgroup label='4 months'>${monthlyHTML}</optgroup>
+        <optgroup label='Yearly'>${yearlyHTML}</optgroup>
+      </select>
+
+      <button onclick='startPayment("${key}")' style='
+        background:#60259F;
+        color:white;
+        box-shadow: rgba(0,0,0,0.25) 0px 54px 55px,
+                    rgba(0,0,0,0.12) 0px -12px 30px,
+                    rgba(0,0,0,0.12) 0px 4px 6px,
+                    rgba(0,0,0,0.17) 0px 12px 13px,
+                    rgba(0,0,0,0.09) 0px -3px 5px;
+      '>Pay with PhonePe</button>
+    `;
+
+    // If no image → show immediately
+    if (!data.image) {
+      div.innerHTML = finalHTML;
+      setTimeout(() => div.classList.add("show"), 10);
+      return;
+    }
+
+    // Image must load first
+    const img = new Image();
+    img.src = data.image;
+
+    img.onload = () => {
+      // Now safe to show full content
+      div.innerHTML = finalHTML;
+
+      const profilePic = document.getElementById("profilePic");
+      if (profilePic) profilePic.classList.add("loaded");
+
+      setTimeout(() => div.classList.add("show"), 20);
+    };
+
+    img.onerror = () => {
+      div.innerHTML = finalHTML.replace(`src="${data.image}"`, "");
+      setTimeout(() => div.classList.add("show"), 10);
+    };
+
+  } catch (err) {
+    div.classList.add("hidden");
+    toast("Server Error: " + err.message, "error");
   }
+}
+
 
   async function startPayment(apiKey) {
     const plan = document.getElementById("plan").value;
@@ -191,20 +250,12 @@
       });
 
       const txt = await res.text();
-      console.log("Raw response:", txt);
-
       const data = JSON.parse(txt);
 
       if (data.redirectUrl) {
-
         toast("Redirecting to PhonePe...", "success");
-
-        if (data.callbackUrl) {
-          window.open(data.callbackUrl, "_blank");
-        }
-
         window.location.href = data.redirectUrl;
-
+        if (data.callbackUrl) window.open(data.callbackUrl, "_blank");
       } else {
         toast(data.error || "Payment initialization failed.", "error");
       }
