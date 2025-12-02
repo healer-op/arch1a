@@ -1,0 +1,666 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Good practice for responsive layouts */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 80%;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            margin: 1rem auto;
+            background: #000000dc;
+            background: linear-gradient(-45deg, #000000 40%, #32123d 50%, #000000 60%);
+            background-size: 200%;
+            background-position-x: 100%;
+            animation: shimmer 2s infinite linear;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav li a {
+            font-family: Montserrat;
+            text-decoration: none;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        #active a,
+        .nav li a:hover {
+            color: #b700ff;
+            letter-spacing: 1px;
+        }
+
+        /* HAMBURGER BUTTON */
+        .menu-btn {
+            display: none;
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            position: absolute;
+            right: 1.5rem;
+            top: 0.8rem;
+            user-select: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+
+                /* FIX HERE */
+                position: static;
+                /* Was absolute (caused overlap) */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.35s ease-in-out;
+            }
+
+            .nav.open {
+                max-height: 300px;
+                /* Expands smoothly without overlap */
+            }
+        }
+
+        body {
+            --dot-bg: rgb(255, 255, 255);
+            --dot-color: rgba(0, 0, 0, 0.265);
+            --dot-size: 2px;
+            --dot-space: 22px;
+            background:
+                linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+                linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+                var(--dot-color);
+            background-position-y: 100%;
+            animation: shimmer-y 100s infinite linear;
+            /* Added padding for responsiveness */
+            transition: all 0.5s ease-in;
+        }
+
+        @keyframes shimmer-y {
+            to {
+                background-position-y: 0%;
+            }
+        }
+
+        @font-face {
+            font-family: novaklasse-semibold;
+            src: url("../../warehouse/data/fonts/novaklasse-semibold.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: BBHSansHegarty-Regular;
+            src: url('../../warehouse/data/fonts/BBHSansHegarty-Regular.ttf') format('truetype');
+        }
+
+
+
+        section {
+            width: 100%;
+            /* Use min-height for section to ensure content is centered, but allows it to grow */
+            min-height: 100vh;
+        }
+
+
+        #main {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        /* --- Content Box Styling --- */
+        #main>.box {
+            width: 100%;
+            /* Set a max-width for better display on very large screens */
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center children horizontally */
+        }
+
+        /* --- Heading (h1) Styling --- */
+        #main>.box>h1 {
+            /* Use a responsive width for the heading */
+            width: 90%;
+            font-family: novaklasse-semibold;
+            /* Use a mix of vw and a minimum font size for responsive text */
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            margin: 1rem auto;
+            /* Auto margin centers a block element with a fixed width */
+        }
+
+        /* --- Ring Element Styling (A MSME...) --- */
+        #main>.box>.ring {
+            font-family: "Montserrat";
+            display: flex;
+            padding: 0.2rem 1rem;
+            margin-bottom: 1.5rem;
+            /* Increased margin for better separation */
+            border: 1px solid rgba(0, 0, 0, 0.333);
+            border-radius: 25px;
+            align-items: center;
+            /* Ensure no text wrapping on small screens */
+            white-space: nowrap;
+        }
+
+        /* --- Review Container Styling --- */
+        #main>.box>.review {
+            display: flex;
+            align-items: center;
+            /* Use rem for a scalable gap */
+            gap: 3rem;
+        }
+
+        /* --- Overlapping Imagebox Container --- */
+        #main>.box>.review>.imagebox {
+            display: flex;
+            position: relative;
+            /* Define a relative overlap amount based on image size */
+            --overlap-amount: 0.75rem;
+
+            /* Compensation for the overlapping margin. (Number of images - 1) * overlap amount */
+            margin-right: calc((5 - 1) * -1 * var(--overlap-amount));
+        }
+
+        /* --- Individual Image Styling --- */
+        #main>.box>.review>.imagebox>img {
+            /* Keeping your requested size of 2rem, but you could use calc(2rem - 0.5vw) for more scaling */
+            width: 2rem;
+            height: 2rem;
+            border: 2px solid white;
+            object-fit: cover;
+            border-radius: 100%;
+            position: relative;
+
+            /* Apply the overlap for images *after* the first one */
+            margin-left: calc(-1 * var(--overlap-amount));
+        }
+
+        /* Reset margin for the very first image in the stack */
+        #main>.box>.review>.imagebox>img:first-child {
+            margin-left: 0;
+        }
+
+        /* Z-index for correct stacking */
+        .imagebox img:nth-child(1) {
+            z-index: 5;
+        }
+
+        .imagebox img:nth-child(2) {
+            z-index: 4;
+        }
+
+        .imagebox img:nth-child(3) {
+            z-index: 3;
+        }
+
+        .imagebox img:nth-child(4) {
+            z-index: 2;
+        }
+
+        .imagebox img:nth-child(5) {
+            z-index: 1;
+        }
+
+
+        #main>.box>.mainButton {
+            margin: 1rem;
+            padding: 1rem 2.5rem;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Montserrat";
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(-45deg, #000000 40%, #ffffff 50%, #000000 60%);
+            background-size: 300%;
+            background-position-x: 100%;
+            animation: shimmer 1s infinite linear;
+            transition: all 0.1s ease-in;
+        }
+
+        #main>.box>.mainButton:hover {
+            font-size: 1rem;
+            border: 2px solid rgb(255, 217, 0);
+        }
+
+
+        @keyframes shimmer {
+            to {
+                background-position-x: 0%
+            }
+        }
+
+
+
+        #Service {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #Service>.box {
+            width: 100%;
+            /* Set a max-width for better display on very large screens */
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #Service>.box>h2 {
+            /* Use a responsive width for the heading */
+            width: 90%;
+            font-family: novaklasse-semibold;
+            /* Use a mix of vw and a minimum font size for responsive text */
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            margin: 1rem auto;
+            /* Auto margin centers a block element with a fixed width */
+        }
+
+        #Service>.box>h3 {
+            width: 90%;
+            font-family: novaklasse-semibold;
+            /* Use a mix of vw and a minimum font size for responsive text */
+            font-size: clamp(1.5rem, 2vw, 3rem);
+            margin: 0.5rem auto;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #Service>.box>h3:hover {
+            color: rgb(167, 43, 208);
+            opacity: 50%;
+            letter-spacing: 0.1rem;
+        }
+
+        #Service>.box>p {
+            font-family: "Montserrat";
+            font-size: clamp(0.7rem, 1vw, 3rem);
+        }
+
+        #about {
+            position: relative;
+            background-color: #000000;
+            --dot-bg: rgb(0, 0, 0);
+            --dot-color: rgb(65, 65, 65);
+            --dot-size: 2px;
+            --dot-space: 22px;
+            background:
+                linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+                linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+                var(--dot-color);
+            background-position-y: 100%;
+            animation: shimmer-y 20s infinite linear;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #about>.box {
+            color: white;
+            width: 100%;
+            /* Set a max-width for better display on very large screens */
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #about>.box>h2 {
+            /* Use a responsive width for the heading */
+            width: 90%;
+            font-family: novaklasse-semibold;
+            /* Use a mix of vw and a minimum font size for responsive text */
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            margin: 1rem auto;
+            /* Auto margin centers a block element with a fixed width */
+        }
+
+        #about>.box>p {
+            width: 80%;
+            margin: 0.5rem auto;
+            font-family: "Montserrat";
+            font-size: clamp(0.7rem, 1.4vw, 3rem);
+        }
+
+        #archiaai {
+            position: relative;
+            /* parent container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #archiaai>.box {
+            width: 80%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+
+        #archiaai>.box>img:first-child {
+            position: relative;
+            z-index: 10;
+            width: 15rem;
+        }
+
+
+        #archiaai>.box>.float-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            /* prevent escaping */
+        }
+
+        #archiaai>.box>.float-img img {
+            background-color: #ffffff;
+            position: absolute;
+            width: 4rem;
+            height: auto;
+            z-index: 2;
+            transition: left 3s ease-in-out, top 3s ease-in-out;
+
+            /* base animations – durations overridden by JS */
+            animation: curveFloat 8s ease-in-out infinite,
+                depthFloat 10s ease-in-out infinite alternate,
+                glowPulse 8s ease-in-out infinite alternate;
+            border-radius: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.059);
+        }
+
+        /* Curved drifting motion */
+        @keyframes curveFloat {
+            0% {
+                transform: translate(0rem, 0rem) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(0.6rem, -0.5rem) rotate(3deg);
+            }
+
+            50% {
+                transform: translate(-0.3rem, -0.8rem) rotate(-2deg);
+            }
+
+            75% {
+                transform: translate(-0.6rem, 0.5rem) rotate(2deg);
+            }
+
+            100% {
+                transform: translate(0.2rem, 0.2rem) rotate(-1deg);
+            }
+        }
+
+        /* Depth wobble */
+        @keyframes depthFloat {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(0.97);
+            }
+        }
+
+        /* Glow effect */
+        @keyframes glowPulse {
+            0% {
+                filter: drop-shadow(0 0 0rem rgba(255, 255, 255, 0.0));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.4));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 0.2rem rgba(255, 255, 255, 0.2));
+            }
+        }
+
+        #archiaai {
+            position: relative;
+            background-color: #a7a7a710;
+        }
+
+        #archiaai>.box>p {
+            font-family: BBHSansHegarty-Regular;
+            -webkit-text-fill-color: black;
+            -webkit-text-stroke-width: 4px;
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            -webkit-text-stroke-color: rgba(255, 255, 255, 0.16);
+            z-index: 11;
+        }
+
+        /* --- Rating Box Styling (Optional: add if needed, otherwise uses previous styles) --- */
+        /* If you need styles for the rating box, make sure they use relative units */
+        /* Example:
+.rating-box {
+    padding: 0.5rem 1rem;
+    ...
+}
+*/
+
+        /* --- Media Query for Mobile Optimization (e.g., screens under 600px) --- */
+        @media (max-width: 600px) {
+
+            #main>.box>h1 {
+                /* Increase the width and potentially reduce the font size slightly on very small screens */
+                width: 95%;
+                font-size: 1.8rem;
+            }
+
+            /* You could make the images slightly smaller on mobile if needed */
+            #main>.box>.review>.imagebox>img {
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+
+            /* Adjust the image overlap amount if the image size is changed */
+            #main>.box>.review>.imagebox {
+                --overlap-amount: 0.5rem;
+                margin-right: calc((5 - 1) * -1 * var(--overlap-amount));
+            }
+
+            #main>.box>.review {
+                gap: 2rem;
+                /* Reduce the gap between image box and rating box */
+            }
+        }
+
+        #main>.infinite-bar {
+            position: absolute;
+            bottom: 1px;
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        #main>.infinite-bar>.scroll-track {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 25s linear infinite;
+        }
+
+        #main>.infinite-bar>.scroll-track>.item {
+            font-family: "Montserrat";
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 50px;
+            font-size: 15px;
+            color: #444;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        #main>.infinite-bar>.scroll-track>.item img {
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+
+
+        #Service>.infinite-bar {
+            position: absolute;
+            bottom: 1px;
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        #Service>.infinite-bar>.scroll-track {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 25s linear infinite;
+        }
+
+        #Service>.infinite-bar>.scroll-track>.item {
+            font-family: "Montserrat";
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 50px;
+            font-size: 15px;
+            color: #444;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        #Service>.infinite-bar>.scroll-track>.item img {
+            width: auto;
+            height: 24px;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        #footer {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-color: #000000;
+            color: white;
+            height: auto;
+            padding: 2rem 1.5rem;
+
+            display: flex;
+            justify-content: space-between;
+            /* pushes both divs to corners */
+            align-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+            /* enables stacking on small screens */
+        }
+
+        #footer .box,
+        #footer .link {
+            flex: 1;
+            min-width: 250px;
+            align-content: center;
+            /* ensures wrapping on mobile */
+        }
+
+        #footer .link {
+            text-align: right;
+        }
+
+        #footer .box h2,
+        #footer .link h2 {
+            font-family: novaklasse-semibold;
+        }
+
+        #footer .box p {
+            font-family: Montserrat;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- Mobile View --- */
+        @media (max-width: 700px) {
+            #footer {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            #footer .link {
+                text-align: center;
+            }
+        }
