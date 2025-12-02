@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ArchiaStudio - Booking Confirmed</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../warehouse/css/cssv2.css">
+    <link rel="icon" href="../../warehouse/data/images/ducks/favicon.png" sizes="32x32">
+    <link rel="icon" href="../../warehouse/data/images/ducks/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="warehouse/data/images/ducks/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <section id="main">
+        <div class="box">
+            <div class="ring"><span id="message">Hurray! Booking Confirmed!</span><svg fill="none" height="16" viewBox="0 0 24 24"
+                    width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.75 8.75L14.25 12L10.75 15.25" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5"></path>
+                </svg></div>
+            <h1 id="header_message">Thankyou for Choosing ArchiaStudio</h1>
+            <p style="font-family: Montserrat;" id="header_dec">We Will Reach you shortly!</p>
+        </div>
+    </section>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script>
+        const params = new URLSearchParams(document.location.search);
+        let bookingID = params.get("id");
+        if(!bookingID){
+            document.title = "ArchiaStudio - Booking Failed"
+            document.getElementById("message").innerText = "Booking Id Not Found";
+            document.getElementById("header_message").innerText = "Opes! You are on wrong page"
+            document.getElementById("header_dec").innerText = "Revert back to home"
+        }
+    </script>
+</body>
+
+</html>

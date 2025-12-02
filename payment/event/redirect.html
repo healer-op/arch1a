@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Redirecting...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../warehouse/css/cssv2.css">
+
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css">
+
+    <link rel="icon" href="../../warehouse/data/images/ducks/favicon.png" sizes="32x32">
+</head>
+
+<body>
+    <section id="main">
+        <div class="box">
+            <div class="ring">
+                <span>Redirecting You To Booking Website</span>
+                <svg fill="none" height="16" viewBox="0 0 24 24" width="16">
+                    <path d="M10.75 8.75L14.25 12L10.75 15.25" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="1.5"></path>
+                </svg>
+            </div>
+
+            <h1>Thank you for Choosing ArchiaStudio</h1>
+            <p style="font-family: Montserrat;">Redirecting You in <span id="time" class="odometer">10</span> Seconds</p>
+        </div>
+    </section>
+
+    <!-- Odometer JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+
+    <script>
+        let remaining = 10;
+        const timeSpan = document.getElementById("time");
+
+        const countdown = setInterval(() => {
+            remaining--;
+            timeSpan.innerHTML = remaining;
+
+            if (remaining <= 0) {
+                clearInterval(countdown);
+                window.location.href = "https://rzp.io/rzp/yOcFUFe"; // redirect after 10s
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
