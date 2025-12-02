@@ -109,23 +109,31 @@ web design z index, website developer in zirakpur, logo website developer german
     <link rel="icon" href="warehouse/data/images/ducks/favicon.png" sizes="192x192">
     <link rel="apple-touch-icon" href="warehouse/data/images/ducks/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="warehouse/css/cssv2.css">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-    #footer a,span{
-        font-family: Montserrat;
-    }
-</style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="stylesheet" href="warehouse/css/cssv2.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-  gtag('config', 'G-KX4EKGY3VC');
-</script>
-    
+        #footer a,
+        span {
+            font-family: Montserrat;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX4EKGY3VC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KX4EKGY3VC');
+    </script>
+
 </head>
 
 <body>
@@ -196,6 +204,26 @@ web design z index, website developer in zirakpur, logo website developer german
     <section id="about">
         <div class="box">
             <h2>Our Story</h2>
+            <div style="font-family: Montserrat;">
+                <span id="time" class="odometer">0</span> Seconds | Since 2020-11-24 (Started As Shappiree Media) 
+            </div><br>
+            <script>
+                // Start date (25 Nov 2024)
+                const startDate = new Date("2020-11-24T00:00:00");
+
+                // Function to update seconds difference
+                function updateSeconds() {
+                    const now = new Date();
+                    const diff = Math.floor((now - startDate) / 1000);
+                    document.getElementById("time").innerHTML = diff;
+                }
+
+                // Initial load
+                updateSeconds();
+
+                // Update every second
+                setInterval(updateSeconds, 1000);
+            </script>
 
             <p>Archia Studios provides end-to-end web solutions, from consultancy to custom website and IoT development,
                 designed to bring your business online. We leverage the latest technology and design trends to create a
@@ -243,9 +271,11 @@ web design z index, website developer in zirakpur, logo website developer german
 
                 <!-- SET 1 -->
                 <div class="item"><img src="/warehouse/data/images/partners/icons8-aws-480.png">AWS Startup</div>
-                <div class="item"><img src="/warehouse/data/images/partners/icons8-chatgpt-240.png"> OpenAi Partner</div>
+                <div class="item"><img src="/warehouse/data/images/partners/icons8-chatgpt-240.png"> OpenAi Partner
+                </div>
                 <div class="item"><img src="/warehouse/data/images/partners/icons8-deepseek-480.png"> Ai Partner</div>
-                <div class="item"><img src="/warehouse/data/images/partners/icons8-google-cloud-480.png"> Cloud Partner</div>
+                <div class="item"><img src="/warehouse/data/images/partners/icons8-google-cloud-480.png"> Cloud Partner
+                </div>
 
                 <!-- SET 2 (duplicated for seamless infinite scroll) -->
                 <div class="item"><img src="/warehouse/data/images/partners/icons8-nvidia-480.png"> Ai Partner</div>
