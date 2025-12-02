@@ -607,7 +607,10 @@
         #footer {
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
-            background-color: #000000;
+            background: linear-gradient(-45deg, #000000 40%, #32123d 50%, #000000 60%);
+            background-size: 200%;
+            background-position-x: 100%;
+            animation: shimmer 2s infinite linear;
             color: white;
             height: auto;
             padding: 2rem 1.5rem;
