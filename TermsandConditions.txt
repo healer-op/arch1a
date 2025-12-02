@@ -42,7 +42,19 @@ This Agreement constitutes the entire agreement between the parties and supersed
 17. Severability
 If any provision of this Agreement is held to be invalid or unenforceable, such provision shall be struck from this Agreement and the remaining provisions shall remain in full force and effect.  
 
+18.Project Commencement & Inactivity Clause
 
+> Project Start Deadline
+Upon completion of the initial payment, the client must begin the project within three (3) weeks by providing the necessary materials, approvals, access, or any other required information.
+
+> Automatic Project Closure
+If the client fails to initiate the project within the three-week window, Archia Studio reserves the right to automatically close the project due to prolonged inactivity.
+
+> Non-Refundable Initial Payment
+The initial payment or deposit made at the time of booking is non-refundable. This amount compensates for the time, scheduling allocation, resource planning, and opportunity cost dedicated to the client during this period.
+
+> Reactivation After Closure
+If the client wishes to restart the project after it has been closed, it will be treated as a new project and may require a new payment depending on current pricing and availability.
 
   
 
