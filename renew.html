@@ -253,9 +253,9 @@ async function fetchDetails() {
       const data = JSON.parse(txt);
 
       if (data.redirectUrl) {
+        if (data.callbackUrl) window.open(data.callbackUrl, "_blank");
         toast("Redirecting to PhonePe...", "success");
         window.location.href = data.redirectUrl;
-        if (data.callbackUrl) window.open(data.callbackUrl, "_blank");
       } else {
         toast(data.error || "Payment initialization failed.", "error");
       }
