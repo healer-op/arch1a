@@ -170,18 +170,31 @@
         }
 
         /* --- Ring Element Styling (A MSME...) --- */
-        #main>.box>.ring {
-            font-family: "Montserrat";
-            display: flex;
-            padding: 0.2rem 1rem;
-            margin-bottom: 1.5rem;
-            /* Increased margin for better separation */
-            border: 1px solid rgba(0, 0, 0, 0.333);
-            border-radius: 25px;
-            align-items: center;
-            /* Ensure no text wrapping on small screens */
-            white-space: nowrap;
-        }
+        #main > .box > .ring {
+    font-family: "Montserrat";
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 1.5rem;
+
+    max-width: 100%;
+    width: fit-content;
+
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    border-radius: 999px;
+
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+@media (max-width: 480px) {
+    #main > .box > .ring {
+        display: none;
+    }
+}
+
 
         /* --- Review Container Styling --- */
         #main>.box>.review {
